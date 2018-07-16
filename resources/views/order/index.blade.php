@@ -5,7 +5,7 @@
 
 <div class="form-group">
 	<form action="{{ route('order.create') }}">
-			<button type="submit" class="btn btn-primary btn-block">
+			<button type="submit" class="btn btn-primary">
 				<i class="fa fa-plus"></i> Добавить заявку
 			</button>
 	</form>
@@ -18,12 +18,14 @@
 </div>
 @endif
 
+@include('order.filter') {{-- подключение формы для фильтрации данных --}}
+
 <table class="table table-striped">
 	<thead>
 		<tr>
 			<th>Номер</th>
 			<th>Наименование</th>
-			<th class="col-sm-2" colspan="3"></th>
+			<th colspan="2"></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -32,18 +34,21 @@
 			<td>{{ $order->id }}</td>
 			<td>{{ $order->title }}</td>            
 			<td>
-				<form action="{{ route('order.show', $order->id) }}">
-                	<button type="submit" class="btn btn-info"><i class="fa fa-eye"></i></button>
-                </form>
-			</td> 
-			
-			<td>
+				
 			@if( Auth::check() )
 				@if($order->user_id == Auth::user()->id)
 					<form action="{{ route('order.edit', $order->id) }}">
 	                	<button type="submit" class="btn btn-success"><i class="fa fa-edit"></i></button>
 	                </form>
+            	@else
+            		<form action="{{ route('order.show', $order->id) }}">
+	                	<button type="submit" class="btn btn-info"><i class="fa fa-eye"></i></button>
+	                </form>
             	@endif
+            @else
+            	<form action="{{ route('order.show', $order->id) }}">
+                	<button type="submit" class="btn btn-info"><i class="fa fa-eye"></i></button>
+                </form>
             @endif
 			</td> 
 			

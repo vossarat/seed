@@ -21,8 +21,8 @@
 		<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">	
 		
 		<!-- additional CSS -->
-		<!--<link rel="stylesheet" href="{{ asset('css/template.css') }}" />
-		<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}" /> 
+		<link rel="stylesheet" href="{{ asset('css/template.css') }}" />
+		<!--<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}" /> 
 		<link rel="stylesheet" href="{{ asset('css/topbar.css') }}" /> -->
 		
 		

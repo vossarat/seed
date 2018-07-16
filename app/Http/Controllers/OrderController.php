@@ -6,11 +6,12 @@ use App\Order;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
+use Gate;
 
 class OrderController extends Controller
 {
 	public function __construct(Order $order)
-	{
+	{		
 		$this->order = $order;
 	}
     /**
@@ -33,7 +34,8 @@ class OrderController extends Controller
     public function create()
     {
     	if(Auth::check() == false){
-	       return view('auth.authmessage')->with('message', 'Для добавления заявки');
+	       //return view('auth.authmessage')->with('message', 'Для добавления заявки');
+	       return view('layouts.sysmessage')->with('message', 'Для добавления заявки Вам необходимо <a href="/login">авторизоваться</a> или <a href="/register">зарегистрироваться</a>');
 	    }
 	    
         return view('order.create')->with([
@@ -68,7 +70,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-       return view('order.show')->with([
+		return view('order.show')->with([
 			'viewdata' => $this->order->find($id),
 			'disabled' => 'disabled',
 		]);
@@ -81,9 +83,15 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    { 	
+    	$order = $this->order->find($id);
+    	
+    	if(Gate::denies('update', $order)){
+		    return view('layouts.sysmessage')->with('message','Это на Ваша заявка. Вы не можете ее редактировать.');
+		}
+			
         return view('order.edit')->with([
-			'viewdata' => $this->order->find($id),
+			'viewdata' => $order,
 			'disabled' => '',
 		]);
     }
@@ -96,8 +104,13 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $order = $this->order->find($id);		
+    {    	
+        $order = $this->order->find($id);
+ 	
+    	if(Gate::denies('update', $order)){
+		    return view('layouts.sysmessage')->with('message','Это на Ваша заявка. Вы не можете ее редактировать.');
+		}
+        		
 		$order->update($request->all());
 		
 		$order->user->whatsapp = $request->whatsapp;
@@ -117,6 +130,11 @@ class OrderController extends Controller
     public function destroy($id)
     {
         $order = $this->order->find($id);
+    	
+    	if(Gate::denies('delete', $order)){
+		    return view('layouts.sysmessage')->with('message','Вы не можете удалить эту заявку.');
+		}
+        
 		$order->delete();
 		return back()->with('message',"Заявка $order->name удалена");
     }

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use App\User;
 
 class Dashboard
 {
@@ -16,9 +17,12 @@ class Dashboard
      */
     public function handle($request, Closure $next)
     {
-		if(1==6){
-	        return $next($request);
-	    }
-	    return redirect('/')->with('message','You have not admin access');
+		if( Auth::check() ) {
+			if(Auth::user()->id == 1){
+		        return $next($request);
+		    }
+		}
+		
+	    return redirect('sysmessage')->with('message','You have not admin access');
 	}
 }

@@ -16,9 +16,11 @@ class Owner
      */
     public function handle($request, Closure $next)
     {
-        if( Auth::user()->id == $request->user_id ){
+    	
+    	dd($request);
+        if( Auth::user()->id == $userId ){
 	        return $next($request);
 	    }
-	    return redirect('authmessage');
+	    return redirect('noaccess');
     }
 }

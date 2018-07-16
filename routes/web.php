@@ -40,4 +40,8 @@ Route::prefix('dashboard')->middleware('dashboard')->group(
 	}
 );
 
+Route::get('/sysmessage', function () {
+    return view('layouts.sysmessage');
+})->name('sysmessage');
+
 //Route::get('/home', 'HomeController@index')->name('home');

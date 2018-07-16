@@ -1,18 +1,6 @@
-body {
-
-}
-.content {
-
-}
-
-.border-1 {
-	border: 1px solid black;
-}
-
-.panel-default, .panel-heading {
-    border-color: blue !important;
-}
-
-.page-header {
-	margin: 60px 0 20px !important;
+@media (max-width: 640px) {
+  .btn {
+    display: block;
+    width: 100%;
+  }
 }

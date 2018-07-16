@@ -59,53 +59,12 @@
 				</li>
 				
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="{{ route('xxx') }}" class="dropdown-toggle" data-toggle="dropdown">
-						{{ Auth::check() ? Auth::user()->name : 'Пользователь' }}
-						<b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu">
-					@if( Auth::check() )					
-						@if( \Func::traderByUserId(Auth::user()->id) )
-						<li>
-							<a href="{{ route('trader.edit', \Func::traderByUserId(Auth::user()->id) ) }}">
-								Профиль трейдера
-							</a>
-						</li>
-						@else
-						<li>
-							<a href="{{ route('trader.create') }}">
-								Я трейдер
-							</a>
-						</li>
-						@endif
-						<li>
-                            <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                	document.getElementById('logout-form').submit();">
-                                <i class="fa fa-sign-out"></i> Выход
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </li>						
-					@else
-						<li>
-							<a href="/login">
-								Войти в систему
-							</a>
-						</li>
-						<li>
-							<a href="/register">
-								Регистрация
-							</a>
-						</li>
-                   	@endif
-					</ul>
-					
-				</li>
-			</ul>
+			
+			<!-- Секция меню  пользователя -->
+			@section('usermenu')
+			    @include('layouts.usermenu')
+			@show
+			
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
 </nav>

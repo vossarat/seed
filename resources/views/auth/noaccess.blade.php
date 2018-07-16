@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            {{$message}} Вам необходимо <a href="/login">авторизоваться</a> или <a href="/register">зарегистрироваться</a>
+            У вас нет доступа к данному действию
         </div>
     </div>
 </div>
