@@ -68,4 +68,9 @@
 	</tbody>
 </table>
 
+{{ $viewdata->appends([
+		'filterByTitle' => isset($filterByTitle) ? $filterByTitle :'',
+		'filter' => 'filter',
+	])->links() }}
+
 @endsection

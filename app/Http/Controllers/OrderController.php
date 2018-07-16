@@ -19,10 +19,19 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+    	$orders = $this->order;
+    	$filterByTitle = null; // фильтра по наименованию заявки, пока пустой
+    	
+    	if ( $request->has('filter') ) { // проверка на кнопку фильтра
+			$filterByTitle = $request->get('filterByTitle');
+			$orders = $this->order->filterByTitle($filterByTitle); //фильтруем данные
+		}
+    	
         return view('order.index')->with([        
-			'viewdata' => $this->order->all(),
+			'viewdata' => $orders->paginate(5),
+			'filterByTitle' => $filterByTitle,
 		]);
     }
 

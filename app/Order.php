@@ -25,4 +25,9 @@ class Order extends Model
 	{
 		return $this->belongsTo(User::class);
 	}
+	
+	public function ScopeFilterByTitle($query, $filterByTitle)
+	{
+		return $query->where('title', 'like', "%$filterByTitle%" );
+	}
 }
