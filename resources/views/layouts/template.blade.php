@@ -1,29 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="wide wow-animation" lang="en">
 	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="">
-		<meta name="author" content="">	
-		<link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+		<meta name="format-detection" content="telephone=no">
+	    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta charset="utf-8">
+	    <link rel="icon" href="images/favicon.png" type="image/x-icon">
 
 		<title>
 			@section('title')
 			{{ $title or 'Zelenka.Trade' }}
 			@show
 		</title>
-
+		
+		<!--
+		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:400,700%7CQuattrocento+Sans:400,700">
+		-->
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet"> 
+	    <link rel="stylesheet" href="css/bootstrap.css">
+	    <link rel="stylesheet" href="css/fonts.css">
+	    <link rel="stylesheet" href="css/style.css">
 		<!-- Bootstrap core CSS -->
-		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 		
 		<!-- Include Font-Awesome -->
-		<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">	
+		<link rel="stylesheet" href="{{ asset('css/fonts.css') }}">	
 		
 		<!-- additional CSS -->
-		<link rel="stylesheet" href="{{ asset('css/template.css') }}" />
-		<!--<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}" /> 
-		<link rel="stylesheet" href="{{ asset('css/topbar.css') }}" /> -->
+		<link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 		
 		
 		<!-- Include Some Style -->
@@ -33,35 +37,54 @@
 
 	<body>
 	
-		@section('topbar')
+		<!-- Page-->
+    <div class="text-left page">
+      <!-- Page preloader-->
+      {{-- 
+      <div class="page-loader">
+        <div>
+          <div class="page-loader-body">
+            <div class="heartbeat"></div>
+          </div>
+        </div>
+      </div>
+      --}}
+      
+      <!-- Page Header-->
+      <header class="page-header">
+        
+        <!-- RD Navbar-->
+        @section('topbar')
 		    @include('layouts.topbar')
 		@show
-	
-        <div class="container-fluid">
-              
-              <div class="row">       
-              
-              	 <!--<div class="col-md-1 sidebar">	                	                
-					@section('sidebar')
-		                @include('layouts.sidebar')
-					@show						    
-            	</div>-->                                
-				
-				<div class="col-xs-12">
-					@yield('content')					
-				</div>
-
-               
-
-            </div>
-        </div>
-
-		<!-- Bootstrap core JavaScript
-		================================================== -->
-		<script src="{{ asset('js/jquery.min.js') }}"></script>
-		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-		@stack('scripts')
+		<!-- /RD Navbar-->
 		
+      </header>     
+      	
+      	@yield('content')
+     
+      	<!-- Contact us-->
+      	@section('contact')
+		    @include('layouts.contact')
+		@show
+      	
+      
+		<!-- Footer -->
+	    @section('footer')
+		    @include('layouts.footer')
+		@show
+		<!-- /Footer -->
+    </div>
+    
+    <!-- Global Mailform Output-->
+    <div class="snackbars" id="form-output-global"></div>
+    
+    <!-- Bootstrap core JavaScript
+	================================================== -->
+	<script src="{{ asset('js/core.min.js') }}"></script>
+	<script src="{{ asset('js/script.js') }}"></script>
+	
+	@stack('scripts')
 		
 	</body>
 </html>

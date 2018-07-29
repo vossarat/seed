@@ -7,23 +7,72 @@
                 <li>
                     <a href="">Административная панель Zelenka.Trader</a>
                 </li>
+                <li class="dropdown"> {{-- Справочники--}}
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    	Пользователи
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/dashboard/user">Все пользователи</a>
+                        </li>
+                        
+                        <li>
+                            <a href="">Трейдеры</a>
+                        </li>                        
+                        <li>
+                            <a href="">Фермеры</a>
+                        </li> 
+                        <li>
+                            <a href="/dashboard/elevator">Элеваторы</a>
+                        </li>                        
+                    </ul>
+                </li> {{-- Конец Справочники--}}
+                <li>
+                    <a href="/setup">Настройка</a>
+                </li>
+                
+                <li class="dropdown"> {{-- Справочники--}}
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cправочники
+                        <b class="caret"></b> <!--Стрелка вниз-->
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu"> {{-- Территория --}}
+                            <a tabindex="-1" href="#">Территория</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a tabindex="-1" href="{{route('country.index')}}">Страны</a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="{{route('state.index')}}">Области</a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="{{route('region.index')}}">Районы</a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="{{route('town.index')}}">Населенные пункты</a>
+                                </li>
+                            </ul>
+                        </li> {{-- / Территория --}}
+                        <li class="divider"></li> <!--Separator-->
+                        <li>
+                            <a href="{{route('corn.index')}}">Зерновые культуры</a>
+                        </li>
+                        <li class="divider"></li> <!--Separator-->
+                    
+                    </ul>
+                </li> {{-- Конец Справочники--}}
+                
+                
                 
                                
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    	   <i class="fa fa-user"></i>{{-- {{ Auth::user()->name  }}<b class="caret"></b>--}}
+                <li>
+                    <a href="{{ route('home') }}"
+                    	<i class="fa fa-sign-out"></i> На главную
                     </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="{{ route('home') }}"
-                            	<i class="fa fa-sign-out"></i> На главную
-                            </a>
-                        </li>
-
-                    </ul>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

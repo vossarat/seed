@@ -2,11 +2,9 @@
 
 @section('content')
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            {!! $message or 'Доступ запрещен!' !!}
-        </div>
+<section class="section section-lg bg-white text-center">
+    <div class="shell">
+        {!! $message or 'Доступ запрещен!' !!}
     </div>
-</div>
+</section>
 @endsection

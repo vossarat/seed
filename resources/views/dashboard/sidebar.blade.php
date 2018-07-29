@@ -18,7 +18,7 @@
 		<a href="">
 			<i class="fa fa-wrench fa-4x"></i>
 
-			<p>Установки</p>
+			<p>Населенные пункты</p>
 		</a>
 	</li>
 	

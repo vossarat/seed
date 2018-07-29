@@ -7,12 +7,14 @@ use App\User;
 use Illuminate\Http\Request;
 use Auth;
 use Gate;
+use App\Reference\Corn;
 
 class OrderController extends Controller
 {
-	public function __construct(Order $order)
+	public function __construct(Order $order, Corn $corn)
 	{		
 		$this->order = $order;
+		$this->corn = $corn;
 	}
     /**
      * Display a listing of the resource.
@@ -31,6 +33,7 @@ class OrderController extends Controller
     	
         return view('order.index')->with([        
 			'viewdata' => $orders->paginate(5),
+			'corns' => $this->corn->all(),
 			'filterByTitle' => $filterByTitle,
 		]);
     }
@@ -43,12 +46,12 @@ class OrderController extends Controller
     public function create()
     {
     	if(Auth::check() == false){
-	       //return view('auth.authmessage')->with('message', 'Для добавления заявки');
 	       return view('layouts.sysmessage')->with('message', 'Для добавления заявки Вам необходимо <a href="/login">авторизоваться</a> или <a href="/register">зарегистрироваться</a>');
 	    }
 	    
         return view('order.create')->with([
 			'viewdata' => Auth::user(),
+			'corns' => $this->corn->all(),
 			'disabled' => '',
 		]);
     }
@@ -81,6 +84,7 @@ class OrderController extends Controller
     {
 		return view('order.show')->with([
 			'viewdata' => $this->order->find($id),
+			'corns' => $this->corn->all(),
 			'disabled' => 'disabled',
 		]);
     }
@@ -101,6 +105,7 @@ class OrderController extends Controller
 			
         return view('order.edit')->with([
 			'viewdata' => $order,
+			'corns' => $this->corn->all(),
 			'disabled' => '',
 		]);
     }
@@ -127,7 +132,7 @@ class OrderController extends Controller
 		
 		$order->user->save();
 		$order->save();
-		return redirect(route('order.index'))->with('message',"Информация по заявке $order->name изменена");	
+		return redirect(route('order.index'))->with('message',"Информация по заявке $order->name изменена");
     }
 
     /**

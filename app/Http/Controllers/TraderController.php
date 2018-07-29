@@ -53,7 +53,7 @@ class TraderController extends Controller
 		$trader->user->save();
 
 		return redirect(route('trader.index'))->with([
-			'message' => "Информация по трейдеру $request->name добавлена",
+			'message' => "Информация по трейдеру $request->title добавлена",
 		]);
     }
 
@@ -105,7 +105,7 @@ class TraderController extends Controller
 		$trader->user->save();
 		$trader->save();		
 		
-		return redirect(route('trader.index'))->with('message',"Информация по трейдеру $trader->name изменена");
+		return redirect(route('trader.index'))->with('message',"Информация по трейдеру $trader->title изменена");
     }
 
     /**

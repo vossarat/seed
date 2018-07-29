@@ -1,21 +1,21 @@
-@extends('layouts.template')
+@extends('dashboard.template')
 
 @section('content')
 
-	<h1 class="page-header">Заявки</h1>
+	<h1 class="page-header">Страна</h1>
 
 	<div class="col-xs-12">
 		<div class="panel panel-default">
 			<div class="panel-heading"> {{-- заголовок окна --}}
-				Добавить заявку
-				<a href="{{ route('order.index') }}" class="close" data-dismiss="alert" aria-hidden="true">&times;</a> {{-- х закрыть --}}
+				Добавить страну
+				<a href="{{ route('country.index') }}" class="close" data-dismiss="alert" aria-hidden="true">&times;</a> {{-- х закрыть --}}
 			</div>
 
 			<div class="panel-body">
-				<form class="form-horizontal" role="form" method="POST" action="{{ route('order.store') }}">
+				<form class="form-horizontal" role="form" method="POST" action="{{ route('country.store') }}">
 					{{ csrf_field() }}
 
-					@include('order.form')
+					@include('dashboard.territory.country.form')
 
 					<div class="form-group">
 						<div class="col-xs-12">
@@ -27,7 +27,7 @@
 					
 					<div class="form-group">
 						<div class="col-xs-12">
-							<a href="{{ route('order.index') }}" class="btn btn-warning btn-block" data-dismiss="alert" aria-hidden="true">Отмена</a>
+							<a href="{{ route('country.index') }}" class="btn btn-warning btn-block" data-dismiss="alert" aria-hidden="true">Отмена</a>
 						</div>
 					</div>
 

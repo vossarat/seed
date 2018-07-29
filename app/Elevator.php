@@ -14,10 +14,24 @@ class Elevator extends Model
     ];*/
     
 	protected $fillable = [
+		'title',
 		'user_id',
-		'name',
-		'description',
-		'count',
+		'town_id',
 		'price',
+		'username',
+		'description',
+		'email',
+		'phone',
+		'whatsapp',
 	];
+	
+	public function user()
+	{
+		return $this->belongsTo(User::class);
+	}
+	
+	 public function corns()
+    {
+        return $this->belongsToMany('App\Reference\Corn');
+    }
 }

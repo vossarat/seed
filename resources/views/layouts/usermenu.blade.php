@@ -4,14 +4,12 @@
 при рендеринге вида layuots.usermenu
  --}}
 
-<ul class="nav navbar-nav navbar-right">
-	<li class="dropdown">
-		<a href="" class="dropdown-toggle" data-toggle="dropdown">
-			{{ $username }}
-			<b class="caret"></b>
-		</a>
-		<ul class="dropdown-menu">
-		@if( Auth::check() )
+<li>
+    <a href="#">
+        {{ $username }}
+    </a>
+    <ul class="rd-navbar-dropdown">
+        @if( Auth::check() )
 			<li>
 				@if($routeprofile === 'create')
 					<a href="{{ route('trader.create') }}">
@@ -23,6 +21,12 @@
 					</a>
 				@endif
 			</li>
+			
+			@if( Auth::user()->id === 1 )
+			<li>
+                <a href="/dashboard">Админ.панель</a>
+            </li>
+            @endif
 
 			<li>
 	            <a href="{{ route('logout') }}"
@@ -46,6 +50,5 @@
 				</a>
 			</li>
 	   	@endif
-		</ul>		
-	</li>
-</ul>
+    </ul>
+</li>

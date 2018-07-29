@@ -37,4 +37,9 @@ class User extends Authenticatable
 		return $this->hasOne(Order::class);
 	}
 	
+	public function elevator()
+	{
+		return $this->hasOne(Elevator::class);
+	}
+	
 }

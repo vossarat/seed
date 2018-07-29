@@ -1,15 +1,15 @@
 <input type="hidden" name="user_id" value="{{ Auth::id() }}">{{-- how users = traders --}}
 
-<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-	<label for="name" class="col-md-4 control-label">Наименование компании</label>
+<div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+	<label for="title" class="col-md-4 control-label">Наименование компании</label>
 
 	<div class="col-md-6">
-		<input id="name" type="text" class="form-control" name="name" value="{{ $viewdata->name or old('name') }}" required>
+		<input id="title" type="text" class="form-control" name="title" value="{{ $viewdata->title or old('title') }}" required>
 
-		@if ($errors->has('name'))
+		@if ($errors->has('title'))
 		<span class="help-block">
 			<strong>
-				{{ $errors->first('name') }}
+				{{ $errors->first('title') }}
 			</strong>
 		</span>
 		@endif

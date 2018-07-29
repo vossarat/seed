@@ -20,7 +20,7 @@ Route::get('/','OrderController@index')->name('home');
 Route::resource('order','OrderController');
 Route::resource('trader','TraderController');
 Route::resource('farmer','FarmerController');
-Route::resource('elevator','ElevatorController');
+
 
 Route::get('/xxx', function () {
     return view('layouts.constraction');
@@ -36,7 +36,13 @@ Route::prefix('dashboard')->middleware('dashboard')->group(
 	    Route::get('/', function () {
 		    return view('dashboard.template');
 		})->name('dashboard');
-	    Route::get('/user', 'UserController@index');
+	    Route::resource('/user', 'UserController');
+	    Route::resource('/country', 'Reference\CountryController');
+	    Route::resource('/state', 'Reference\StateController');
+	    Route::resource('/region', 'Reference\RegionController');
+	    Route::resource('/town', 'Reference\TownController');
+	    Route::resource('/elevator','ElevatorController');
+	    Route::resource('/corn','Reference\CornController');
 	}
 );
 

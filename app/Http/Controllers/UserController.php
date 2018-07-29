@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index')->with([        
+        return view('dashboard.user.index')->with([        
 			'viewdata' => $this->user->all(),
 		]);
     }
@@ -30,7 +30,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.user.create')->with([
+			'disabled' => '',
+		]);
     }
 
     /**
@@ -41,7 +43,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $requestArray = $request->all();
+        $requestAddPass = array_add($requestArray, 'password', bcrypt($request->newPassword));
+               
+        $user = User::create($requestAddPass);        
+
+		return redirect(route('user.index'))->with([
+			'message' => "Информация по пользователю $request->name добавлена",
+		]);
     }
 
     /**
@@ -52,7 +61,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('dashboard.user.show')->with([
+			'viewdata' => $this->user->find($id),
+			'disabled' => 'disabled',
+		]);
     }
 
     /**
@@ -63,7 +75,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = $this->user->find($id);
+			
+        return view('dashboard.user.edit')->with([
+			'viewdata' => $user,
+			'disabled' => '',
+		]);
     }
 
     /**
@@ -75,7 +92,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    	dd(__METHOD__);
+	    
     }
 
     /**
@@ -86,6 +104,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = $this->user->find($id);
+    	
+		$user->delete();
+		return back()->with('message',"Информация по $user->name удалена");
     }
 }

@@ -1,76 +1,89 @@
 @extends('layouts.template')
 
 @section('content')
-<h1 class="page-header">Заявки</h1>
 
-<div class="form-group">
-	<form action="{{ route('order.create') }}">
-			<button type="submit" class="btn btn-primary">
-				<i class="fa fa-plus"></i> Добавить заявку
-			</button>
-	</form>
-</div>
+<section class="section bg-white text-center">
+    <div class="shell">
 
-@if(Session::has('message'))
-<div class="alert alert-success">
-	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-	{{Session::get('message')}}
-</div>
-@endif
+        <div class="range range-xs-center range-md-left">
+            <div class="cell-xs-12 cell-md-4">
 
-@include('order.filter') {{-- подключение формы для фильтрации данных --}}
+                <form action="{{ route('order.create') }}">
+                    <button type="submit" class="button button-effect-ujarak button-block button-default-outline">
+                        Добавить заявку
+                    </button>
 
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Номер</th>
-			<th>Наименование</th>
-			<th colspan="2"></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach($viewdata as $order)
-		<tr>
-			<td>{{ $order->id }}</td>
-			<td>{{ $order->title }}</td>            
-			<td>
-				
-			@if( Auth::check() )
-				@if($order->user_id == Auth::user()->id)
-					<form action="{{ route('order.edit', $order->id) }}">
-	                	<button type="submit" class="btn btn-success"><i class="fa fa-edit"></i></button>
-	                </form>
-            	@else
-            		<form action="{{ route('order.show', $order->id) }}">
-	                	<button type="submit" class="btn btn-info"><i class="fa fa-eye"></i></button>
-	                </form>
-            	@endif
-            @else
-            	<form action="{{ route('order.show', $order->id) }}">
-                	<button type="submit" class="btn btn-info"><i class="fa fa-eye"></i></button>
                 </form>
-            @endif
-			</td> 
-			
-			<td>
-			@if( Auth::check() )
-				@if($order->user_id == Auth::user()->id)
-					<form action="{{ route('order.destroy', $order->id) }}" method="POST">
-	                    <input type="hidden" name="_method" value="DELETE">
-	                    {{ csrf_field() }}
-	                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-	                </form>
-	            @endif
-            @endif
-			</td>            
-		</tr>
-		@endforeach
-	</tbody>
-</table>
 
+            </div>
+        </div>
+
+
+        <h3>
+            Заявки
+        </h3>
+
+        <div class="range range-xs-center">
+            <div class="cell-xs-12">
+
+                <div class="table-custom-responsive">
+                    <table class="table-custom table-custom-striped table-custom-primary">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Дата
+                                </th>
+                                <th>
+                                    Наименование заявки
+                                </th>
+                                <th>
+                                    Тест 1
+                                </th>
+                                <th>
+                                    Тест 2
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($viewdata as $order)
+                            <tr>
+                                <td>
+                                    19.07.2018
+                                </td>
+                                <td>
+                                	@if(Auth::check())
+	                                	@if(Auth::user()->id == $order->user_id)
+	                                    	<a href="{{route('order.edit', $order->id)}}">{{ $order->title }}</a>
+	                                    	<p>Ваша заявка</p>
+	                                    @else
+	                                    	<a href="{{route('order.show', $order->id)}}">{{ $order->title }}</a>
+	                                	@endif 
+	                                @else
+	                                   	<a href="{{route('order.show', $order->id)}}">{{ $order->title }}</a>
+	                                @endif
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+
+                    </table>
+                </div>
+                <div class="divider-edgewise"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="range range-xs-center">
 {{ $viewdata->appends([
 		'filterByTitle' => isset($filterByTitle) ? $filterByTitle :'',
 		'filter' => 'filter',
 	])->links() }}
-
+</div>
 @endsection
