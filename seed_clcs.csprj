@@ -28,24 +28,26 @@
 </treenode>
 <treenode node="Controller;PHP:Class Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Controller.php;f0;9;1;12;;;;vpos;;vBaseController;;cAuthorizesRequests;;c;;r;;d0,10;;b0,0;;m">
 </treenode>
-<treenode node="Corn;PHP:Class Name;D:\websites\seed.zelenka.ml\app\Reference\Corn.php;f0;6;1;9;;;;vpos;;vModel;;c;;r;;d0,7;;b0,0;;m">
+<treenode node="Corn;PHP:Class Name;D:\websites\seed.zelenka.ml\app\Reference\Corn.php;f0;6;1;20;;;;vpos;;vModel;;c;;r;;d0,7;;b0,0;;m">
+<treenode node="elavators;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Reference\Corn.php;f11;16;5;19;;;;vpos;;v;;r;;d4,17;;b1,0;;m">
 </treenode>
-<treenode node="CornController;PHP:Class Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f0;7;1;106;;;;vpos;;vController;;c;;r;;d0,8;;b0,0;;m">
-<treenode node="__construct;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f11;9;2;12;;;;vpos;;v;;r;;d1,10;;b1,0;;mcorn;;p">
 </treenode>
-<treenode node="create;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f11;30;5;35;;;;vpos;;v;;r&#10;Definition&#10;    create()&#10;&#10;Description&#10;     Show the form for creating a new resource.;;d4,31;;b1,0;;m">
+<treenode node="CornController;PHP:Class Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f0;8;1;108;;;;vpos;;vController;;c;;r;;d0,9;;b0,0;;m">
+<treenode node="__construct;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f8;10;2;13;;;;vpos;;v;;r;;d1,11;;b1,0;;mcorn;;p">
 </treenode>
-<treenode node="destroy;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f11;99;5;105;;;;vpos;;v;;r&#10;Definition&#10;    destroy($id)&#10;&#10;Description&#10;     Remove the specified resource from storage.&#10;&#10;Parameters:&#10;    int $id;;d4,100;;b1,0;;mint $id;;p">
+<treenode node="create;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f11;31;5;37;;;;vpos;;v;;r&#10;Definition&#10;    create()&#10;&#10;Description&#10;     Show the form for creating a new resource.;;d4,32;;b1,0;;m">
 </treenode>
-<treenode node="edit;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f11;69;5;76;;;;vpos;;v;;r&#10;Definition&#10;    edit($id)&#10;&#10;Description&#10;     Show the form for editing the specified resource.&#10;&#10;Parameters:&#10;    int $id;;d4,70;;b1,0;;mint $id;;p">
+<treenode node="destroy;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f11;101;5;107;;;;vpos;;v;;r&#10;Definition&#10;    destroy($id)&#10;&#10;Description&#10;     Remove the specified resource from storage.&#10;&#10;Parameters:&#10;    int $id;;d4,102;;b1,0;;mint $id;;p">
 </treenode>
-<treenode node="index;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f11;18;5;23;;;;vpos;;v;;r&#10;Definition&#10;    index()&#10;&#10;Description&#10;     Display a listing of the resource.;;d4,19;;b1,0;;m">
+<treenode node="edit;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f11;71;5;78;;;;vpos;;v;;r&#10;Definition&#10;    edit($id)&#10;&#10;Description&#10;     Show the form for editing the specified resource.&#10;&#10;Parameters:&#10;    int $id;;d4,72;;b1,0;;mint $id;;p">
 </treenode>
-<treenode node="show;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f11;58;5;61;;;;vpos;;v;;r&#10;Definition&#10;    show($id)&#10;&#10;Description&#10;     Display the specified resource.&#10;&#10;Parameters:&#10;    int $id;;d4,59;;b1,0;;mint $id;;p">
+<treenode node="index;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f11;19;5;24;;;;vpos;;v;;r&#10;Definition&#10;    index()&#10;&#10;Description&#10;     Display a listing of the resource.;;d4,20;;b1,0;;m">
 </treenode>
-<treenode node="store;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f11;43;5;50;;;;vpos;;v;;r&#10;Definition&#10;    store(Request $request)&#10;&#10;Description&#10;     Store a newly created resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request;;d4,44;;b1,0;;m\Illuminate\Http\Request $request;;p">
+<treenode node="show;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f11;60;5;63;;;;vpos;;v;;r&#10;Definition&#10;    show($id)&#10;&#10;Description&#10;     Display the specified resource.&#10;&#10;Parameters:&#10;    int $id;;d4,61;;b1,0;;mint $id;;p">
 </treenode>
-<treenode node="update;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f11;85;5;91;;;;vpos;;v;;r&#10;Definition&#10;    update(Request $request, $id)&#10;&#10;Description&#10;     Update the specified resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request&#10;    int $id;;d4,86;;b1,0;;m\Illuminate\Http\Request $request;;pint $id;;p">
+<treenode node="store;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f11;45;5;52;;;;vpos;;v;;r&#10;Definition&#10;    store(Request $request)&#10;&#10;Description&#10;     Store a newly created resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request;;d4,46;;b1,0;;m\Illuminate\Http\Request $request;;p">
+</treenode>
+<treenode node="update;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CornController.php;f11;87;5;93;;;;vpos;;v;;r&#10;Definition&#10;    update(Request $request, $id)&#10;&#10;Description&#10;     Update the specified resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request&#10;    int $id;;d4,88;;b1,0;;m\Illuminate\Http\Request $request;;pint $id;;p">
 </treenode>
 </treenode>
 <treenode node="Country;PHP:Class Name;D:\websites\seed.zelenka.ml\app\Reference\Country.php;f0;6;1;18;;;;vpos;;vModel;;c;;r;;d0,7;;b0,0;;m">

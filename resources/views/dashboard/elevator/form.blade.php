@@ -97,13 +97,13 @@
 		<label for="region_id" class="col-md-4 control-label">Район</label>		
 		
 		<div class="col-md-6">
-		<select class="form-control" name="region_id" id="region_id">
+		<select class="form-control kato" name="region_id" id="region_id">
 			<option value="">Не указано</option>		
 			@foreach($regions as $item)
 				@if(isset($viewdata))
-					<option {{ $viewdata->region_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
+					<option data-kato="{{ $item->name }}" {{ $viewdata->region_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
 				@else
-					<option value="{{ $item->id }}">{{ $item->name }}</option>
+					<option data-kato="{{ $item->name }}" value="{{ $item->id }}">{{ $item->name }}</option>
 				@endif
 			@endforeach			
 		</select>
@@ -125,13 +125,13 @@
 		<label for="town_id" class="col-md-4 control-label">Населенный пункт</label>		
 		
 		<div class="col-md-6">
-		<select class="form-control" name="town_id" id="town_id">
+		<select class="form-control kato" name="town_id" id="town_id">
 			<option value="">Не указано</option>		
 			@foreach($towns as $item)
 				@if(isset($viewdata))
-					<option {{ $viewdata->town_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}" data-chained="{{$item->region->id}}">{{ $item->name }}</option>
+					<option {{ $viewdata->town_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}" data-kato="{{$item->region->name}}">{{ $item->name }}</option>
 				@else
-					<option value="{{ $item->id }}" data-chained="{{$item->region->id}}">{{ $item->name }}</option>
+					<option value="{{ $item->id }}" data-kato="{{$item->region->name}}">{{ $item->name }}</option>
 				@endif
 			@endforeach			
 		</select>
@@ -236,17 +236,28 @@
 	</div>
 </div>
 
-
 @push('scripts')
-<script src="{{ asset('js/jquery.chained.js') }}"></script>
-<script src="{{ asset('js/jquery.maskedinput.js') }}"></script>
-<script src="{{ asset('js/project.scripts.js') }}"></script>
 <script>
 $(document).ready(function() {
 		
-		$("#town_id").chained("#region_id");
-		//$("#town_id").chainedTo("#region_id");
-		$("#series").chained("#mark");	
+		var sel = $('.kato'),
+		    cache = $('option', sel.eq(1));
+		sel.eq(0).on('change', function(){
+			
+		    var selectedColor = $(':selected',this).data('kato'),
+		        filtered;
+		    console.log( selectedColor );
+		    if(selectedColor == 'all') {
+		        filtered = cache;
+		    } else {
+		        filtered = cache.filter(function(){
+		          return $(this).data('kato') == selectedColor;
+		        });
+		    }
+		    sel.eq(1).html(filtered).prop('selectedIndex', 0);
+		});
+		
+		
 });
 </script>
 
