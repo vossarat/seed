@@ -13,7 +13,7 @@
                         Добавить заявку
                     </h2>
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('order.store') }}">
+                    <form id="form-order" class="form-horizontal" role="form" method="POST" action="{{ route('order.store') }}">
                         {{ csrf_field() }}
 
                         @include('order.form')
@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <button type="submit" class="button button-effect-ujarak button-block button-primary">
-                                    Добавить
+                                    Разместить
                                 </button>
                             </div>
                         </div>

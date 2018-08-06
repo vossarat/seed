@@ -13,7 +13,7 @@
                         Редактирование заявки
                     </h2>
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('order.update', $viewdata->id) }}">
+                    <form id="form-order" class="form-horizontal" role="form" method="POST" action="{{ route('order.update', $viewdata->id) }}">
                         {{ csrf_field() }}
                         
                         <input type="hidden" name="id" value="{{ $viewdata->id }}">

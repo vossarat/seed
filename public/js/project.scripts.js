@@ -17,5 +17,28 @@ $(document).ready(function() {
                 event.preventDefault();
                 $("#whatsapp").val( $("#phone").val() );
             });
+	
+		$( "#elevators" ).hide();
+		$( "#other" ).hide();
+		
+		$( ".toogle-other" ).click(function( event ) {
+			event.preventDefault();
+			if($("#elevators").is(':visible')){
+				$("#elevators").hide();
+			}
+			$( "#other" ).toggle();
+		});
+		
+		$( ".toogle-elevator" ).click(function( event ) {
+			event.preventDefault();
+			$( "#elevators" ).toggle();
+			if($("#other").is(':visible')){
+				$("#other").hide();
+			}
+		});
+		
+		$("#town_id").chained("#region_id");
+		$("#elevator_id").chained("#town_id");
+		
 			
     });

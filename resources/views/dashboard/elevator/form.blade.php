@@ -98,7 +98,7 @@
 		
 		<div class="col-md-6">
 		<select class="form-control kato" name="region_id" id="region_id">
-			<option value="">Не указано</option>		
+			<option data-kato="Не указано" value="Не указано">Не указано</option>		
 			@foreach($regions as $item)
 				@if(isset($viewdata))
 					<option data-kato="{{ $item->name }}" {{ $viewdata->region_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
@@ -126,7 +126,7 @@
 		
 		<div class="col-md-6">
 		<select class="form-control kato" name="town_id" id="town_id">
-			<option value="">Не указано</option>		
+			<option data-kato="Не указано" value="Не указано">Не указано</option>		
 			@foreach($towns as $item)
 				@if(isset($viewdata))
 					<option {{ $viewdata->town_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}" data-kato="{{$item->region->name}}">{{ $item->name }}</option>
@@ -242,6 +242,7 @@ $(document).ready(function() {
 		
 		var sel = $('.kato'),
 		    cache = $('option', sel.eq(1));
+		    
 		sel.eq(0).on('change', function(){
 			
 		    var selectedColor = $(':selected',this).data('kato'),
@@ -256,7 +257,6 @@ $(document).ready(function() {
 		    }
 		    sel.eq(1).html(filtered).prop('selectedIndex', 0);
 		});
-		
 		
 });
 </script>

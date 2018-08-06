@@ -2,7 +2,12 @@
 
 @section('content')
 
+
+
 <section class="section bg-white text-center">
+
+
+
     <div class="shell">
 
         <div class="range range-xs-center range-md-left">
@@ -18,6 +23,14 @@
             </div>
         </div>
 
+		{{-- информационное сообщение --}}
+		@if(Session::has('message'))
+		<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			{{Session::get('message')}}
+		</div>
+		@endif
+		{{-- /информационное сообщение --}}
 
         <h3>
             Заявки
@@ -37,10 +50,10 @@
                                     Наименование заявки
                                 </th>
                                 <th>
-                                    Тест 1
+                                    Объем
                                 </th>
                                 <th>
-                                    Тест 2
+                                    Цена
                                 </th>
                             </tr>
                         </thead>
@@ -48,25 +61,27 @@
                             @foreach($viewdata as $order)
                             <tr>
                                 <td>
-                                    19.07.2018
+                                    {{ date('d.m.Y',strtotime($order->created_at)) }}
                                 </td>
                                 <td>
                                 	@if(Auth::check())
 	                                	@if(Auth::user()->id == $order->user_id)
-	                                    	<a href="{{route('order.edit', $order->id)}}">{{ $order->title }}</a>
-	                                    	<p>Ваша заявка</p>
+	                                    	Ваша заявка
+	                                    	<p>
+	                                    	<a href="{{route('order.edit', $order->id)}}">{{ 'Заявка на '.$order->corn['name'] }}</a>
+	                                    	</p>
 	                                    @else
-	                                    	<a href="{{route('order.show', $order->id)}}">{{ $order->title }}</a>
+	                                    	<a href="{{route('order.show', $order->id)}}">{{ 'Заявка на '.$order->corn['name'] }}</a>
 	                                	@endif 
 	                                @else
-	                                   	<a href="{{route('order.show', $order->id)}}">{{ $order->title }}</a>
+	                                   	<a href="{{route('order.show', $order->id)}}">{{ 'Заявка на '.$order->corn['name'] }}</a>
 	                                @endif
                                 </td>
                                 <td>
-                                    -
+                                    {{ $order->count . ' тонн' }}
                                 </td>
                                 <td>
-                                    -
+                                    {{ $order->price }}
                                 </td>
                             </tr>
                             @endforeach

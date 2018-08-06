@@ -30,8 +30,18 @@ class Elevator extends Model
 		return $this->belongsTo(User::class);
 	}
 	
-	 public function corns()
+	public function corns()
     {
         return $this->belongsToMany('App\Reference\Corn');
     }
+    
+    public function orders()
+    {
+        return $this->belongsToMany('App\Order');
+    }
+    
+    public function town()
+	{
+		return $this->belongsTo('App\Reference\Town');
+	}
 }

@@ -1,9 +1,9 @@
 <input type="hidden" name="user_id" value="{{ Auth::id() }}">{{-- how users = orders --}}
 
 <div class="form-group">
-	<div class="{{ $errors->has('state_id') ? ' has-error' : '' }}"> {{-- region/lpu field --}}
+	<div class="{{ $errors->has('corn_id') ? ' has-error' : '' }}"> 
 		
-		<label for="state_id" class="col-md-4 control-label">Наименование культуры</label>		
+		<label for="corn_id" class="col-md-4 control-label">Наименование культуры</label>		
 		
 		<div class="col-md-6">
 		<select class="" name="corn_id" {{ $disabled }}>		
@@ -24,14 +24,14 @@
 		</span>
 		@endif
 		</div>
-	</div>{{-- end region/lpu field --}}
+	</div>
 </div> 
 
 <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
 	<label for="title" class="col-md-4 control-label">Наименование заявки</label>
 
 	<div class="col-md-6">
-		<input id="title" type="text" class="form-control" name="title"  value="{{ $viewdata->title or old('title') }}" {{ $disabled }} required>
+		<input id="title" type="text" class="form-control" name="title"  value="{{ $viewdata->title or old('title') }}" {{ $disabled }} >
 
 		@if ($errors->has('title'))
 		<span class="help-block">
@@ -43,27 +43,11 @@
 	</div>
 </div>	
 
-<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-	<label for="description" class="col-md-4 control-label">Описание заявки</label>
-
-	<div class="col-md-6">		
-		<textarea class="form-control" id="description" name="description"  rows="3"  {{ $disabled }} >{{ $viewdata->description or old('description') }}</textarea>
-
-		@if ($errors->has('description'))
-		<span class="help-block">
-			<strong>
-				{{ $errors->first('description') }}
-			</strong>
-		</span>
-		@endif
-	</div>
-</div>
-
 <div class="form-group{{ $errors->has('count') ? ' has-error' : '' }}">
 	<label for="count" class="col-md-4 control-label">Количество (тонны)</label>
 
 	<div class="col-md-6">
-		<input id="count" type="text" class="form-control" name="count" placeholder= "тонн" value="{{ $viewdata->count or old('count') }}"  {{ $disabled }} required>
+		<input id="count" type="text" class="form-control" name="count" placeholder= "тонн" value="{{ $viewdata->count or old('count') }}"  {{ $disabled }} >
 
 		@if ($errors->has('count'))
 		<span class="help-block">
@@ -79,7 +63,7 @@
 	<label for="price" class="col-md-4 control-label">Цена</label>
 
 	<div class="col-md-6">
-		<input id="price" type="text" class="form-control" name="price" placeholder= "за тонну"  value="{{ $viewdata->price or old('price') }}"  {{ $disabled }} required>
+		<input id="price" type="text" class="form-control" name="price" placeholder= "за тонну"  value="{{ $viewdata->price or old('price') }}"  {{ $disabled }} >
 
 		@if ($errors->has('price'))
 		<span class="help-block">
@@ -96,13 +80,102 @@
 
 	<div class="col-md-2">
 		<label class="radio-inline">
-            <input type="hidden" name="auction" value="0" checked="checked"> Да
-            <input type="radio" name="auction" value="0" checked="checked"> Да
+            <input type="radio" name="auction" value="1" {{ $viewdata->auction == 1 ? 'checked' : ''}}> Да
         </label>
         <label class="radio-inline">
-            <input type="radio" name="auction" value="0"> Нет
+            <input type="radio" name="auction" value="0" {{ $viewdata->auction == 0 ? 'checked' : ''}}> Нет
         </label>
 
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="{{ $errors->has('pack_id') ? ' has-error' : '' }}"> 
+		
+		<label for="pack_id" class="col-md-4 control-label">Упаковка</label>		
+		
+		<div class="col-md-6">
+		<select class="" name="pack_id" {{ $disabled }}>		
+			@foreach($packs as $item)
+				@if(isset($viewdata))
+					<option {{ $viewdata->pack_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
+				@else
+					<option value="{{ $item->id }}">{{ $item->name }}</option>
+				@endif
+			@endforeach			
+		</select>
+
+		@if ($errors->has('pack_id'))
+		<span class="help-block">
+			<strong>
+				{{ $errors->first('pack_id') }}
+			</strong>
+		</span>
+		@endif
+		</div>
+	</div>
+</div> 
+
+<div class="form-group">
+	<div class="{{ $errors->has('loadprice_id') ? ' has-error' : '' }}"> 
+		
+			
+		
+		<div class="col-md-6 col-md-offset-4">
+		<select class="" name="loadprice_id" {{ $disabled }}>		
+			@foreach($loadprices as $item)
+				@if(isset($viewdata))
+					<option {{ $viewdata->loadprice_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
+				@else
+					<option value="{{ $item->id }}">{{ $item->name }}</option>
+				@endif
+			@endforeach			
+		</select>
+
+		@if ($errors->has('loadprice_id'))
+		<span class="help-block">
+			<strong>
+				{{ $errors->first('loadprice_id') }}
+			</strong>
+		</span>
+		@endif
+		</div>
+	</div>
+</div> 
+
+@include('order.part_elevators_sidebar') {{--отображение выбрать элеватор --}}
+
+<div class="form-group">
+	{{-- 
+	<div class="col-md-3 col-md-offset-4">
+		<button type="button" class="button button-effect-ujarak button-block button-default-outline toogle-elevator">
+        	Выбрать элеватор
+        </button>
+	</div> 
+	--}}
+	<div class="col-md-6 col-md-offset-4">
+		<button type="button" class="button button-effect-ujarak button-block button-default-outline toogle-other">
+        	Указать другое
+        </button>
+	</div> 
+</div>
+
+{{--@include('order.part_elevators_sidebar.') отображение див для выбора элеватора--}}
+@include('order.part_other') {{--отображение див для выбора другое--}}
+
+<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+	<label for="description" class="col-md-4 control-label">Информация по месту поставки</label>
+
+	<div class="col-md-6">		
+		<textarea class="form-control" id="description" name="description"  rows="3"  {{ $disabled }} >{{ $viewdata->description or old('description') }}</textarea>
+
+		@if ($errors->has('description'))
+		<span class="help-block">
+			<strong>
+				{{ $errors->first('description') }}
+			</strong>
+		</span>
+		@endif
 	</div>
 </div>
 
@@ -196,7 +269,43 @@
     @endif	
 </div>
 
+@include('order.part_more_params') {{--отображение указать подробные параметры --}}
+
 @push('scripts')
 <script src="{{ asset('js/jquery.maskedinput.js') }}"></script>
+<script src="{{ asset('js/zepto.js') }}"></script>
+<script src="{{ asset('js/zepto-selector.js') }}"></script>
+<script src="{{ asset('js/jquery.chained.js') }}"></script>
 <script src="{{ asset('js/project.scripts.js') }}"></script>
+<script type="text/javascript">
+	$(function() {
+		$('div#menu-elevator').mmenu({
+			navbar : {
+				title : 'Элеваторы'
+			}
+		});
+	});
+
+	$(function() {
+		$('div#menu-more-params').mmenu({
+			navbar : {
+				title : 'Подробные параметры'
+			}
+		});
+	});
+	
+	$(function() {
+		$("#menu-more-params :input").change(function() {
+			inputValue = $(this).val();
+			if($(this).attr('type') == 'checkbox' &&$(this).is(":checked") ) {
+			    inputValue = 1;
+			}; 
+			if($(this).attr('type') == 'checkbox' && !$(this).is(":checked")) {
+				inputValue = 0;
+			}
+			$( '#form-order' ).append("<input type='hidden' name='"+$(this).attr('name')+"' value='"+inputValue+"'/>");
+		});		
+		
+	});
+</script>
 @endpush						

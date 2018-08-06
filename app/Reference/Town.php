@@ -17,4 +17,9 @@ class Town extends Model
 	{
 		return $this->belongsTo(Region::class);
 	}
+	
+	public function elevator()
+	{
+		return $this->hasMany('App\Elevator');
+	}
 }

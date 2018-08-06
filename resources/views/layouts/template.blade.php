@@ -17,9 +17,9 @@
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:400,700%7CQuattrocento+Sans:400,700">
 		-->
 		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet"> 
-	    <link rel="stylesheet" href="css/bootstrap.css">
-	    <link rel="stylesheet" href="css/fonts.css">
-	    <link rel="stylesheet" href="css/style.css">
+		
+		
+		
 		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 		
@@ -28,8 +28,12 @@
 		
 		<!-- additional CSS -->
 		<link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+		<link rel="stylesheet" href="{{ asset('css/project-style.css') }}" />
 		
-		
+		<!-- MMENU Style -->
+		<link rel="stylesheet" href="{{ asset('css/jquery.mmenu.css') }}" />		
+		 
+		 
 		<!-- Include Some Style -->
 		@stack('css')
 		
@@ -82,7 +86,11 @@
     <!-- Bootstrap core JavaScript
 	================================================== -->
 	<script src="{{ asset('js/core.min.js') }}"></script>
-	<script src="{{ asset('js/script.js') }}"></script>
+	<script src="{{ asset('js/script.js') }}"></script>	
+	
+	<!-- MMENU JavaScript -->
+	<script src="{{ asset('js/jquery.mmenu.js') }}"></script>
+	
 	
 	@stack('scripts')
 		

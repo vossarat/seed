@@ -23,7 +23,7 @@ Route::resource('farmer','FarmerController');
 
 
 Route::get('/xxx', function () {
-    return view('layouts.constraction');
+    return view('layouts.sysmessage')->with('message','Страница в разработке ... ');
 })->name('xxx');
 
 /*Route::get('/dashboard', function () {

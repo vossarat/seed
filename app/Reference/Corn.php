@@ -18,4 +18,9 @@ class Corn extends Model
     {
         return $this->belongsToMany('App\Elevator');
     }
+    
+    public function order()
+	{
+		return $this->hasOne('App\Order');
+	}
 }
