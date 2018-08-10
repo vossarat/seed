@@ -3,6 +3,7 @@
 namespace App\Reference;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Town extends Model
 {
@@ -22,4 +23,14 @@ class Town extends Model
 	{
 		return $this->hasMany('App\Elevator');
 	}
+	
+	public function scopeCountElevator($query, $id)
+    {
+        return $query     		
+        	->rightJoin('elevators', 'towns.id', '=', 'elevators.town_id')    
+        		->where('towns.id', '=', $id)		
+        	->count();
+    }
+    
+    
 }

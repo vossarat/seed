@@ -80,7 +80,9 @@ class OrderController extends Controller
 			'states' => $this->state->all(),
 			'towns' => $this->town->all(),
 			'points' => $this->point->all(),
+			'elevator_order' => [],
 			'disabled' => '',
+			'neworder' => true,
 		]);
     }
 
@@ -92,7 +94,6 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-    	//dd($request->all());
         $order = Order::create($request->all());
         
         $order->user->update($request->all());		
@@ -111,6 +112,14 @@ class OrderController extends Controller
      */
     public function show($id)
     {
+    	$elevator_order = [];    	
+ 	
+    	if(isset($order->elevators)){
+			foreach($order->elevators->all() as $item){
+				$elevator_order[] = $item->id;
+			}
+		}	
+		
 		return view('order.show')->with([
 			'viewdata' => $this->order->find($id),
 			'corns' => $this->corn->all(),
@@ -122,6 +131,7 @@ class OrderController extends Controller
 			'towns' => $this->town->all(),
 			'points' => $this->point->all(),
 			'disabled' => 'disabled',
+			'elevator_order' => $elevator_order,
 		]);
     }
 
@@ -135,13 +145,14 @@ class OrderController extends Controller
     { 	
     	$order = $this->order->find($id);
     	
-    	$order_elevator = [];
+    	$elevator_order = [];    	
+ 	
     	if(isset($order->elevators)){
 			foreach($order->elevators->all() as $item){
-				$order_elevator[] = $item->id;
+				$elevator_order[] = $item->id;
 			}
-		}
-    	
+		}		
+   	
     	if(Gate::denies('update', $order)){
 		    return view('layouts.sysmessage')->with('message','Это на Ваша заявка. Вы не можете ее редактировать.');
 		}
@@ -156,6 +167,7 @@ class OrderController extends Controller
 			'states' => $this->state->all(),
 			'towns' => $this->town->all(),
 			'points' => $this->point->all(),
+			'elevator_order' => $elevator_order,
 			'disabled' => '',
 		]);
     }
@@ -169,7 +181,6 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-    	dd($request->all());
         $order = $this->order->find($id);
  	
     	if(Gate::denies('update', $order)){
@@ -183,6 +194,9 @@ class OrderController extends Controller
 		$order->user->telegram = $request->telegram;
 		
 		$order->user->save();
+		
+		$order->elevators()->sync($request->elevators);
+		
 		$order->save();
 		return redirect(route('order.index'))->with('message',"Информация по заявке $order->title изменена");
     }

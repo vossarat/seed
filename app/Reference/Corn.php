@@ -14,7 +14,7 @@ class Corn extends Model
 	];
 	
 	
-    public function elavators()
+    public function elevators()
     {
         return $this->belongsToMany('App\Elevator');
     }

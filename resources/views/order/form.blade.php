@@ -27,6 +27,7 @@
 	</div>
 </div> 
 
+{{-- 
 <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
 	<label for="title" class="col-md-4 control-label">Наименование заявки</label>
 
@@ -42,7 +43,8 @@
 		@endif
 	</div>
 </div>	
-
+ --}}
+ 
 <div class="form-group{{ $errors->has('count') ? ' has-error' : '' }}">
 	<label for="count" class="col-md-4 control-label">Количество (тонны)</label>
 
@@ -300,6 +302,20 @@
 			if($(this).attr('type') == 'checkbox' &&$(this).is(":checked") ) {
 			    inputValue = 1;
 			}; 
+			if($(this).attr('type') == 'checkbox' && !$(this).is(":checked")) {
+				inputValue = 0;
+			}
+			$( '#form-order' ).append("<input type='hidden' name='"+$(this).attr('name')+"' value='"+inputValue+"'/>");
+		});		
+		
+	});
+	
+	$(function() {
+		$("#menu-elevator :input").change(function() {
+			inputValue = $(this).val();
+			/*if($(this).attr('type') == 'checkbox' &&$(this).is(":checked") ) {
+			    inputValue = 1;
+			};*/ 
 			if($(this).attr('type') == 'checkbox' && !$(this).is(":checked")) {
 				inputValue = 0;
 			}

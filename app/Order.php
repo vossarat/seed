@@ -15,7 +15,7 @@ class Order extends Model
     
 	protected $fillable = [
 		'user_id',
-		'title',
+		//'title',
 		'description',
 		'count',
 		'price',
@@ -33,12 +33,18 @@ class Order extends Model
 		'sort_gost2', 
 		'agreement', 
 		'rewrite', 
+		'notice', 
 	];
 	
 	public function user()
 	{
 		return $this->belongsTo(User::class);
 	}
+	
+	public function elevators()
+    {
+        return $this->belongsToMany('App\Elevator');
+    }
 	
 	public function corn()
 	{
