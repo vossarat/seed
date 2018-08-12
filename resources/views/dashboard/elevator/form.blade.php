@@ -7,7 +7,7 @@
     </label>
 
     <div class="col-md-6">
-        <input id="title" type="text" class="form-control" name="title" value="{{ $viewdata->title or old('title') }}" required>
+        <input id="title" type="text" class="form-control" name="title" value="{{ $viewdata->title or old('title') }}" >
 
         @if ($errors->has('title'))
         <span class="help-block">
@@ -25,7 +25,7 @@
     </label>
 
     <div class="col-md-6">
-        <input id="price" type="text" class="form-control" name="price" value="{{ $viewdata->price or old('price') }}" required>
+        <input id="price" type="text" class="form-control" name="price" value="{{ $viewdata->price or old('price') }}" >
 
         @if ($errors->has('price'))
         <span class="help-block">

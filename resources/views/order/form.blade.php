@@ -27,24 +27,6 @@
 	</div>
 </div> 
 
-{{-- 
-<div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-	<label for="title" class="col-md-4 control-label">Наименование заявки</label>
-
-	<div class="col-md-6">
-		<input id="title" type="text" class="form-control" name="title"  value="{{ $viewdata->title or old('title') }}" {{ $disabled }} >
-
-		@if ($errors->has('title'))
-		<span class="help-block">
-			<strong>
-				{{ $errors->first('title') }}
-			</strong>
-		</span>
-		@endif
-	</div>
-</div>	
- --}}
- 
 <div class="form-group{{ $errors->has('count') ? ' has-error' : '' }}">
 	<label for="count" class="col-md-4 control-label">Количество (тонны)</label>
 

@@ -1,8 +1,4 @@
 $(document).ready(function() {
-        $("#phone").mask("+9 (999) 999-99-99", {placeholder: "" });
-        $("#telegram").mask("+9 (999) 999-99-99", {placeholder: "" });
-        $("#whatsapp").mask("+9 (999) 999-99-99", {placeholder: "" });
-
         $( "#btn-telegram" ).click(function( event ) {
                 event.preventDefault();
                 $("#telegram").val( $("#phone").val() );
@@ -20,6 +16,7 @@ $(document).ready(function() {
 	
 		$( "#elevators" ).hide();
 		$( "#other" ).hide();
+		//$( "#elevator-filtre" ).hide();
 		
 		$( ".toogle-other" ).click(function( event ) {
 			event.preventDefault();
@@ -37,8 +34,18 @@ $(document).ready(function() {
 			}
 		});
 		
+		$( ".toogle-filter" ).click(function( event ) {
+			event.preventDefault();
+			$( "#elevator-filtre" ).toggle();						
+				// $("#other").hide();
+		});
+		
 		$("#town_id").chained("#region_id");
 		$("#elevator_id").chained("#town_id");
+		
+		$("#phone").mask("+9 (999) 999-99-99", {placeholder: "" });
+        $("#telegram").mask("+9 (999) 999-99-99", {placeholder: "" });
+        $("#whatsapp").mask("+9 (999) 999-99-99", {placeholder: "" });
 		
 			
     });

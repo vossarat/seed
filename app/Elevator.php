@@ -44,4 +44,30 @@ class Elevator extends Model
 	{
 		return $this->belongsTo('App\Reference\Town');
 	}
+	
+	public function ScopeFilterByState($query, $filterByState)
+	{
+		if($filterByState){
+			return $query
+	        	->leftJoin('towns',   'elevators.town_id', '=', 'towns.id')        		
+	        	->leftJoin('regions', 'towns.region_id',   '=', 'regions.id')    
+	        		->where('regions.state_id', '=', $filterByState)	;
+		}
+		
+		return $query ;
+	}
+	
+	public function ScopeFilterByRegion($query, $filterByRegion)
+	{
+		if($filterByRegion){
+			return $query
+	        	->leftJoin('towns', 'elevators.town_id', '=', 'towns.id')        		
+	        	//->rightJoin('elevators', 'towns.id', '=', 'elevators.town_id')    
+	        		->where('towns.region_id', '=', $filterByRegion)	;
+		}
+		
+		return $query ;
+	}
+	
+	
 }

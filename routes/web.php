@@ -17,10 +17,12 @@ Artisan::call('view:clear');
 Auth::routes();
 
 Route::get('/','OrderController@index')->name('home');
+
 Route::resource('order','OrderController');
 Route::resource('trader','TraderController');
 Route::resource('farmer','FarmerController');
 
+Route::get('/mapelevator','MapElevatorController@index')->name('mapelevator');
 
 Route::get('/xxx', function () {
     return view('layouts.sysmessage')->with('message','Страница в разработке ... ');
