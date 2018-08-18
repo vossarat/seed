@@ -22,8 +22,6 @@ Route::resource('order','OrderController');
 Route::resource('trader','TraderController');
 Route::resource('farmer','FarmerController');
 
-Route::get('/mapelevator','MapElevatorController@index')->name('mapelevator');
-
 Route::get('/xxx', function () {
     return view('layouts.sysmessage')->with('message','Страница в разработке ... ');
 })->name('xxx');
@@ -45,6 +43,14 @@ Route::prefix('dashboard')->middleware('dashboard')->group(
 	    Route::resource('/town', 'Reference\TownController');
 	    Route::resource('/elevator','ElevatorController');
 	    Route::resource('/corn','Reference\CornController');
+	}
+);
+
+Route::prefix('mapelevator')->group(
+	function ()
+	{
+	    Route::get('/','MapElevatorController@index')->name('mapelevator');
+		Route::get('/fav','MapElevatorController@index')->name('favelevator');
 	}
 );
 

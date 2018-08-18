@@ -37,12 +37,9 @@ class MapElevatorController extends Controller
     	$filterByCorn = null; // фильтр пока пустой
     	$filterByPriceMin = null; // фильтр по прайсу мин пока пустой
     	$filterByPriceMax = null; // фильтр по прайсу макс пока пустой
-    	
-    	$request_uri_filter = null;
+		$fav = substr($request->path(), -3) == 'fav' ? 1 : 0;    	   	
+
     	if ( $request->has('filter') ) { // проверка на кнопку фильтра
-			
-			//$request_uri_filter = http_build_query( $request->all() );
-			
 			$filterByState = $request->get('filterByState');
 			$filterByRegion = $request->get('filterByRegion');
 			$filterByCorn = $request->get('arrcorns') ? '&'.http_build_query( array('arrcorns' => $request->arrcorns) ) : '' ;
@@ -59,8 +56,9 @@ class MapElevatorController extends Controller
        
        	return view('elevator.index')->with([        
 			// viewdata выбор из модели по авторизироанному пользователю
-			'viewdata' => $elevators->favUserElevators(Auth::id())->orderBy('elevators.id','desc')->paginate(10),
+			'viewdata' => $elevators->favUserElevators(Auth::id(), $fav)->orderBy('elevators.id','desc')->paginate(10),
 			'corns' => $this->corn->all(),	
+			'fav' => $fav,	
 			'filter' => $request->has('filter') ? 'filter' : '',	
 			'selected_corns' => $request->get('arrcorns'),	
 			'filterByCorn' => $filterByCorn,
@@ -71,5 +69,5 @@ class MapElevatorController extends Controller
 			'states' => $filterByState ? $this->state->where('id', $filterByState)->first() : $this->state->all(),
 			'regions' => $filterByRegion ? $this->region->where('id', $filterByRegion)->first() : $this->region->where('state_id', $filterByState)->get(),			
 		]);
-    } 
+    }
 }

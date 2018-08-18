@@ -111,13 +111,19 @@ class Elevator extends Model
 	* 
 	* @return $query к выборке добавляется столбец fav = "checked" когда $user = favorite_user_elevator.user_id
 	*/
-	public function ScopeFavUserElevators($query, $user)
+	public function ScopeFavUserElevators($query, $user, $fav)
 	{
 		if($user){
 			return $query				
         		->leftJoin('favorite_user_elevator', 'elevators.id', '=', 'favorite_user_elevator.elevator_id') 
         		->select('elevators.id', 'elevators.title', 'favorite_user_elevator.elevator_id',
-        		DB::raw("CASE WHEN (favorite_user_elevator.user_id = $user) THEN 'checked' ELSE '' END as fav"));
+        		DB::raw("CASE WHEN (favorite_user_elevator.user_id = $user) THEN 'checked' ELSE '' END as fav"))
+        		->where(
+					function($query) use ($user, $fav){
+						if($fav){
+							$query->where('favorite_user_elevator.user_id', '=', $user);
+						}
+					});
 		}		
 		return $query ;
 	}

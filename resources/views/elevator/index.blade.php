@@ -15,6 +15,17 @@
         </h3>
 
         
+        @if(Auth::check())
+        <div class="range">
+        	<div class="cell-xs-12">
+        		@if($fav)
+        			<a href="/mapelevator">Все элеваторы</a>
+        		@else
+        			<a href="/mapelevator/fav">Избранные элеваторы</a>
+        		@endif
+        	</div>
+        </div>
+        @endif
         
         <div class="range range-xs-center">           
         	@include('elevator.filter')
@@ -59,13 +70,12 @@
         </div>
     </div>
 <div class="range range-xs-center">
-{{ $viewdata->appends([
-		'filter' => 'filter',
-		'filterByState'  => isset($filterByState)  ? $filterByState  : '',
-		'filterByRegion' => isset($filterByRegion) ? $filterByRegion : '',
-		'filterByCorn' => isset($filterByCorn) ? urldecode($filterByCorn) : '',
-		
-	])->links() }}
+{!! $viewdata->appends([
+		'filter' => 'filter',		
+		'arrcorns' => $selected_corns,		
+		'filterByPriceMin' => $filterByPriceMin,		
+		'filterByPriceMax' => $filterByPriceMax,		
+	])->links() !!}
 </div>
 </section>
 
