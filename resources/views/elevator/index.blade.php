@@ -16,65 +16,8 @@
 
         
         
-        <div class="range range-xs-center">
-            
-        <div class="form-group">
-			<div class="col-xs-12">
-				@if(isset($filterByRegion))
-					<a href="{{ route('mapelevator') }}" class="button button-effect-ujarak button-block button-default-outline">
-			        	Очистить Фильтр
-			        </a>
-			    @else			    	
-			        <a class="button button-effect-ujarak button-block button-default-outline toogle-filter">
-			        	Фильтр
-			        </a>
-			    @endif
-			</div> 
-		</div>
-            
-            <div id="elevator-filtre" class="cell-xs-12">           
-
-                <div class="table-custom-responsive">
-                    <table class="table-custom">
-                        <tbody>
-                            @if( isset($filterByRegion) )
-                            	<tr>
-	                                <td>
-	                                	<a href=" {{ route('mapelevator').'?filterByState='.$regions->state_id.'&filter=filter&page=1' }} "><i class="fa fa-arrow-left"></i> {{ $regions->name."  (" .$regions->countElevator($regions->id). ")" }} </a>
-	                                </td>
-                                </tr>
-                            
-                            @elseif( isset($filterByState) )
-                            	<tr>
-	                                <td>
-	                                	<a href=" {{ route('mapelevator').'?filterByState=&filter=filter&page=1' }} "><b> < </b> {{ $states->name."  (" .$states->countElevator($states->id). ")" }} </a>
-	                                </td>
-                                </tr>                     
-                            
-  	                            @foreach($regions as $region)
-	                            <tr>
-	                                <td>
-	                                	<a href=" {{ route('mapelevator').'?filterByRegion='.$region->id.'&filter=filter&page=1' }} "> &nbsp; &nbsp; &nbsp;{{ $region->name."  (" .$region->countElevator($region->id). ")" }} <b> > </b></a>
-	                                </td>
-	                            </tr>
-	                             @endforeach
-                            
-                            @else
-	                            @foreach($states as $state)	                            
-	                            <tr>
-	                                <td>
-	                                	<a href=" {{ route('mapelevator').'?filterByState='.$state->id.'&filter=filter&page=1' }} ">{{ $state->name."  (" .$state->countElevator($state->id). ")" }} <b> > </b> </a>
-	                                </td>
-	                            </tr>
-	                            @endforeach
-                            @endif 
-                            
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
-        
+        <div class="range range-xs-center">           
+        	@include('elevator.filter')
         </div>{{-- /range range-xs-center --}}
         
         <div class="range range-xs-center">
@@ -84,9 +27,11 @@
                     <table class="table-custom table-custom-striped table-custom-primary">
                         <thead>
                             <tr>
+                                @if(Auth::check())
                                 <th>
                                     Изб.
                                 </th>
+                                @endif
                                 <th>
                                     Наименование элеватора
                                 </th>
@@ -95,9 +40,11 @@
                         <tbody>
                             @foreach($viewdata as $elevator)
                             <tr>
+                                @if(Auth::check())
                                 <td>
-                                    <input type="checkbox"/>
+                                    <input type="checkbox" class="fav" id="fav-{{ $elevator->id }}" {{ $elevator->fav }}/>
                                 </td>
+                                @endif
                                 <td>
                                 	{{ $elevator->title }}
                                 </td>
@@ -113,15 +60,34 @@
     </div>
 <div class="range range-xs-center">
 {{ $viewdata->appends([
+		'filter' => 'filter',
 		'filterByState'  => isset($filterByState)  ? $filterByState  : '',
 		'filterByRegion' => isset($filterByRegion) ? $filterByRegion : '',
-		'filter' => 'filter',
+		'filterByCorn' => isset($filterByCorn) ? urldecode($filterByCorn) : '',
+		
 	])->links() }}
 </div>
 </section>
 
 @push('scripts')
-<script src="{{ asset('js/project.scripts.js_') }}"></script>
+<script src="{{ asset('js/project.scripts.js') }}"></script>
+<script>
+$(document).ready(function() {
+        $( ".fav" ).change(function( event ) {
+                var elevator_id = $(this).attr('id').substring(4);
+                {{-- // по умолчанию удалить из избранных --}}
+                var url_action = "/api/fav/remove/"+{{ Auth::id() }}+"/"+elevator_id ; 
+                if( $(this).prop("checked") ) {
+					 {{-- // если чекнутый то добавляем в избранные --}}
+					 url_action = "/api/fav/add/"+{{ Auth::id() }}+"/"+elevator_id ;
+				}
+				console.log( 'url_action = '+url_action );
+                $.ajax({
+                        url: url_action,
+                    });
+            });
+    });
+</script>
 @endpush	
 
 @endsection

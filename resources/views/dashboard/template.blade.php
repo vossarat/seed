@@ -24,6 +24,8 @@
         <link rel="stylesheet" href="{{ asset('css/dashboard/template.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/dashboard/sidebar.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/dashboard/topbar.css') }}" />
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
 
 
         <!-- Include Some Style -->
@@ -59,10 +61,15 @@
 
         <!-- Bootstrap core JavaScript
         ================================================== -->
-        <script src="{{ asset('js/dashboard/jquery.min.js') }}">
-        </script>
-        <script src="{{ asset('js/dashboard/bootstrap.min.js') }}">
-        </script>
+        <script src="{{ asset('js/dashboard/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/dashboard/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.maskedinput.js') }}"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js">
+		</script>
+
+
+        <script src="{{ asset('js/project.scripts.js') }}"></script>
         @stack('scripts')
 
 

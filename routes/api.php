@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// избранные элеваторы
+Route::get('/fav/{action}/{user_id}/{elevator_id}', 'ApiController@favorite'); 

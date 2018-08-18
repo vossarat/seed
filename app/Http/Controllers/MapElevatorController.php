@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Auth;
 use App\Elevator;
 use App\Reference\Region;
 use App\Reference\State;
@@ -32,17 +34,38 @@ class MapElevatorController extends Controller
     	$elevators = $this->elevator;
     	$filterByState = null; // фильтр пока пустой
     	$filterByRegion = null; // фильтр пока пустой
+    	$filterByCorn = null; // фильтр пока пустой
+    	$filterByPriceMin = null; // фильтр по прайсу мин пока пустой
+    	$filterByPriceMax = null; // фильтр по прайсу макс пока пустой
     	
+    	$request_uri_filter = null;
     	if ( $request->has('filter') ) { // проверка на кнопку фильтра
+			
+			//$request_uri_filter = http_build_query( $request->all() );
+			
 			$filterByState = $request->get('filterByState');
 			$filterByRegion = $request->get('filterByRegion');
+			$filterByCorn = $request->get('arrcorns') ? '&'.http_build_query( array('arrcorns' => $request->arrcorns) ) : '' ;
+			$filterByPriceMin = $request->get('filterByPriceMin');
+			$filterByPriceMax = $request->get('filterByPriceMax');
+			
 			$elevators = $this->elevator
 				->filterByState($filterByState) //фильтруем данные по области
-				->filterByRegion($filterByRegion); //фильтруем данные по району
-		}
-       	
+				->filterByRegion($filterByRegion) //фильтруем данные по району
+				->filterByCorn( $request->get('arrcorns') ) //фильтруем данные по культуре
+				->filterByPriceMin( $request->get('filterByPriceMin') ) //фильтруем данные по прайсу
+				->filterByPriceMax( $request->get('filterByPriceMax') ); //фильтруем данные по прайсу
+		}       	
+       
        	return view('elevator.index')->with([        
-			'viewdata' => $elevators->orderBy('elevators.id','desc')->paginate(10),			
+			// viewdata выбор из модели по авторизироанному пользователю
+			'viewdata' => $elevators->favUserElevators(Auth::id())->orderBy('elevators.id','desc')->paginate(10),
+			'corns' => $this->corn->all(),	
+			'filter' => $request->has('filter') ? 'filter' : '',	
+			'selected_corns' => $request->get('arrcorns'),	
+			'filterByCorn' => $filterByCorn,
+			'filterByPriceMin' => $filterByPriceMin,
+			'filterByPriceMax' => $filterByPriceMax,
 			'filterByState' => $filterByState,
 			'filterByRegion' => $filterByRegion,
 			'states' => $filterByState ? $this->state->where('id', $filterByState)->first() : $this->state->all(),

@@ -1,7 +1,7 @@
 @extends('dashboard.template')
 
 @section('content')
-<h1 class="page-header">Населенные пункты</h1>
+<h1 class="page-header">Элеваторы</h1>
 
 <div class="form-group">
 	<form action="{{ route('elevator.create') }}">

@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Trader;
+use App\Farmer;
 
 class User extends Authenticatable
 {
@@ -30,6 +32,11 @@ class User extends Authenticatable
     public function trader()
 	{
 		return $this->hasOne(Trader::class);
+	}
+	
+	public function farmer()
+	{
+		return $this->hasOne(Farmer::class);
 	}
 	
 	public function order()

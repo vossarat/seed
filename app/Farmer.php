@@ -6,18 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Farmer extends Model
 {
-    protected $table = 'farmers';
-	
-	/*protected $dates = [
-        'created_at',
-        'updated_at',
-    ];*/
-    
+    protected $table = 'farmers';	
+
 	protected $fillable = [
 		'user_id',
-		'name',
-		'description',
-		'count',
-		'price',
+		'title',
+		'fio',
+		'volume',
+		'region_id',
 	];
+	
+	public function user()
+	{
+		return $this->belongsTo(User::class);
+	}
+	
+	public function corns()
+    {
+        return $this->belongsToMany('App\Reference\Corn');
+    }
 }

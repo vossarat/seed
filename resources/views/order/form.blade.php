@@ -256,7 +256,6 @@
 @include('order.part_more_params') {{--отображение указать подробные параметры --}}
 
 @push('scripts')
-<script src="{{ asset('js/jquery.maskedinput.js') }}"></script>
 <script src="{{ asset('js/zepto.js') }}"></script>
 <script src="{{ asset('js/zepto-selector.js') }}"></script>
 <script src="{{ asset('js/jquery.chained.js') }}"></script>

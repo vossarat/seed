@@ -59,11 +59,6 @@
                                     <input type="radio" name="profile" value="farmer"> Фермер
                                 </label>
                             </div>
-                            <div class="cell-md-2 cell-xs-12">
-                                <label class="radio-inline">
-                                    <input type="radio" name="profile" value="elevator"> Элеватор
-                                </label>
-                            </div>
 
                         </div>
                         

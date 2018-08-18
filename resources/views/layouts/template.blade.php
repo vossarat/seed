@@ -31,7 +31,9 @@
 		<link rel="stylesheet" href="{{ asset('css/project-style.css') }}" />
 		
 		<!-- MMENU Style -->
-		<link rel="stylesheet" href="{{ asset('css/jquery.mmenu.css') }}" />		
+		<link rel="stylesheet" href="{{ asset('css/jquery.mmenu.css') }}" />
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">		
 		 
 		 
 		<!-- Include Some Style -->
@@ -44,15 +46,16 @@
 		<!-- Page-->
     <div class="text-left page">
       <!-- Page preloader-->
-      {{-- 
+      
       <div class="page-loader">
         <div>
           <div class="page-loader-body">
-            <div class="heartbeat"></div>
+          <img src="/images/preloader.gif" />
+           {{-- <div class="heartbeat"></div> --}}
           </div>
         </div>
       </div>
-      --}}
+      
       
       <!-- Page Header-->
       <header class="page-header">
@@ -90,6 +93,9 @@
 	
 	<!-- MMENU JavaScript -->
 	<script src="{{ asset('js/jquery.mmenu.js') }}"></script>
+	
+	<script src="{{ asset('js/jquery.maskedinput.js') }}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 	
 	
 	@stack('scripts')

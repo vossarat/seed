@@ -17,6 +17,11 @@ class Corn extends Model
     public function elevators()
     {
         return $this->belongsToMany('App\Elevator');
+    } 
+    
+    public function farmers()
+    {
+        return $this->belongsToMany('App\Farmer');
     }
     
     public function order()

@@ -22,6 +22,18 @@
 				@endif
 			</li>
 			
+			<li>
+				@if($routeprofileFarmer === 'create')
+					<a href="{{ route('farmer.create') }}">
+						{{ $titleprofileFarmer }}
+					</a>
+				@else
+					<a href="{{ route('farmer.edit', $farmer_id) }}">
+						{{ $titleprofileFarmer }}
+					</a>
+				@endif
+			</li>
+			
 			@if( Auth::user()->id === 1 )
 			<li>
                 <a href="/dashboard">Админ.панель</a>
@@ -32,7 +44,7 @@
 	            <a href="{{ route('logout') }}"
 	                onclick="event.preventDefault();
 	                	document.getElementById('logout-form').submit();">
-	                <i class="fa fa-sign-out"></i> Выход
+	                <span class="fa fa-sign-out"></span> Выход
 	            </a>
 	            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 	                {{ csrf_field() }}

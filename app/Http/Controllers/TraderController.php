@@ -52,7 +52,7 @@ class TraderController extends Controller
 		$trader->user->update($request->all());		
 		$trader->user->save();
 
-		return redirect(route('trader.index'))->with([
+		return redirect(route('order.index'))->with([
 			'message' => "Информация по трейдеру $request->title добавлена",
 		]);
     }

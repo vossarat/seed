@@ -43,7 +43,7 @@
 		<label for="corn_id" class="col-md-4 control-label">Принимает зерновые культуры</label>		
 		
 		<div class="col-md-6">
-		<select multiple class="form-control" name="corns[]" name="corns" size="5">			
+		<select id="select-corns" multiple class="form-control" name="corns[]" name="corns" size="5">			
 			@foreach($corns as $item)
 				@if(isset($viewdata))
 					<option {{ in_array($item->id, $elevator_corn )  ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
@@ -240,7 +240,7 @@
 <script>
 $(document).ready(function() {
 		
-		var sel = $('.kato'),
+		/*var sel = $('.kato'),
 		    cache = $('option', sel.eq(1));
 		    
 		sel.eq(0).on('change', function(){
@@ -256,7 +256,7 @@ $(document).ready(function() {
 		        });
 		    }
 		    sel.eq(1).html(filtered).prop('selectedIndex', 0);
-		});
+		});*/
 		
 });
 </script>

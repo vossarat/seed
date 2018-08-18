@@ -16,7 +16,6 @@ $(document).ready(function() {
 	
 		$( "#elevators" ).hide();
 		$( "#other" ).hide();
-		//$( "#elevator-filtre" ).hide();
 		
 		$( ".toogle-other" ).click(function( event ) {
 			event.preventDefault();
@@ -34,18 +33,53 @@ $(document).ready(function() {
 			}
 		});
 		
-		$( ".toogle-filter" ).click(function( event ) {
-			event.preventDefault();
-			$( "#elevator-filtre" ).toggle();						
-				// $("#other").hide();
-		});
+		if($("a").is(".toogle-elevator-filter")) {
+			$( "#elevator-filter" ).hide();
+		}
 		
-		$("#town_id").chained("#region_id");
-		$("#elevator_id").chained("#town_id");
+		$( ".toogle-elevator-filter" ).click(function( event ) {
+			event.preventDefault();
+			$( "#elevator-filter" ).toggle();					
+		});	
 		
 		$("#phone").mask("+9 (999) 999-99-99", {placeholder: "" });
         $("#telegram").mask("+9 (999) 999-99-99", {placeholder: "" });
         $("#whatsapp").mask("+9 (999) 999-99-99", {placeholder: "" });
+        
+        
+        var sel = $('.kato'),
+		    cache = $('option', sel.eq(1));
+		    
+		sel.eq(0).on('change', function(){
+			
+		    var selectedColor = $(':selected',this).data('kato'),
+		        filtered;
+
+		    if(selectedColor == 'all') {
+		        filtered = cache;
+		    } else {
+		        filtered = cache.filter(function(){
+		          return $(this).data('kato') == selectedColor;
+		        });
+		    }
+		    sel.eq(1).html(filtered).prop('selectedIndex', 0);
+		});
+		
+		$('#select-corns').multiselect({
+            buttonText: function(options, select) {
+                return 'Выберите культуру:';
+            },
+            buttonTitle: function(options, select) {
+                var labels = [];
+                options.each(function () {
+                    labels.push($(this).text());
+                });
+                return labels.join(' - ');
+            }
+        });
+        
+       /* $("#town_id").chained("#region_id");
+		$("#elevator_id").chained("#town_id");*/
 		
 			
     });

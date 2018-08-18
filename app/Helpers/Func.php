@@ -3,6 +3,7 @@
 namespace App\Helpers;
 use App\User;
 use App\Trader;
+use App\Farmer;
 use Auth;
  
 class Func {
@@ -26,5 +27,13 @@ class Func {
 			$id = $trader;
 		}    */ 	                
         return $traderId;
+    }
+    
+    public static function farmerByUserId($userId) 
+    {
+    	$user = User::find( $userId );    	
+    	$farmerId = $user->farmer ? $user->farmer->id : 0;
+	                
+        return $farmerId;
     }
 }

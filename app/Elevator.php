@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Auth;
 
 class Elevator extends Model
 {
@@ -66,6 +68,57 @@ class Elevator extends Model
 	        		->where('towns.region_id', '=', $filterByRegion)	;
 		}
 		
+		return $query ;
+	}
+	
+	public function ScopeFilterByCorn($query, $filterByCorn)
+	{
+		if($filterByCorn){
+			return $query				
+	        	->leftJoin('corn_elevator', 'elevators.id', '=', 'corn_elevator.elevator_id') 
+	        	->select('elevators.id', 'elevators.title')       		
+	        		->whereIn('corn_elevator.corn_id', $filterByCorn)
+	        		->distinct();
+		}
+		
+		return $query ;
+	}
+	
+	public function ScopeFilterByPriceMin($query, $filterByPriceMin)
+	{
+		if($filterByPriceMin){
+			return $query				
+	        		->where('price','>=', $filterByPriceMin);
+		}
+		
+		return $query ;
+	}
+	
+	public function ScopeFilterByPriceMax($query, $filterByPriceMax)
+	{
+		if($filterByPriceMax){
+			return $query				
+	        		->where('price','<=', $filterByPriceMax);
+		}
+		
+		return $query ;
+	}
+	
+	/**
+	* 
+	* @param undefined $query
+	* @param undefined $user - авторизированный пользователь
+	* 
+	* @return $query к выборке добавляется столбец fav = "checked" когда $user = favorite_user_elevator.user_id
+	*/
+	public function ScopeFavUserElevators($query, $user)
+	{
+		if($user){
+			return $query				
+        		->leftJoin('favorite_user_elevator', 'elevators.id', '=', 'favorite_user_elevator.elevator_id') 
+        		->select('elevators.id', 'elevators.title', 'favorite_user_elevator.elevator_id',
+        		DB::raw("CASE WHEN (favorite_user_elevator.user_id = $user) THEN 'checked' ELSE '' END as fav"));
+		}		
 		return $query ;
 	}
 	

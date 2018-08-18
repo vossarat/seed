@@ -31,12 +31,27 @@ class UserMenuComposer {
 	    		$trader_id = Func::traderByUserId(Auth::user()->id);
 			}
 		}
-    	
+		
+		$titleprofileFarmer = 'Я фермер';
+    	$routeprofileFarmer = 'create';
+    	$farmer_id = '';
+    	if( Auth::check() ){
+	    	if( Func::farmerByUserId(Auth::user()->id) ){
+				$titleprofileFarmer = 'Профиль фермера';
+	    		$routeprofileFarmer = 'edit';
+	    		$farmer_id = Func::farmerByUserId(Auth::user()->id);
+			}
+		}
+		
         $view->with([
         	'username' => $username,
         	'titleprofile' => $titleprofile,
         	'routeprofile' => $routeprofile,
         	'trader_id' => $trader_id,
+        	
+        	'titleprofileFarmer' => $titleprofileFarmer,
+        	'routeprofileFarmer' => $routeprofileFarmer,
+        	'farmer_id' => $farmer_id,
         ]);
     }
 
