@@ -17,6 +17,13 @@ $(document).ready(function() {
 		$( "#elevators" ).hide();
 		$( "#other" ).hide();
 		
+		$( ".order-detailed" ).hide(); // детали заявки
+		$( ".toogle-order-detailed" ).click(function( event ) {
+			event.preventDefault();			
+			$( this ).next('.order-detailed').toggle();
+		});
+		
+		
 		$( ".toogle-other" ).click(function( event ) {
 			event.preventDefault();
 			if($("#elevators").is(':visible')){
@@ -40,6 +47,15 @@ $(document).ready(function() {
 		$( ".toogle-elevator-filter" ).click(function( event ) {
 			event.preventDefault();
 			$( "#elevator-filter" ).toggle();					
+		});	
+		
+		if($("a").is(".toogle-order-filter")) {
+			$( "#order-filter" ).hide();
+		}
+		
+		$( ".toogle-order-filter" ).click(function( event ) {
+			event.preventDefault();
+			$( "#order-filter" ).toggle();					
 		});	
 		
 		$("#phone").mask("+9 (999) 999-99-99", {placeholder: "" });

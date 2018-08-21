@@ -14,11 +14,8 @@ class CreateOrderElevatorTable extends Migration
     public function up()
     {
         Schema::create('order_elevator', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('order_id')->unsigned()->index();
-			$table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-			$table->integer('elevator_id')->unsigned()->index();
-			$table->foreign('elevator_id')->references('id')->on('elevators')->onDelete('cascade');
+            $table->integer('order_id');
+            $table->integer('elevator_id');
         });
     }
 

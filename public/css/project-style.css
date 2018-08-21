@@ -1,3 +1,15 @@
 #s2id_select-corns {
 	display: none;
 }
+
+.order-table {
+	border: 3px solid #f8a63d;
+}
+
+.order-table-row {
+	border-bottom: 1px solid #f8a63d;
+}
+
+.toogle-order-detailed {
+	border-bottom: 1px dotted #f8a63d;
+}

@@ -1,64 +1,69 @@
-<div id="elevators">{{-- Див выбора элеватора --}}
+{{-- указать подробные параметры --}}
 
-<div class="form-group">		
-		<label for="state_id" class="col-md-4 control-label">Область</label>		
-		<div class="col-md-6">
-			<select class="" name="state_id">		
-				@foreach($states as $item)
-					@if(isset($viewdata))
-						<option {{ $viewdata->state_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
-					@else
-						<option value="{{ $item->id }}">{{ $item->name }}</option>
-					@endif
-				@endforeach			
-			</select>
-		</div>
-</div> 
-
-<div class="form-group">		
-		<label for="region_id" class="col-md-4 control-label">Район</label>			
-		<div class="col-md-6">
-			<select name="region_id" id="region_id">
-				@foreach($regions as $item)
-					@if(isset($viewdata))
-						<option {{ $viewdata->region_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
-					@else
-						<option value="{{ $item->id }}">{{ $item->name }}</option>
-					@endif
-				@endforeach			
-			</select>
-		</div>
-</div> 
-
-<div class="form-group">		
-		<label for="town_id" class="col-md-4 control-label">Населенный пункт</label>		
-		<div class="col-md-6">
-			<select name="town_id" id="town_id">
-				<option value="">Не указано</option>
-				@foreach($towns as $item)				
-					@if(isset($viewdata))
-						<option data-chained="{{$item->region->id}}" value="{{ $item->id }}" {{ $viewdata->town_id == $item->id ? 'selected' : '' }} >{{ $item->name }}</option>
-					@else
-						<option data-chained="{{$item->region->id}}" value="{{ $item->id }}" >{{ $item->name }}</option>
-					@endif
-				@endforeach			
-			</select>
-		</div>
+<div class="form-group">
+    <div class="col-md-6 col-md-offset-4">
+        <a href="#menu-elevator" class="button button-effect-ujarak button-block button-default-outline">
+            Выбрать элеватор
+        </a>
+    </div>
 </div>
 
-<div class="form-group">		
-		<label for="elevator_id" class="col-md-4 control-label">Элеватор</label>		
-		<div class="col-md-6">
-			<select class="" name="elevator_id">		
-				@foreach($elevators as $item)
-					@if(isset($viewdata))
-						<option {{ $viewdata->elevator_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->title }}</option>
-					@else
-						<option value="{{ $item->id }}">{{ $item->title }}</option>
-					@endif
-				@endforeach			
-			</select>
-		</div>
-</div> 
 
-</div>{{-- /Див выбора элеватора --}}
+
+<div id="menu-elevator" class="menu-elevator">
+
+	<ul>
+		@foreach($regions as $region)
+			<li><span><a href="#">{{ $region->name."  (" .$region->countElevator($region->id). ")" }}</a></span>
+				<ul>
+					@foreach($towns as $town)
+						@if($town->region_id == $region->id)
+						<li><span><a href="#">{{ $town->name."  (" .$town->countElevator($town->id). ")" }}</a></span>
+							<ul>
+								@foreach($elevators as $elevator)
+									@if($elevator->town_id == $town->id)
+										<li>
+										<span><input type="checkbox" class="order-elevator" id="order-elevator-{{ $elevator->id }}" {{ in_array( $elevator->id, $elevator_order ) ? 'checked' : '' }}/>
+											&nbsp;&nbsp;{{ $elevator->title }}
+										</span>
+
+										</li>
+										
+
+										
+										
+									@endif
+								@endforeach
+							</ul>
+						</li>
+						@endif
+					@endforeach
+				</ul>
+			</li>
+		@endforeach	
+	
+	</ul>
+	
+	
+		           
+</div>
+
+@push('scripts')
+<script>
+$(document).ready(function() {
+        $( ".order-elevator" ).change(function( event ) {
+                var elevator_id = $(this).attr('id').substring(15);
+                {{-- // по умолчанию удалить из избранных --}}
+                var url_action = "/api/order_to_elevator/remove/"+{{ $viewdata->id }}+"/"+elevator_id ; 
+                if( $(this).prop("checked") ) {
+					 {{-- // если чекнутый то добавляем в избранные --}}
+					 url_action = "/api/order_to_elevator/add/"+{{ $viewdata->id }}+"/"+elevator_id ;
+				}
+				console.log( 'url_action = '+url_action );
+                $.ajax({
+                        url: url_action,
+                    });
+            });
+    });
+</script>
+@endpush

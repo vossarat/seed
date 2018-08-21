@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // избранные элеваторы
 Route::get('/fav/{action}/{user_id}/{elevator_id}', 'ApiController@favorite'); 
+
+// заявки к элеватору
+Route::get('/order_to_elevator/{action}/{order_id}/{elevator_id}', 'ApiController@orderToElevator');  

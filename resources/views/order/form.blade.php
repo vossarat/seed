@@ -127,7 +127,7 @@
 	</div>
 </div> 
 
-@include('order.part_elevators_sidebar') {{--отображение выбрать элеватор --}}
+@include('order.part_elevators') {{--отображение выбрать элеватор --}}
 
 <div class="form-group">
 	{{-- 
@@ -275,7 +275,7 @@
 				title : 'Подробные параметры'
 			}
 		});
-	});
+	});	
 	
 	$(function() {
 		$("#menu-more-params :input").change(function() {
@@ -291,18 +291,5 @@
 		
 	});
 	
-	$(function() {
-		$("#menu-elevator :input").change(function() {
-			inputValue = $(this).val();
-			/*if($(this).attr('type') == 'checkbox' &&$(this).is(":checked") ) {
-			    inputValue = 1;
-			};*/ 
-			if($(this).attr('type') == 'checkbox' && !$(this).is(":checked")) {
-				inputValue = 0;
-			}
-			$( '#form-order' ).append("<input type='hidden' name='"+$(this).attr('name')+"' value='"+inputValue+"'/>");
-		});		
-		
-	});
 </script>
 @endpush						

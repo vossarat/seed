@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
@@ -54,5 +55,64 @@ class Order extends Model
 	public function ScopeFilterByTitle($query, $filterByTitle)
 	{
 		return $query->where('title', 'like', "%$filterByTitle%" );
+	}
+	
+	public function ScopeOrderToElevator($query, $order)
+	{
+		return $query				
+        		->leftJoin('order_elevator', 'orders.id', '=', 'order_elevator.order_id')
+        		->where('order_elevator.order_id', '=', $order);
+	}
+	
+	public function ScopeFilterByCorn($query, $filterByCorn)
+	{
+		if($filterByCorn){
+			return $query				
+        		->whereIn('orders.corn_id', $filterByCorn);
+		}
+		
+		return $query ;
+	}
+	
+	public function ScopeFilterByPriceMin($query, $filterByPriceMin)
+	{
+		if($filterByPriceMin){
+			return $query				
+	        		->where('price','>=', $filterByPriceMin);
+		}
+		
+		return $query ;
+	}
+	
+	public function ScopeFilterByPriceMax($query, $filterByPriceMax)
+	{
+		if($filterByPriceMax){
+			return $query				
+	        		->where('price','<=', $filterByPriceMax);
+		}
+		
+		return $query ;
+	}
+	
+	public function ScopeFilterByRegion($query, $filterByRegion)
+	{
+		if($filterByRegion){
+			return $query
+				->select('orders.*')
+				->leftJoin('order_elevator', 'orders.id', '=', 'order_elevator.order_id')
+				->leftJoin('elevators', 'order_elevator.elevator_id', '=', 'elevators.id')
+	        	->leftJoin('towns', 'elevators.town_id', '=', 'towns.id')        		
+        		->where('towns.region_id', '=', $filterByRegion)	;
+		}
+		
+		return $query ;
+	}
+	
+	public function ScopePack($query)
+	{		
+			return $query
+				->select('packs.name as packname')
+				->leftJoin('packs', 'orders.pack_id', '=', 'packs.id')
+				->first();
 	}
 }

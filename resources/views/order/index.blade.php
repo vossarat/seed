@@ -36,53 +36,61 @@
             Заявки
         </h3>
 
+        <div class="range range-xs-center">           
+        	@include('order.filter')
+        </div>{{-- /range range-xs-center --}}
+        
         <div class="range range-xs-center">
             <div class="cell-xs-12">
 
-                <div class="table-custom-responsive">
+                <div class="table-custom-responsive order-table">
                     <table class="table-custom table-custom-striped table-custom-primary">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Дата
-                                </th>
-                                <th>
-                                    Наименование заявки
-                                </th>
-                                <th>
-                                    Объем
-                                </th>
-                                <th>
-                                    Цена
-                                </th>
-                            </tr>
-                        </thead>
                         <tbody>
                             @foreach($viewdata as $order)
-                            <tr>
+                            <tr class="order-table-row">
+                                {{--
                                 <td>
-                                    {{ date('d.m.Y',strtotime($order->created_at)) }}
+                                    
                                 </td>
+                                --}}
                                 <td>
-                                	@if(Auth::check())
-	                                	@if(Auth::user()->id == $order->user_id)
-	                                    	Ваша заявка
-	                                    	<p>
-	                                    	<a href="{{route('order.edit', $order->id)}}">{{ 'Заявка на '.$order->corn['name'] }}</a>
-	                                    	</p>
-	                                    @else
-	                                    	<a href="{{route('order.show', $order->id)}}">{{ 'Заявка на '.$order->corn['name'] }}</a>
-	                                	@endif 
-	                                @else
-	                                   	<a href="{{route('order.show', $order->id)}}">{{ 'Заявка на '.$order->corn['name'] }}</a>
-	                                @endif
+                                <div class="row">
+	                                <div class="col-xs-6">
+	                                	{{ date('d.m.Y',strtotime($order->created_at)) }}
+	                                </div>
+	                                <div class="col-xs-6">
+	                                	{{ $order->price }} тенге
+	                                </div>
+                                </div>
+                                 <div class="row">
+	                                <div class="col-xs-12">
+	                                	@if(Auth::check() && Auth::user()->id == $order->user_id)
+		                                    	Ваша заявка</br>
+		                                @endif	                                    	
+	                                	<a class="toogle-order-detailed" href="{{route('order.edit', $order->id)}}">{{ 'Заявка на '.$order->corn['name'] }}, {{ $order->count . ' тонн' }}</a>
+	                                <div class="order-detailed">
+                                		<ul>
+                                			<li>Упаковка: {{ $packs->find($order->pack_id ? $order->pack_id : '1')->name }}</li>
+                                			<li>{{ $loadprices->find($order->loadprice_id ? $order->loadprice_id : '1')->name }}, {{ $order->auction ? 'Торг' : 'Без торга' }}</li>
+                                			<li>Разместил: {{ $order->user->name }}</li>
+                                		</ul>
+                                	</div>
+	                                </div>
+                                </div>
+                                
+                                
+                                	
+                                	
+                                	
+	                                
+                                
                                 </td>
+                                {{--
                                 <td>
                                     {{ $order->count . ' тонн' }}
                                 </td>
-                                <td>
-                                    {{ $order->price }}
-                                </td>
+                                
+                                --}}
                             </tr>
                             @endforeach
                         </tbody>
@@ -97,8 +105,16 @@
 
 <div class="range range-xs-center">
 {{ $viewdata->appends([
-		'filterByTitle' => isset($filterByTitle) ? $filterByTitle :'',
-		'filter' => 'filter',
+		'filter' => 'filter',		
+		'arrcorns' => $selected_corns,
+		'filterByPriceMin' => $filterByPriceMin,		
+		'filterByPriceMax' => $filterByPriceMax,		
+		'filterByRegion' => $filterByRegion,		
 	])->links() }}
 </div>
+
+@push('scripts')
+<script src="{{ asset('js/project.scripts.js') }}"></script>
+@endpush
+
 @endsection

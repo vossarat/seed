@@ -6,6 +6,7 @@ use App\Order;
 use App\User;
 use App\Elevator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Auth;
 use Gate;
 use App\Reference\Corn;
@@ -38,11 +39,13 @@ class OrderController extends Controller
     public function index(Request $request)
     {
     	$orders = $this->order;
-    	$filterByTitle = null; // фильтра по наименованию заявки, пока пустой
-    	
+   	
     	if ( $request->has('filter') ) { // проверка на кнопку фильтра
-			$filterByTitle = $request->get('filterByTitle');
-			$orders = $this->order->filterByTitle($filterByTitle); //фильтруем данные
+			$orders = $this->order
+				->filterByCorn( $request->get('arrcorns') ) //фильтруем данные по культуре
+				->filterByRegion( $request->get('filterByRegion') ) //фильтруем данные по району
+				->filterByPriceMin( $request->get('filterByPriceMin') ) //фильтруем данные по прайсу
+				->filterByPriceMax( $request->get('filterByPriceMax') ); //фильтруем данные по прайсу
 		}
     	
         return view('order.index')->with([        
@@ -54,8 +57,12 @@ class OrderController extends Controller
 			'regions' => $this->region->all(),
 			'states' => $this->state->all(),
 			'towns' => $this->town->all(),
-			'points' => $this->point->all(),
-			'filterByTitle' => $filterByTitle,
+			'points' => $this->point->all(),			
+			'filter' => $request->has('filter') ? 'filter' : '',
+			'selected_corns' => $request->get('arrcorns'),
+			'filterByPriceMin' => $request->get('filterByPriceMin'),
+			'filterByPriceMax' => $request->get('filterByPriceMax'),
+			'filterByRegion' => $request->get('filterByRegion'),
 		]);
     }
 
@@ -112,11 +119,13 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-    	$elevator_order = [];    	
- 	
-    	if(isset($order->elevators)){
-			foreach($order->elevators->all() as $item){
-				$elevator_order[] = $item->id;
+    	$selected_elevator_order = DB::table('order_elevator')
+ 			->select('elevator_id')
+ 			->where('order_id', $order->id)->get();
+    	
+    	if(isset($selected_elevator_order)){
+			foreach($selected_elevator_order->all() as $item){
+				$elevator_order[] = $item->elevator_id;
 			}
 		}	
 		
@@ -144,14 +153,17 @@ class OrderController extends Controller
     public function edit($id)
     { 	
     	$order = $this->order->find($id);
+   	
+ 		$selected_elevator_order = DB::table('order_elevator')
+ 			->select('elevator_id')
+ 			->where('order_id', $order->id)->get();
     	
-    	$elevator_order = [];    	
- 	
-    	if(isset($order->elevators)){
-			foreach($order->elevators->all() as $item){
-				$elevator_order[] = $item->id;
+    	$elevator_order = [];
+    	if(isset($selected_elevator_order)){
+			foreach($selected_elevator_order->all() as $item){
+				$elevator_order[] = $item->elevator_id;
 			}
-		}		
+		}	
    	
     	if(Gate::denies('update', $order)){
 		    return view('layouts.sysmessage')->with('message','Это на Ваша заявка. Вы не можете ее редактировать.');
@@ -195,7 +207,7 @@ class OrderController extends Controller
 		
 		$order->user->save();
 		
-		$order->elevators()->sync($request->elevators);
+		//$order->elevators()->sync($request->elevators);
 		
 		$order->save();
 		return redirect(route('order.index'))->with('message',"Информация по заявке $order->title изменена");
