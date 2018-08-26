@@ -44,7 +44,7 @@ class Order extends Model
 	
 	public function elevators()
     {
-        return $this->belongsToMany('App\Elevator');
+        return $this->belongsToMany('App\Elevator', 'order_elevator');
     }
 	
 	public function corn()

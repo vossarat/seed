@@ -326,7 +326,7 @@
 <treenode node="index;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\MapElevatorController.php;f11;31;5;71;;;;vpos;;v;;r&#10;Definition&#10;    index(Request $request)&#10;&#10;Description&#10;     Display a listing of the resource.;;d4,32;;b1,0;;mrequest;;p">
 </treenode>
 </treenode>
-<treenode node="Order;PHP:Class Name;D:\websites\seed.zelenka.ml\app\Order.php;f0;7;1;109;;;;vpos;;vModel;;c;;r;;d0,8;;b0,0;;m">
+<treenode node="Order;PHP:Class Name;D:\websites\seed.zelenka.ml\app\Order.php;f0;7;1;117;;;;vpos;;vModel;;c;;r;;d0,8;;b0,0;;m">
 <treenode node="corn;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Order.php;f8;49;2;52;;;;vpos;;v;;r;;d1,50;;b1,0;;m">
 </treenode>
 <treenode node="elevators;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Order.php;f8;44;5;47;;;;vpos;;v;;r;;d4,45;;b1,0;;m">
@@ -342,6 +342,8 @@
 <treenode node="ScopeFilterByTitle;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Order.php;f8;54;2;57;;;;vpos;;v;;r;;d1,55;;b1,0;;mquery;;pfilterByTitle;;p">
 </treenode>
 <treenode node="ScopeOrderToElevator;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Order.php;f8;59;2;64;;;;vpos;;v;;r;;d1,60;;b1,0;;mquery;;porder;;p">
+</treenode>
+<treenode node="ScopePack;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Order.php;f8;110;2;116;;;;vpos;;v;;r;;d1,111;;b1,0;;mquery;;p">
 </treenode>
 <treenode node="user;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Order.php;f8;39;2;42;;;;vpos;;v;;r;;d1,40;;b1,0;;m">
 </treenode>

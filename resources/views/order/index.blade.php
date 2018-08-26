@@ -72,25 +72,41 @@
                                 		<ul>
                                 			<li>Упаковка: {{ $packs->find($order->pack_id ? $order->pack_id : '1')->name }}</li>
                                 			<li>{{ $loadprices->find($order->loadprice_id ? $order->loadprice_id : '1')->name }}, {{ $order->auction ? 'Торг' : 'Без торга' }}</li>
-                                			<li>Разместил: {{ $order->user->name }}</li>
+                                			
+                                			<li>Элеваторы:
+                                				@foreach($order->elevators as $elevator)
+                                					{{ $elevator->title }};
+                                				@endforeach
+                                			</li>
+                                			<li>Подробные параметры </li>
+                                			<li>
+                                			&nbsp;&nbsp;&bull;Класс или сорт продукции: 
+                                			{{ $order->sort_standart ? 'Стандарт;' : '' }} 
+                                			{{ $order->sort_other ? 'Другое;' : '' }}
+                                			{{ $order->sort_gost1 ? 'Гост 1;' : '' }}
+                                			{{ $order->sort_gost2 ? 'Гост 2;' : '' }}
+                                			</li>
+                                			<li>
+                                			&nbsp;&nbsp;&bull;Условия оплаты продукции: 
+                                			{{ $order->agreement ? 'Договорные ;' : '' }} 
+                                			{{ $order->rewrite  ? 'По факту переписки;' : '' }}
+                                			{{ $order->rewrite  ? 'По факту переписки;' : '' }}
+                                			</li>
+                                			<li>
+                                			&nbsp;&nbsp;&bull;Комментарий: 
+                                			{{ $order->notice }} 
+                                			</li>
+                                			<li>Разместил пользователь</li>
+                                			
+                                			<li>&nbsp;&nbsp;&bull;Имя: {{ $order->user->name }}</li>
+                                			<li>&nbsp;&nbsp;&bull;E-mail: {{ $order->user->email }}</li>
+                                			<li>&nbsp;&nbsp;&bull;Телефон: {{ $order->user->phone }}</li>
+                                			<li>&nbsp;&nbsp;&bull;WhatsApp: {{ $order->user->whatssapp }}</li>
                                 		</ul>
                                 	</div>
 	                                </div>
                                 </div>
-                                
-                                
-                                	
-                                	
-                                	
-	                                
-                                
                                 </td>
-                                {{--
-                                <td>
-                                    {{ $order->count . ' тонн' }}
-                                </td>
-                                
-                                --}}
                             </tr>
                             @endforeach
                         </tbody>
