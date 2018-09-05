@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Gate;
+use Mail;
 use App\Reference\Corn;
 use App\Reference\Pack;
 use App\Reference\Loadprice;
@@ -19,7 +20,7 @@ use App\Reference\Point;
 
 class OrderController extends Controller
 {
-	public function __construct(Order $order, Corn $corn, Pack $pack, Loadprice $loadprice, Elevator $elevator, Region $region, State $state, Town $town, Point $point)
+	public function __construct(Order $order, Corn $corn, Pack $pack, Loadprice $loadprice, Elevator $elevator, Region $region, State $state, Town $town, Point $point, User $user)
 	{		
 		$this->order = $order;
 		$this->corn = $corn;
@@ -30,6 +31,7 @@ class OrderController extends Controller
 		$this->state = $state;
 		$this->town = $town;
 		$this->point = $point;
+		$this->user = $user;
 	}
     /**
      * Display a listing of the resource.
@@ -101,6 +103,28 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        /*Mail::send('order.index', ,
+            function ($message) use ($user)
+            {
+                $message->from('d.tarassov@akmzdrav.kz', 'Sender');
+                $message->to('')->subject('Test message');
+            });*/
+            
+        /*$data = array('name'=>"Virat Gandhi");
+  
+	     Mail::send(['text'=>'welcome'], $data, function($message) {
+	        $message->to('d.tarassov@akmzdrav.kz', 'Tutorials Point')->subject
+	           ('Laravel Basic Testing Mail');
+	        $message->from('xyz@gmail.com','Virat Gandhi');
+	     });*/
+	     
+		Mail::raw('Text', function ($message){
+			$message->to('d.tarassov@akmzdrav.kz');
+		});
+        
+    	dd( 'Send Message' );
+    	
+    	
         $order = Order::create($request->all());
         
         $order->user->update($request->all());		

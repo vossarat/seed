@@ -41,19 +41,11 @@
         </div>{{-- /range range-xs-center --}}
         
         <div class="range range-xs-center">
-            <div class="cell-xs-12">
+            <div class="cell-xs-12 order-table">
 
-                <div class="table-custom-responsive order-table">
-                    <table class="table-custom table-custom-striped table-custom-primary">
-                        <tbody>
                             @foreach($viewdata as $order)
-                            <tr class="order-table-row">
-                                {{--
-                                <td>
-                                    
-                                </td>
-                                --}}
-                                <td>
+                            <div class="row order-table-row">
+
                                 <div class="row">
 	                                <div class="col-xs-6">
 	                                	{{ date('d.m.Y',strtotime($order->created_at)) }}
@@ -70,15 +62,15 @@
 	                                	<a class="toogle-order-detailed" href="{{route('order.edit', $order->id)}}">{{ 'Заявка на '.$order->corn['name'] }}, {{ $order->count . ' тонн' }}</a>
 	                                <div class="order-detailed">
                                 		<ul>
-                                			<li>Упаковка: {{ $packs->find($order->pack_id ? $order->pack_id : '1')->name }}</li>
+                                			<li><u>Упаковка:</u> {{ $packs->find($order->pack_id ? $order->pack_id : '1')->name }}</li>
                                 			<li>{{ $loadprices->find($order->loadprice_id ? $order->loadprice_id : '1')->name }}, {{ $order->auction ? 'Торг' : 'Без торга' }}</li>
                                 			
-                                			<li>Элеваторы:
+                                			<li><u>Элеваторы:</u>
                                 				@foreach($order->elevators as $elevator)
                                 					{{ $elevator->title }};
                                 				@endforeach
                                 			</li>
-                                			<li>Подробные параметры </li>
+                                			<li><u>Подробные параметры</u> </li>
                                 			<li>
                                 			&nbsp;&nbsp;&bull;Класс или сорт продукции: 
                                 			{{ $order->sort_standart ? 'Стандарт;' : '' }} 
@@ -106,14 +98,12 @@
                                 	</div>
 	                                </div>
                                 </div>
-                                </td>
-                            </tr>
+                                
+                            </div>
                             @endforeach
-                        </tbody>
 
-                    </table>
-                </div>
-                <div class="divider-edgewise"></div>
+
+               <!-- <div class="divider-edgewise"></div>-->
             </div>
         </div>
     </div>
@@ -121,7 +111,7 @@
 
 <div class="range range-xs-center">
 {{ $viewdata->appends([
-		'filter' => 'filter',		
+		'filter' => $filter ? 'filter' : '',		
 		'arrcorns' => $selected_corns,
 		'filterByPriceMin' => $filterByPriceMin,		
 		'filterByPriceMax' => $filterByPriceMax,		

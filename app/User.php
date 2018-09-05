@@ -49,4 +49,29 @@ class User extends Authenticatable
 		return $this->hasOne(Elevator::class);
 	}
 	
+	public function ScopeFarmersEmailByCorn($query, $corns)
+	{
+		if( $corns ){
+			return $query
+				->select('email')
+				->leftJoin('farmers', 'users.id', '=', 'farmers.user_id')
+				->leftJoin('corn_farmer', 'farmers.id', '=', 'corn_farmer.farmer_id')
+        		->whereIn('corn_farmer.corn_id', $corns) ;
+		}
+		
+		return $query ;
+	}
+	
+	public function ScopeFarmersPhoneByCorn($query, $corns)
+	{
+		if( $corns ){
+			return $query
+				->select('phone')
+				->leftJoin('farmers', 'users.id', '=', 'farmers.user_id')
+        		->whereIn('users.id', $corns) ;
+		}
+		
+		return $query ;
+	}
+	
 }
