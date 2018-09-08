@@ -10,10 +10,10 @@
 <treenode node="orderToElevator;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\ApiController.php;f11;33;5;45;;;;vpos;;v;;r;;d4,34;;b1,0;;maction;;porder_id;;pelevator_id;;p">
 </treenode>
 </treenode>
-<treenode node="AppServiceProvider;PHP:Class Name;D:\websites\seed.zelenka.ml\app\Providers\AppServiceProvider.php;f0;7;1;28;;;;vpos;;vServiceProvider;;c;;r;;d0,8;;b0,0;;m">
-<treenode node="boot;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Providers\AppServiceProvider.php;f11;14;5;17;;;;vpos;;vvoid;;r&#10;Definition&#10;    boot()&#10;&#10;Description&#10;     Bootstrap any application services.;;d4,15;;b1,0;;m">
+<treenode node="AppServiceProvider;PHP:Class Name;D:\websites\seed.zelenka.ml\app\Providers\AppServiceProvider.php;f0;8;1;30;;;;vpos;;vServiceProvider;;c;;r;;d0,9;;b0,0;;m">
+<treenode node="boot;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Providers\AppServiceProvider.php;f11;15;5;19;;;;vpos;;vvoid;;r&#10;Definition&#10;    boot()&#10;&#10;Description&#10;     Bootstrap any application services.;;d4,16;;b1,0;;m">
 </treenode>
-<treenode node="register;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Providers\AppServiceProvider.php;f11;24;5;27;;;;vpos;;vvoid;;r&#10;Definition&#10;    register()&#10;&#10;Description&#10;     Register any application services.;;d4,25;;b1,0;;m">
+<treenode node="register;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Providers\AppServiceProvider.php;f11;26;5;29;;;;vpos;;vvoid;;r&#10;Definition&#10;    register()&#10;&#10;Description&#10;     Register any application services.;;d4,27;;b1,0;;m">
 </treenode>
 </treenode>
 <treenode node="AuthMessage;PHP:Class Name;D:\websites\seed.zelenka.ml\app\Http\Middleware\AuthMessage.php;f0;7;1;23;;;;vpos;;v;;r;;d0,8;;b0,0;;m">
@@ -472,6 +472,12 @@
 <treenode node="store;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\StateController.php;f11;35;5;38;;;;vpos;;v;;r&#10;Definition&#10;    store(Request $request)&#10;&#10;Description&#10;     Store a newly created resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request;;d4,36;;b1,0;;m\Illuminate\Http\Request $request;;p">
 </treenode>
 <treenode node="update;PHP:Function Name;D:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\StateController.php;f11;69;5;72;;;;vpos;;v;;r&#10;Definition&#10;    update(Request $request, $id)&#10;&#10;Description&#10;     Update the specified resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request&#10;    int $id;;d4,70;;b1,0;;m\Illuminate\Http\Request $request;;pint $id;;p">
+</treenode>
+</treenode>
+<treenode node="Swift_AddressEncoder_IdnAddressEncoder;PHP:Class Name;D:\websites\seed.zelenka.ml\IdnAddressEncoder.php;f0;22;1;63;;D:\websites\seed.zelenka.ml\IdnAddressEncoder Ч копи€.php;f0;24;1;65;;;;vpos;;vSwift_AddressEncoder;;c;;r&#10;Definition&#10;    class Swift_AddressEncoder_IdnAddressEncoder implements Swift_AddressEncoder&#10;&#10;Description&#10;     An IDN email address encoder.;;d0,23;;b0,0;;m">
+<treenode node="encodeString;PHP:Function Name;D:\websites\seed.zelenka.ml\IdnAddressEncoder.php;f11;30;5;44;;D:\websites\seed.zelenka.ml\IdnAddressEncoder Ч копи€.php;f11;31;5;46;;;;vpos;;v;;r&#10;Definition&#10;    encodeString(string $address): string&#10;&#10;Description&#10;     Encodes the domain part of an address using IDN.;;d4,31;;b1,0;;maddress;;p">
+</treenode>
+<treenode node="idnToAscii;PHP:Function Name;D:\websites\seed.zelenka.ml\IdnAddressEncoder.php;f14;48;5;62;;D:\websites\seed.zelenka.ml\IdnAddressEncoder Ч копи€.php;f14;51;5;64;;;;vpos;;v;;r&#10;Definition&#10;    idnToAscii(string $string): string&#10;&#10;Description&#10;     IDN-encodes a UTF-8 string to ASCII.;;d4,49;;b2,0;;mstring;;p">
 </treenode>
 </treenode>
 <treenode node="TestCase;PHP:Class Name;D:\websites\seed.zelenka.ml\tests\TestCase.php;f9;6;1;9;;;;vpos;;vBaseTestCase;;cCreatesApplication;;c;;r;;d0,7;;b0,0;;m">
