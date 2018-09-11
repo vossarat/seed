@@ -31,13 +31,19 @@ class MapElevatorController extends Controller
      */
     public function index(Request $request)
     {
+    	
+	    
     	$elevators = $this->elevator;
     	$filterByState = null; // фильтр пока пустой
     	$filterByRegion = null; // фильтр пока пустой
     	$filterByCorn = null; // фильтр пока пустой
     	$filterByPriceMin = null; // фильтр по прайсу мин пока пустой
     	$filterByPriceMax = null; // фильтр по прайсу макс пока пустой
-		$fav = substr($request->path(), -3) == 'fav' ? 1 : 0;    	   	
+		$fav = substr($request->path(), -3) == 'fav' ? 1 : 0;
+		
+		if(Auth::check() == false & $fav){
+	       return view('layouts.sysmessage')->with('message', 'Для просмотра избранных элеваторов Вам необходимо <a href="/login">авторизоваться</a> или <a href="/register">зарегистрироваться</a>');
+	    }  	   	
 
     	if ( $request->has('filter') ) { // проверка на кнопку фильтра
 			$filterByState = $request->get('filterByState');

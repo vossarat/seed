@@ -22,14 +22,14 @@
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <button type="submit" class="button button-effect-ujarak button-block button-primary">
-                                    Добавить
+                                    Сохранить
                                 </button>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <a href="{{ route('trader.index') }}" class="button button-effect-ujarak button-block button-default-outline" data-dismiss="alert" aria-hidden="true">
+                                <a href="{{ route('order.index') }}" class="button button-effect-ujarak button-block button-default-outline" data-dismiss="alert" aria-hidden="true">
                                     Отмена
                                 </a>
                             </div>

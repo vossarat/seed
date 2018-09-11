@@ -21,19 +21,37 @@
                         <input type="hidden" name="_method" value="put"/>
 
                         @include('farmer.form')
-
+                        
+                        
+                        
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <button type="submit" class="button button-effect-ujarak button-block button-primary">
-                                    Редактировать
+                                    Сохранить
                                 </button>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <a href="{{ route('trader.index') }}" class="button button-effect-ujarak button-block button-default-outline" data-dismiss="alert" aria-hidden="true">
+                                <a href="{{ route('order.index') }}" class="button button-effect-ujarak button-block button-default-outline" data-dismiss="alert" aria-hidden="true">
                                     Отмена
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+							<div class="col-xs-12">
+									<label class="lbl-sms-agree">
+										Вы зарегистрированы как Фермер. Для изменения типа профиля на Трейдера нажмите кнопку ниже
+									</label>
+								</div>
+						</div>
+
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <a href="{{ route('trader.create') }}" class="button button-effect-ujarak button-block button-primary">
+                                    Сменить тип профиля
                                 </a>
                             </div>
                         </div>

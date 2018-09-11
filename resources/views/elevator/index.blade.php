@@ -1,5 +1,10 @@
 @extends('layouts.template')
 
+@section('tableprice')
+    @include('layouts.tableprice')
+@endsection
+
+
 @section('content')
 
 
@@ -13,19 +18,6 @@
         <h3>
             Карта элеваторов
         </h3>
-
-        
-        @if(Auth::check())
-        <div class="range">
-        	<div class="cell-xs-12">
-        		@if($fav)
-        			<a href="/mapelevator">Все элеваторы</a>
-        		@else
-        			<a href="/mapelevator/fav">Избранные элеваторы</a>
-        		@endif
-        	</div>
-        </div>
-        @endif
         
         <div class="range range-xs-center">           
         	@include('elevator.filter')

@@ -1,5 +1,9 @@
 @extends('layouts.template')
 
+@section('tableprice')
+    @include('layouts.tableprice')
+@endsection
+
 @section('content')
 
 <section class="section section-lg bg-white text-center">

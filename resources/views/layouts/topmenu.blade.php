@@ -26,16 +26,11 @@
         </li>
         <li>
             <a href="{{ route('xxx') }}">
-                Поставщики
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('xxx') }}">
                 Новости
             </a>
         </li>
         <li>
-            <a href="{{ route('xxx') }}">
+            <a href="{{ route('feedback') }}">
                 Обратная связь
             </a>
         </li>

@@ -15,6 +15,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('layouts.usermenu', 'App\Http\ViewComposers\UserMenuComposer');
+        View::composer('layouts.usermenumobile', 'App\Http\ViewComposers\UserMenuComposer');
     }
 
     /**

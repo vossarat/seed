@@ -263,6 +263,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('div#menu-elevator').mmenu({
+			extensions: ["theme-white", "border-full", "shadow-page"],
 			navbar : {
 				title : 'Элеваторы'
 			}
@@ -271,6 +272,7 @@
 
 	$(function() {
 		$('div#menu-more-params').mmenu({
+			extensions: ["theme-white", "border-full", "shadow-page"],
 			navbar : {
 				title : 'Подробные параметры'
 			}

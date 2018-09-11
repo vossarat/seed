@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Farmer;
+use App\Trader;
 use App\User;
 use App\Reference\Region;
 use App\Reference\Corn;
@@ -37,9 +38,10 @@ class FarmerController extends Controller
     public function create()
     {
         return view('farmer.create')->with([
-			'regions' => $this->region->all(),
-			'corns' => $this->corn->all(),
+			'regions' => $this->region->orderBy('name','asc')->get(),
+			'corns' => $this->corn->orderBy('name','asc')->get(),
 			'farmer_corn' => [],
+			'farmer_region' => [],
 		]);
     }
 
@@ -56,7 +58,13 @@ class FarmerController extends Controller
 		$farmer->user->update($request->all());
 			
 		$farmer->corns()->attach($request->corns); // сохраняем информацию по приему культуры
+		$farmer->regions()->attach($request->regions); // сохраняем информацию по региону
+		
+		$farmer->user->profile = 'farmer';
 		$farmer->user->save();
+		
+		// Удаление профиля трейдера
+		$deletedTrader = Trader::where('user_id', Auth::user()->id )->delete();
 
 		return redirect(route('order.index'))->with([
 			'message' => "Информация по фермеру $request->title добавлена",
@@ -83,19 +91,28 @@ class FarmerController extends Controller
     public function edit($id)
     {
     	$farmer = $this->farmer->find($id); 
-    	
+
     	$farmer_corn = [];
     	if(isset($farmer->corns)){
 			foreach($farmer->corns->all() as $item){
 				$farmer_corn[] = $item->id;
 			}
+		}
+		
+		$farmer_region = [];
+
+    	if(isset($farmer->regions)){
+			foreach($farmer->regions->all() as $item){
+				$farmer_region[] = $item->id;
+			}
 		}	
     	
         return view('farmer.edit')->with([
 			'viewdata' => $this->farmer->find($id),
-			'regions' => $this->region->all(),
-			'corns' => $this->corn->all(),
+			'regions' => $this->region->orderBy('name','asc')->get(),
+			'corns' => $this->corn->orderBy('name','asc')->get(),
 			'farmer_corn' => $farmer_corn,
+			'farmer_region' => $farmer_region,
 		]);
     }
 
@@ -108,6 +125,7 @@ class FarmerController extends Controller
      */
     public function update(Request $request, $id)
     {
+    	
         $validatedData = $request->validate([
 	        'newPassword' => 'confirmed',
 	    ]);
@@ -117,9 +135,13 @@ class FarmerController extends Controller
 	
 		$farmer->user->whatsapp = $request->whatsapp;
 		$farmer->user->telegram = $request->telegram;			
-		$farmer->user->password = \Hash::make($request->newPassword);
+		
+		if( $request->newPassword ){
+			$farmer->user->password = \Hash::make($request->newPassword);
+		}		 
 		
 		$farmer->corns()->sync($request->corns); // сохраняем информацию по приему культуры	
+		$farmer->regions()->sync($request->regions); // сохраняем информацию по региону
 		
 		$farmer->user->save();
 		$farmer->save();		

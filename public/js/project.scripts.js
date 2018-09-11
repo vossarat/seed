@@ -19,8 +19,15 @@ $(document).ready(function() {
 		
 		$( ".order-detailed" ).hide(); // детали заявки
 		$( ".toogle-order-detailed" ).click(function( event ) {
-			event.preventDefault();			
-			$( this ).next('.order-detailed').toggle();
+			event.preventDefault();
+			var url_action =  $( this ).attr('href');		
+			var order_id =  $( this ).attr('order-id');		
+			$( this ).next('.order-detailed').toggle(function() {
+				if($(this).is(':visible')){
+					//$.ajax({ url: url_action, });
+					$('#views_'+order_id).load( url_action );
+				}
+			});
 		});
 		
 		
@@ -34,6 +41,7 @@ $(document).ready(function() {
 		
 		$( ".toogle-elevator" ).click(function( event ) {
 			event.preventDefault();
+			 
 			$( "#elevators" ).toggle();
 			if($("#other").is(':visible')){
 				$("#other").hide();
@@ -94,8 +102,21 @@ $(document).ready(function() {
             }
         });
         
+        $('#select-regions').multiselect({
+            buttonText: function(options, select) {
+                return 'Выберите район:';
+            },
+            buttonTitle: function(options, select) {
+                var labels = [];
+                options.each(function () {
+                    labels.push($(this).text());
+                });
+                return labels.join(' - ');
+            }
+        });
+        
        /* $("#town_id").chained("#region_id");
 		$("#elevator_id").chained("#town_id");*/
-		
+	
 			
     });

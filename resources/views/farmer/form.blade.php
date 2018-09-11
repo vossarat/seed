@@ -1,5 +1,21 @@
 <input type="hidden" name="user_id" value="{{ Auth::id() }}">{{-- how users = traders --}}
 
+<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+	<label for="name" class="col-md-4 control-label">Имя пользователя</label>
+
+	<div class="col-md-6">
+		<input id="name" type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required>
+
+		@if ($errors->has('name'))
+		<span class="help-block">
+			<strong>
+				{{ $errors->first('name') }}
+			</strong>
+		</span>
+		@endif
+	</div>
+</div>	
+
 <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
 	<label for="title" class="col-md-4 control-label">Наименование компании</label>
 
@@ -52,6 +68,26 @@
 </div>
 
 <div class="form-group">
+	<div class="{{ $errors->has('region_id') ? ' has-error' : '' }}"> 
+		
+		<label for="region_id" class="col-md-4 control-label">Район</label>		
+		
+		<div class="col-md-6">
+		<select id="select-regions" multiple class="form-control" name="regions[]" size="5">			
+			@foreach($regions as $item)
+				@if(isset($viewdata))
+					<option {{ in_array($item->id, $farmer_region )  ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
+				@else
+					<option value="{{ $item->id }}">{{ $item->name }}</option>
+				@endif
+			@endforeach			
+		</select>
+		</div>
+	</div>
+</div>	
+
+{{--
+<div class="form-group">
 	<div class="{{ $errors->has('region_id') ? ' has-error' : '' }}">
 		
 		<label for="region_id" class="col-md-4 control-label">Район</label>		
@@ -75,8 +111,9 @@
 		</span>
 		@endif
 		</div>
-	</div>{{-- end region/lpu field --}}
-</div> 	
+	</div>
+</div>
+ --}} 	
 
 <div class="form-group{{ $errors->has('fio') ? ' has-error' : '' }}">
 	<label for="fio" class="col-md-4 control-label">ФИО</label>
@@ -104,6 +141,22 @@
 		<span class="help-block">
 			<strong>
 				{{ $errors->first('phone') }}
+			</strong>
+		</span>
+		@endif
+	</div>
+</div>
+
+<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+	<label for="email" class="col-md-4 control-label">Email</label>
+
+	<div class="col-md-6">
+		<input id="email" type="text" class="form-control" name="email" value="{{ isset($viewdata->user) ? $viewdata->user->email : old('email') }}" >
+
+		@if ($errors->has('email'))
+		<span class="help-block">
+			<strong>
+				{{ $errors->first('email') }}
 			</strong>
 		</span>
 		@endif
@@ -148,6 +201,23 @@
 	<div class="col-md-1 col-xs-1">
         <button id="btn-telegram" class="btn btn-primary"><i class="fa fa-phone"></i></button>
     </div>	
+</div>
+
+
+<div class="form-group">
+	<div class="col-md-12">
+			<label class="lbl-sms-agree">
+			<input type="checkbox" name="sms" value="0" hidden="hidden" checked="checked">
+			<input class="form-check-input" type="checkbox" name="sms" value="1" id="sms" 
+			
+			@if(isset($viewdata->sms))
+				{{ $viewdata->sms === 1 ? 'checked' : '' }}
+			@endif 
+			
+			>				
+				Я соглашаюсь с тем, что мне будут приходить СМС на телефон<br> с уведомлением о новых заявках по интересующей меня продукции
+			</label>
+		</div>
 </div>
 
 <div class="form-group{{ $errors->has('newPassword') ? ' has-error' : '' }}">

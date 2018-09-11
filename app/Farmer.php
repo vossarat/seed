@@ -13,6 +13,7 @@ class Farmer extends Model
 		'title',
 		'fio',
 		'volume',
+		'sms',
 		'region_id',
 	];
 	
@@ -24,5 +25,10 @@ class Farmer extends Model
 	public function corns()
     {
         return $this->belongsToMany('App\Reference\Corn');
+    }
+    
+    public function regions()
+    {
+        return $this->belongsToMany('App\Reference\Region');
     }
 }

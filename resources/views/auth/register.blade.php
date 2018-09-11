@@ -13,15 +13,15 @@
 
                     <form class="text-left" method="POST" action="{{ route('register') }}">
                     	{{ csrf_field() }}
-                        <div class="form-wrap form-wrap-validation {{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="form-label" for="email">
-                                E-Mail адрес
+                        <div class="form-wrap form-wrap-validation {{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label class="form-label" for="name">
+                                Имя пользователя
                             </label>
-                            <input class="form-input" id="email" type="text" name="email" required>
-                            @if ($errors->has('email'))
+                            <input class="form-input" id="name" type="text" name="name" required>
+                            @if ($errors->has('name'))
                                 <span class="help-block">
                                     <strong>
-                                        {{ $errors->first('email') }}
+                                        {{ $errors->first('name') }}
                                     </strong>
                                 </span>
                                 @endif

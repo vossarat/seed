@@ -22,3 +22,6 @@ Route::get('/fav/{action}/{user_id}/{elevator_id}', 'ApiController@favorite');
 
 // заявки к элеватору
 Route::get('/order_to_elevator/{action}/{order_id}/{elevator_id}', 'ApiController@orderToElevator');  
+
+// Увеличение счетчика просмотра заявки 
+Route::get('/views_order/{order_id}', 'ApiController@addViewOrder');  

@@ -29,8 +29,12 @@
                     </ul>
                 </li> {{-- Конец Справочники--}}
                 <li>
+                    <a href="/dashboard/post">Новости</a>
+                </li>                
+                <li>
                     <a href="/setup">Настройка</a>
                 </li>
+                
                 
                 <li class="dropdown"> {{-- Справочники--}}
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cправочники

@@ -1,5 +1,9 @@
 @extends('layouts.template')
 
+@section('tableprice')
+    @include('layouts.tableprice')
+@endsection
+
 @section('content')
 
 
@@ -14,10 +18,9 @@
             <div class="cell-xs-12 cell-md-4">
 
                 <form action="{{ route('order.create') }}">
-                    <button type="submit" class="button button-effect-ujarak button-block button-default-outline">
+                    <button type="submit" class="button button-effect-ujarak button-block button-primary">
                         Добавить заявку
                     </button>
-
                 </form>
 
             </div>
@@ -36,16 +39,27 @@
             Заявки
         </h3>
 
-        <div class="range range-xs-center">           
-        	@include('order.filter')
-        </div>{{-- /range range-xs-center --}}
+        <div class="row-filter">
         
-        <div class="range range-xs-center">
-            <div class="cell-xs-12 order-table">
+        	@include('order.filter')
+        	
+        </div>
+        
+                
+          
+            
+            <div class="order-table">
 
                             @foreach($viewdata as $order)
                             <div class="row order-table-row">
 
+                                <div class="row">
+	                                <div class="col-xs-3 col-xs-offset-9 text-right">
+	                                	<span class="fa fa-eye"></span> 
+	                                	<span id="views_{{ $order->id }}" class="views_order">{{ $order->views }}</span>
+	                                </div>
+                                </div>
+                                
                                 <div class="row">
 	                                <div class="col-xs-6">
 	                                	{{ date('d.m.Y',strtotime($order->created_at)) }}
@@ -59,7 +73,7 @@
 	                                	@if(Auth::check() && Auth::user()->id == $order->user_id)
 		                                    	Ваша заявка</br>
 		                                @endif	                                    	
-	                                	<a class="toogle-order-detailed" href="{{route('order.edit', $order->id)}}">{{ 'Заявка на '.$order->corn['name'] }}, {{ $order->count . ' тонн' }}</a>
+	                                	<a class="toogle-order-detailed" href="/api/views_order/{{ $order->id }}" order-id={{ $order->id }}>{{ 'Заявка на '.$order->corn['name'] }}, {{ $order->count . ' тонн' }}</a>
 	                                <div class="order-detailed">
                                 		<ul>
                                 			<li><u>Упаковка:</u> {{ $packs->find($order->pack_id ? $order->pack_id : '1')->name }}</li>
@@ -105,7 +119,9 @@
 
                <!-- <div class="divider-edgewise"></div>-->
             </div>
-        </div>
+        
+            
+        
     </div>
 </section>
 

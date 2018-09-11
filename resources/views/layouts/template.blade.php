@@ -31,7 +31,7 @@
 		<link rel="stylesheet" href="{{ asset('css/project-style.css') }}" />
 		
 		<!-- MMENU Style -->
-		<link rel="stylesheet" href="{{ asset('css/jquery.mmenu.css') }}" />
+		<link rel="stylesheet" href="{{ asset('css/jquery.mmenu.all.css') }}" />
 		
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">		
 		 
@@ -66,13 +66,15 @@
 		@show
 		<!-- /RD Navbar-->
 		
-      </header>     
+      </header>
+      
+      	@yield('tableprice')
       	
       	@yield('content')
      
-      	<!-- Contact us-->
-      	@section('contact')
-		    @include('layouts.contact')
+      	<!-- News -->
+      	@section('news')
+		    @include('layouts.news')
 		@show
       	
       
@@ -92,10 +94,10 @@
 	<script src="{{ asset('js/script.js') }}"></script>	
 	
 	<!-- MMENU JavaScript -->
-	<script src="{{ asset('js/jquery.mmenu.js') }}"></script>
+	<script src="{{ asset('js/jquery.mmenu.all.js') }}"></script>
 	
 	<script src="{{ asset('js/jquery.maskedinput.js') }}"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+	<script src="{{ asset('/js/bootstrap-multiselect.js') }}"></script>
 	
 	
 	@stack('scripts')

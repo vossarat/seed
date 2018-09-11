@@ -12,6 +12,19 @@
                     </h3>
                     <form class="text-left" method="POST" action="{{ route('login') }}">
                     	{{ csrf_field() }}
+                        <div class="form-wrap form-wrap-validation {{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label class="form-label" for="name">
+                                Имя пользователя
+                            </label>
+                            <input class="form-input" id="name" type="text" name="name" data-constraints="@Required">
+                            @if ($errors->has('name'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        
+                        {{--
                         <div class="form-wrap form-wrap-validation {{ $errors->has('email') ? ' has-error' : '' }}">
                             <label class="form-label" for="email">
                                 E-Mail
@@ -23,6 +36,8 @@
                                 </span>
                             @endif
                         </div>
+                        --}}
+                        
                         <div class="form-wrap form-wrap-validation {{ $errors->has('password') ? ' has-error' : '' }}">
                             <label class="form-label" for="password">
                                 Пароль

@@ -19,6 +19,11 @@ class Region extends Model
 		return $this->hasMany(State::class);
 	}
 	
+	public function farmers()
+    {
+        return $this->belongsToMany('App\Farmer');
+    }
+	
 	public function scopeCountElevator($query, $id)
     {
         return $query

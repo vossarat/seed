@@ -56,16 +56,25 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, 
-        	['email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',],
+        	[
+	        	//'email' => 'required|string|email|max:255|unique:users',
+	        	'name' => 'required|max:255|unique:users',
+	            'password' => 'required|string|min:6|confirmed',
+            ],
             
-            ['email.required' => 'укажите Ваш e-mail',
-            'email.email' => 'e-mail некоректен',
-            'email.unique' => 'Пользователь с таким e-mail уже зарегистрирован',
-            'password.min' => 'Пароль должен содержать не менее 6 символов',
-            'password.confirmed' => 'Неправильное подтверждение пароля',
-            'password.required' => 'Заполните пароль',
-            'password' => 'required|string|min:6|confirmed',]
+            [
+	            /*'email.required' => 'укажите Ваш e-mail',
+	            'email.email' => 'e-mail некоректен',
+	            'email.unique' => 'Пользователь с таким e-mail уже зарегистрирован',*/
+	            
+	            'name.required' => 'укажите Имя пользователя',
+	            'name.unique' => 'Пользователь с таким именем уже зарегистрирован',
+	            
+	            'password.min' => 'Пароль должен содержать не менее 6 символов',
+	            'password.confirmed' => 'Неправильное подтверждение пароля',
+	            'password.required' => 'Заполните пароль',
+	            'password' => 'required|string|min:6|confirmed',
+            ]
         );
     }
 
@@ -78,9 +87,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['email'],
-            'email' => $data['email'],
+            'name' => $data['name'],
+            //'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'profile' => $data['profile'],
         ]);
     }
 }

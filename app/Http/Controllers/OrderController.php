@@ -52,14 +52,14 @@ class OrderController extends Controller
     	
         return view('order.index')->with([        
 			'viewdata' => $orders->orderBy('id','desc')->paginate(5),
-			'corns' => $this->corn->all(),
-			'packs' => $this->pack->all(),
-			'loadprices' => $this->loadprice->all(),
-			'elevators' => $this->elevator->all(),
-			'regions' => $this->region->all(),
-			'states' => $this->state->all(),
-			'towns' => $this->town->all(),
-			'points' => $this->point->all(),			
+			'corns' => $this->corn->orderBy('name','asc')->get(),
+			'packs' => $this->pack->orderBy('name','asc')->get(),
+			'loadprices' => $this->loadprice->orderBy('name','asc')->get(),
+			'elevators' => $this->elevator->orderBy('title','asc')->get(),
+			'regions' => $this->region->orderBy('name','asc')->get(),
+			'states' => $this->state->orderBy('name','asc')->get(),
+			'towns' => $this->town->orderBy('name','asc')->get(),
+			'points' => $this->point->orderBy('name','asc')->get(),			
 			'filter' => $request->has('filter') ? 'filter' : '',
 			'selected_corns' => $request->get('arrcorns'),
 			'filterByPriceMin' => $request->get('filterByPriceMin'),
@@ -81,14 +81,14 @@ class OrderController extends Controller
 	    
         return view('order.create')->with([
 			'viewdata' => Auth::user(),
-			'corns' => $this->corn->all(),
-			'packs' => $this->pack->all(),
-			'loadprices' => $this->loadprice->all(),
-			'elevators' => $this->elevator->all(),
-			'regions' => $this->region->all(),
-			'states' => $this->state->all(),
-			'towns' => $this->town->all(),
-			'points' => $this->point->all(),
+			'corns' => $this->corn->orderBy('name','asc')->get(),
+			'packs' => $this->pack->orderBy('name','asc')->get(),
+			'loadprices' => $this->loadprice->orderBy('name','asc')->get(),
+			'elevators' => $this->elevator->orderBy('title','asc')->get(),
+			'regions' => $this->region->orderBy('name','asc')->get(),
+			'states' => $this->state->orderBy('name','asc')->get(),
+			'towns' => $this->town->orderBy('name','asc')->get(),
+			'points' => $this->point->orderBy('name','asc')->get(),
 			'elevator_order' => [],
 			'disabled' => '',
 			'neworder' => true,
@@ -118,11 +118,11 @@ class OrderController extends Controller
 	        $message->from('xyz@gmail.com','Virat Gandhi');
 	     });*/
 	     
-		Mail::raw('Text', function ($message){
+		/*Mail::raw('Text', function ($message){
 			$message->to('d.tarassov@akmzdrav.kz');
 		});
         
-    	dd( 'Send Message' );
+    	dd( 'Send Message' );*/
     	
     	
         $order = Order::create($request->all());
@@ -155,14 +155,14 @@ class OrderController extends Controller
 		
 		return view('order.show')->with([
 			'viewdata' => $this->order->find($id),
-			'corns' => $this->corn->all(),
-			'packs' => $this->pack->all(),
-			'loadprices' => $this->loadprice->all(),
-			'elevators' => $this->elevator->all(),
-			'regions' => $this->region->all(),
-			'states' => $this->state->all(),
-			'towns' => $this->town->all(),
-			'points' => $this->point->all(),
+			'corns' => $this->corn->orderBy('name','asc')->get(),
+			'packs' => $this->pack->orderBy('name','asc')->get(),
+			'loadprices' => $this->loadprice->orderBy('name','asc')->get(),
+			'elevators' => $this->elevator->orderBy('title','asc')->get(),
+			'regions' => $this->region->orderBy('name','asc')->get(),
+			'states' => $this->state->orderBy('name','asc')->get(),
+			'towns' => $this->town->orderBy('name','asc')->get(),
+			'points' => $this->point->orderBy('name','asc')->get(),
 			'disabled' => 'disabled',
 			'elevator_order' => $elevator_order,
 		]);
@@ -195,14 +195,14 @@ class OrderController extends Controller
 			
         return view('order.edit')->with([
 			'viewdata' => $order,
-			'corns' => $this->corn->all(),
-			'packs' => $this->pack->all(),
-			'loadprices' => $this->loadprice->all(),
-			'elevators' => $this->elevator->all(),
-			'regions' => $this->region->all(),
-			'states' => $this->state->all(),
-			'towns' => $this->town->all(),
-			'points' => $this->point->all(),
+			'corns' => $this->corn->orderBy('name','asc')->get(),
+			'packs' => $this->pack->orderBy('name','asc')->get(),
+			'loadprices' => $this->loadprice->orderBy('name','asc')->get(),
+			'elevators' => $this->elevator->orderBy('title','asc')->get(),
+			'regions' => $this->region->orderBy('name','asc')->get(),
+			'states' => $this->state->orderBy('name','asc')->get(),
+			'towns' => $this->town->orderBy('name','asc')->get(),
+			'points' => $this->point->orderBy('name','asc')->get(),
 			'elevator_order' => $elevator_order,
 			'disabled' => '',
 		]);

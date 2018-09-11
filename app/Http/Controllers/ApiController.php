@@ -45,5 +45,12 @@ class ApiController extends Controller
 		}
     }
     
+    public function addViewOrder($order_id)
+    {
+    	DB::table('orders')->where('id', $order_id)->increment('views');
+    	$cnt = DB::table('orders')->select()->where('id', $order_id)->first();
+		return $cnt->views;
+    }
+    
     
 }

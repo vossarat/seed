@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Trader;
+use App\Farmer;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -47,11 +48,16 @@ class TraderController extends Controller
      */
     public function store(Request $request)
     {
+    	
         $trader = Trader::create($request->all());
 
 		$trader->user->update($request->all());		
+		$trader->user->profile = 'trader';
 		$trader->user->save();
-
+		
+		// Удаление профиля фермера
+		$deletedFarmer = Farmer::where('user_id', Auth::user()->id )->delete();
+		
 		return redirect(route('order.index'))->with([
 			'message' => "Информация по трейдеру $request->title добавлена",
 		]);
@@ -90,6 +96,7 @@ class TraderController extends Controller
      */
     public function update(Request $request, $id)
     {
+    	
     	$validatedData = $request->validate([
 	        'newPassword' => 'confirmed',
 	    ]);
@@ -99,13 +106,16 @@ class TraderController extends Controller
 		
 		//$trader->user->update($request->all()); // сохраняем в user сразу все поля		
 		$trader->user->whatsapp = $request->whatsapp;
-		$trader->user->telegram = $request->telegram;			
-		$trader->user->password = \Hash::make($request->newPassword);
+		$trader->user->telegram = $request->telegram;
+		
+		if( $request->newPassword ){
+			$trader->user->password = \Hash::make($request->newPassword);
+		}
 		
 		$trader->user->save();
 		$trader->save();		
 		
-		return redirect(route('trader.index'))->with('message',"Информация по трейдеру $trader->title изменена");
+		return redirect(route('order.index'))->with('message',"Информация по трейдеру $trader->title изменена");
     }
 
     /**

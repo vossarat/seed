@@ -21,37 +21,32 @@ class UserMenuComposer {
     public function compose(View $view)
     {
     	$username = Auth::check() ? Auth::user()->name  : 'Пользователь';
-    	$titleprofile = 'Я трейдер';
-    	$routeprofile = 'create';
-    	$trader_id = '';
+    	$profile_type = '';
+    	$profile_action = '';
+    	$profile_id = '';
+    	
     	if( Auth::check() ){
+	    	
+	    	$profile_action = 'create';	    	
+	    	$profile_type = Auth::user()->profile; // трейдер или фермер
+	    	$profile_id = 0;
+	    	
 	    	if( Func::traderByUserId(Auth::user()->id) ){
-				$titleprofile = 'Профиль трейдера';
-	    		$routeprofile = 'edit';
-	    		$trader_id = Func::traderByUserId(Auth::user()->id);
+	    		$profile_action = 'edit';
+	    		$profile_id = Func::traderByUserId(Auth::user()->id);
+			}
+			
+			if( Func::farmerByUserId(Auth::user()->id) ){
+	    		$profile_action = 'edit';
+	    		$profile_id = Func::farmerByUserId(Auth::user()->id);
 			}
 		}
-		
-		$titleprofileFarmer = 'Я фермер';
-    	$routeprofileFarmer = 'create';
-    	$farmer_id = '';
-    	if( Auth::check() ){
-	    	if( Func::farmerByUserId(Auth::user()->id) ){
-				$titleprofileFarmer = 'Профиль фермера';
-	    		$routeprofileFarmer = 'edit';
-	    		$farmer_id = Func::farmerByUserId(Auth::user()->id);
-			}
-		}
-		
+	
         $view->with([
         	'username' => $username,
-        	'titleprofile' => $titleprofile,
-        	'routeprofile' => $routeprofile,
-        	'trader_id' => $trader_id,
-        	
-        	'titleprofileFarmer' => $titleprofileFarmer,
-        	'routeprofileFarmer' => $routeprofileFarmer,
-        	'farmer_id' => $farmer_id,
+        	'profile_type' => $profile_type,
+        	'profile_action' => $profile_action,
+        	'profile_id' => $profile_id,
         ]);
     }
 

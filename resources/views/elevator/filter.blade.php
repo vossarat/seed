@@ -1,15 +1,24 @@
-<div class="form-group">
-<div class="col-xs-12">
+<div class="row">		    	
+	<div class="col-xs-6">		    	
 	@if($filter)
-		<a href="{{ route('mapelevator') }}" class="button button-effect-ujarak button-block button-default-outline">
+		<a href="{{ route('mapelevator') }}" class="button button-effect-ujarak button-block button-default-outline button-filter">
         	Очистить Фильтр
         </a>
     @else			    	
-        <a class="button button-effect-ujarak button-block button-default-outline toogle-elevator-filter">
+        <a class="button button-effect-ujarak button-block button-default-outline toogle-elevator-filter button-filter">
         	Фильтр
         </a>
-    @endif
-</div> 
+    @endif		
+	</div>
+
+	<div class="col-xs-6">
+		@if($fav)
+			<a class="button button-effect-ujarak button-block button-default-outline button-filter" href="/mapelevator">Все</a>
+		@else
+			<a class="button button-effect-ujarak button-block button-default-outline button-filter" href="/mapelevator/fav">Избранные</a>
+        @endif
+		
+	</div>
 </div>
 
 <div id="elevator-filter" class="cell-xs-12">	       
@@ -21,7 +30,10 @@
                 	<tr>
 
                         <td>                        	
-                        	<a href=" {{ route('mapelevator').'?filterByState='.$regions->state_id.'&filter=filter&page=1'.$filterByCorn }} "><span class="fa fa-long-arrow-left"></span> {{ $regions->name."  (" .$regions->countElevator($regions->id). ")" }} </a>
+                        	<a href=" {{ route('mapelevator').'?filterByState='.$regions->state_id.'&filter=filter&page=1'.$filterByCorn }} "><span class="fa fa-long-arrow-left"></span> 
+                        		{{-- $regions->name."  (" .$regions->countElevator($regions->id). ")" --}}
+                        		Акмолинская область 
+                        	</a>
                         </td>
                     </tr>
                 
@@ -57,6 +69,7 @@
         </table>
     </div>
     
+    {{--
     <form>
 	<div class="form-group">
 
@@ -98,5 +111,6 @@
 	</div> 
 	<input type="submit" value="Установить фильтр"/>
 	</form>
+	--}}
     
 </div>

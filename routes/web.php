@@ -26,6 +26,10 @@ Route::get('/xxx', function () {
     return view('layouts.sysmessage')->with('message','Страница в разработке ... ');
 })->name('xxx');
 
+Route::get('/feedback', function () {
+    return view('feedback.index');
+})->name('feedback');
+
 /*Route::get('/dashboard', function () {
     return view('dashboard.template');
 })->name('dashboard');*/
@@ -43,6 +47,7 @@ Route::prefix('dashboard')->middleware('dashboard')->group(
 	    Route::resource('/town', 'Reference\TownController');
 	    Route::resource('/elevator','ElevatorController');
 	    Route::resource('/corn','Reference\CornController');
+	    Route::resource('/post','PostController');
 	}
 );
 

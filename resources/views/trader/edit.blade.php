@@ -20,20 +20,37 @@
                         <input type="hidden" name="id" value="{{ $viewdata->id }}">
                         <input type="hidden" name="_method" value="put"/>
 
-                        @include('trader.form')
-
+                        @include('trader.form')                       
+                        
+                        
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <button type="submit" class="button button-effect-ujarak button-block button-primary">
-                                    Редактировать
+                                    Сохранить
                                 </button>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <a href="{{ route('trader.index') }}" class="button button-effect-ujarak button-block button-default-outline" data-dismiss="alert" aria-hidden="true">
+                                <a href="{{ route('order.index') }}" class="button button-effect-ujarak button-block button-default-outline" data-dismiss="alert" aria-hidden="true">
                                     Отмена
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+							<div class="col-xs-12">
+									<label class="lbl-sms-agree">
+										Вы зарегистрированы как Трейдер. Для изменения типа профиля на Фермер нажмите кнопку ниже
+									</label>
+								</div>
+						</div>
+
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <a href="{{ route('farmer.create') }}" class="button button-effect-ujarak button-block button-primary">
+                                    Сменить тип профиля
                                 </a>
                             </div>
                         </div>

@@ -348,19 +348,19 @@
       var regularConstraintsMessages = [
         {
           type: regula.Constraint.Required,
-          newMessage: "The text field is required."
+          newMessage: "Поле обязательно для заполнения."
         },
         {
           type: regula.Constraint.Email,
-          newMessage: "The email is not a valid email."
+          newMessage: "Некорректный email."
         },
         {
           type: regula.Constraint.Numeric,
-          newMessage: "Only numbers are required"
+          newMessage: "Возможен ввод только цифр"
         },
         {
           type: regula.Constraint.Selected,
-          newMessage: "Please choose an option."
+          newMessage: "Пожалуйста выберите опцию."
         }
       ];
 
@@ -1308,7 +1308,8 @@
 					'MF003': 'Please, define email field in your form!',
 					'MF004': 'Please, define type of your form!',
 					'MF254': 'Something went wrong with PHPMailer!',
-					'MF255': 'Aw, snap! Something went wrong.'
+					'MF255': 'Сообщение отправлено!'
+					//'MF255': 'Aw, snap! Something went wrong.'
 				};
 
 			for (i = 0; i < plugins.rdMailForm.length; i++) {
@@ -1376,7 +1377,7 @@
 							form.addClass('form-in-process');
 
 							if (output.hasClass("snackbars")) {
-								output.html('<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>Sending</span></p>');
+								output.html('<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>Отправка</span></p>');
 								output.addClass("active");
 							}
 						} else {

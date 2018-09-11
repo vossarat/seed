@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <button type="submit" class="button button-effect-ujarak button-block button-primary">
-                                    Добавить
+                                    Сохранить
                                 </button>
                             </div>
                         </div>

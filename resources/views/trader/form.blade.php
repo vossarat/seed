@@ -1,5 +1,21 @@
 <input type="hidden" name="user_id" value="{{ Auth::id() }}">{{-- how users = traders --}}
 
+<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+	<label for="name" class="col-md-4 control-label">Имя пользователя</label>
+
+	<div class="col-md-6">
+		<input id="name" type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required>
+
+		@if ($errors->has('name'))
+		<span class="help-block">
+			<strong>
+				{{ $errors->first('name') }}
+			</strong>
+		</span>
+		@endif
+	</div>
+</div>	
+
 <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
 	<label for="title" class="col-md-4 control-label">Наименование компании</label>
 
@@ -31,6 +47,22 @@
 		@endif
 	</div>
 </div>	
+
+<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+	<label for="email" class="col-md-4 control-label">Email</label>
+
+	<div class="col-md-6">
+		<input id="email" type="text" class="form-control" name="email" value="{{ isset($viewdata->user) ? $viewdata->user->email : old('email') }}" >
+
+		@if ($errors->has('email'))
+		<span class="help-block">
+			<strong>
+				{{ $errors->first('email') }}
+			</strong>
+		</span>
+		@endif
+	</div>
+</div>
 
 <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
 	<label for="phone" class="col-md-4 control-label">Телефон</label>
@@ -86,6 +118,22 @@
 	<div class="col-md-1 col-xs-1">
         <button id="btn-telegram" class="btn btn-primary"><i class="fa fa-phone"></i></button>
     </div>	
+</div>
+
+<div class="form-group">
+	<div class="col-md-12">
+			<label class="lbl-sms-agree">
+			<input type="checkbox" name="sms" value="0" hidden="hidden" checked="checked">
+			<input class="form-check-input" type="checkbox" name="sms" value="1" id="sms" 
+			
+			@if(isset($viewdata->sms))
+				{{ $viewdata->sms === 1 ? 'checked' : '' }}
+			@endif 
+			
+			>				
+				Я соглашаюсь с тем, что мне будут приходить СМС на телефон<br> с уведомлением о новых заявках по интересующей меня продукции
+			</label>
+		</div>
 </div>
 
 <div class="form-group{{ $errors->has('newPassword') ? ' has-error' : '' }}">

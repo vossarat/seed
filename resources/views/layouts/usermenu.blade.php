@@ -4,35 +4,37 @@
 при рендеринге вида layuots.usermenu
  --}}
 
-<li>
+<li class="hidden-xs">
     <a href="#">
         {{ $username }}
     </a>
     <ul class="rd-navbar-dropdown">
         @if( Auth::check() )
 			<li>
-				@if($routeprofile === 'create')
-					<a href="{{ route('trader.create') }}">
-						{{ $titleprofile }}
-					</a>
+				@if( $profile_type === 'trader')
+					@if( $profile_action === 'create' )
+						<a href="{{ route('trader.create') }}">Мой профиль</a>
+					@else
+						<a href="{{ route('trader.edit', $profile_id) }}">Мой профиль</a>
+					@endif
 				@else
-					<a href="{{ route('trader.edit', $trader_id) }}">
-						{{ $titleprofile }}
-					</a>
+					@if( $profile_action === 'create' )
+						<a href="{{ route('farmer.create') }}">Мой профиль</a>
+					@else
+						<a href="{{ route('farmer.edit', $profile_id) }}">Мой профиль</a>
+					@endif
 				@endif
 			</li>
 			
+			{{--
 			<li>
-				@if($routeprofileFarmer === 'create')
-					<a href="{{ route('farmer.create') }}">
-						{{ $titleprofileFarmer }}
-					</a>
+				@if( $profile_type === 'trader')
+					<a href="{{ route('farmer.create') }}">Сменить профиль</a>
 				@else
-					<a href="{{ route('farmer.edit', $farmer_id) }}">
-						{{ $titleprofileFarmer }}
-					</a>
+					<a href="{{ route('trader.create') }}">Сменить профиль</a>
 				@endif
 			</li>
+			--}}
 			
 			@if( Auth::user()->id === 1 )
 			<li>

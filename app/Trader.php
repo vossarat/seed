@@ -17,6 +17,7 @@ class Trader extends Model
 		'user_id',
 		'title',
 		'category',
+		'sms',
 	];
 	
 	public function user()
