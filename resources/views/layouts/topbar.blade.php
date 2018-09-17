@@ -40,78 +40,92 @@
                     <a class="brand-name" href="/">
                     	{{-- Zelenka.Trade --}}    	
                      
-                        <img src="/images/logo.png" alt="" width="522" height="84"/>
+                        <img src="/images/logo.png" alt="" width="622" height="184"/>
  					
                     </a> 
                    
                 </div>
                 
-                
-                <!--<div class="rd-navbar-collapse">
+                {{--Топбар (курс валют, инфо по заявкам, вход)--}}
+                <div class="rd-navbar-collapse hidden-xs">
                     <ul class="list-spreader list-spreader-xl">
                         <li>
                             <div class="unit-link-with-icon unit unit-spacing-xs unit-horizontal">
+                                {{--
                                 <div class="unit-left">
                                     <span class="icon icon-md-big icon-primary icon-circle mdi-phone">
                                     </span>
                                 </div>
+                                --}}
                                 <div class="unit-body">
                                     <p>
-                                        Emergency Help
+                                        RUB : 5.47
                                     </p>
-                                    <a href="tel:#">
-                                        1-800-700-6200
-                                    </a>
+                                    <p>
+                                        USD : 373
+                                    </p>
+                                    <p>
+                                        EUR : 407
+                                    </p>
+                                    
                                 </div>
                             </div>
                         </li>
                         <li>
-                            <div class="unit-link-with-icon-1 unit unit-spacing-xs unit-horizontal">
-                                <div class="unit-left">
-                                    <span class="icon icon-md-big icon-primary icon-circle mdi-map-marker">
-                                    </span>
-                                </div>
+                            <div class="unit-link-with-icon unit unit-spacing-xs unit-horizontal">
                                 <div class="unit-body">
-                                    <a href="#">
-                                        10 Firs Avenue, Muswell Hill, London N10
-                                    </a>
+                                    <p>
+                                        Всего заявок на сайте : 100
+                                    </p>
+                                    <p>
+                                        Активных : {{ $cnt }}
+                                    </p>
+                                    
+                                    
                                 </div>
                             </div>
                         </li>
                         <li>
-                            <div class="unit-link-with-icon-1 unit unit-spacing-xs unit-horizontal">
-                                <div class="unit-left">
-                                    <span class="icon icon-md-big icon-primary icon-circle mdi-share">
-                                    </span>
-                                </div>
+                            <div class="unit-link-with-icon unit unit-spacing-xs unit-horizontal">
                                 <div class="unit-body">
+                                	@if( Auth::check() )
+                                    	<p>
+                                    		Вы вошли как
+                                    	</p>
+                                    	<p>
+                                    		{{ Auth::user()->name }}
+                                    	</p>
+                                    	<p>
+                                    		<a href="{{ route('logout') }}"
+								                onclick="event.preventDefault();
+								                	document.getElementById('logout-form').submit();">
+								                <span class="fa fa-sign-out"></span> Выход
+								            </a>
+                                    	</p>
+                                    	
+                                    @else
                                     <p>
-                                        Social Media
+                                        <a href="/login">
+											Войти в систему
+										</a>
                                     </p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <a class="icon icon-gray-darker fa-facebook" href="#">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="icon icon-gray-darker fa-twitter" href="#">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="icon icon-gray-darker fa-google-plus" href="#">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="icon icon-gray-darker fa-pinterest-p" href="#">
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <p>
+                                        <a href="/register">
+											Регистрация
+										</a>
+                                    </p>
+                                    @endif
+                                    
+                                    
                                 </div>
                             </div>
                         </li>
                     </ul>
-                </div>-->
+                </div>
+                {{--/Топбар (курс валют, инфо по заявкам, вход)--}}
                 
+            
+            
             </div>
         </div>
         <div class="rd-navbar-inner rd-navbar-inner-bottom">

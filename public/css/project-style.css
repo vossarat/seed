@@ -42,7 +42,7 @@
     background-size: cover;
     padding-top: 10px;
     padding-bottom: 10px;
-    width: 100%;
+    /*width: 100%;*/
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 18px;
@@ -93,4 +93,44 @@ a > h6 {
 
 .lbl-sms-agree {
 	text-align: left;
+}
+
+.col-fav-elevator, #all-fav-elevators {
+	color: #f8a63d !important;
+	cursor: pointer;
+}
+
+#elevator-filter {
+	margin-top: 15px;
+}
+
+.unit-body {
+	line-height: 0.5;
+	font-weight: 500;
+}
+
+.brand-name > img {
+	max-width: 150%;
+}
+
+.rd-navbar-top-panel {
+	padding-top: 20px;
+}
+
+.pagination > li > a, .pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+	background-color: #02646f;
+}
+
+.pagination > li > a, .pagination > li > span {
+	color: #02646f;
+}
+
+.unit-body > p > a {
+	color: #f8a63d;
+	font-size: 14px;
+}
+
+.content {
+	margin-left: auto;
+	margin-right: auto;
 }

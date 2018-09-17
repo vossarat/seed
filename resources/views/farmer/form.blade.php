@@ -20,7 +20,7 @@
 	<label for="title" class="col-md-4 control-label">Наименование компании</label>
 
 	<div class="col-md-6">
-		<input id="title" type="text" class="form-control" name="title" value="{{ $viewdata->title or old('title') }}" required>
+		<input id="title" type="text" class="form-control" name="title" value="{{ $viewdata->title or old('title') }}">
 
 		@if ($errors->has('title'))
 		<span class="help-block">
@@ -33,9 +33,9 @@
 </div>
 
 <div class="form-group">
-	<div class="{{ $errors->has('corn_id') ? ' has-error' : '' }}"> 
+	<div class="{{ $errors->has('corns') ? ' has-error' : '' }}"> 
 		
-		<label for="corn_id" class="col-md-4 control-label">Выращиваемые культуры</label>		
+		<label for="corns" class="col-md-4 control-label">Выращиваемые культуры</label>		
 		
 		<div class="col-md-6">
 		<select id="select-corns" multiple class="form-control" name="corns[]" name="corns" size="5">			
@@ -47,6 +47,13 @@
 				@endif
 			@endforeach			
 		</select>
+		@if ($errors->has('corns'))
+		<span class="help-block">
+			<strong>
+				{{ $errors->first('corns') }}
+			</strong>
+		</span>
+		@endif
 		</div>
 	</div>
 </div>	
@@ -68,9 +75,9 @@
 </div>
 
 <div class="form-group">
-	<div class="{{ $errors->has('region_id') ? ' has-error' : '' }}"> 
+	<div class="{{ $errors->has('regions') ? ' has-error' : '' }}"> 
 		
-		<label for="region_id" class="col-md-4 control-label">Район</label>		
+		<label for="regions" class="col-md-4 control-label">Район</label>		
 		
 		<div class="col-md-6">
 		<select id="select-regions" multiple class="form-control" name="regions[]" size="5">			
@@ -82,38 +89,16 @@
 				@endif
 			@endforeach			
 		</select>
-		</div>
-	</div>
-</div>	
-
-{{--
-<div class="form-group">
-	<div class="{{ $errors->has('region_id') ? ' has-error' : '' }}">
-		
-		<label for="region_id" class="col-md-4 control-label">Район</label>		
-		
-		<div class="col-md-6">
-		<select class="" name="region_id">		
-			@foreach($regions as $item)
-				@if(isset($viewdata))
-					<option {{ $viewdata->region_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
-				@else
-					<option value="{{ $item->id }}">{{ $item->name }}</option>
-				@endif
-			@endforeach			
-		</select>
-
-		@if ($errors->has('region_id'))
+		@if ($errors->has('regions'))
 		<span class="help-block">
 			<strong>
-				{{ $errors->first('region_id') }}
+				{{ $errors->first('regions') }}
 			</strong>
 		</span>
 		@endif
 		</div>
 	</div>
-</div>
- --}} 	
+</div>	
 
 <div class="form-group{{ $errors->has('fio') ? ' has-error' : '' }}">
 	<label for="fio" class="col-md-4 control-label">ФИО</label>

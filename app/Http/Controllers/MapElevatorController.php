@@ -46,19 +46,12 @@ class MapElevatorController extends Controller
 	    }  	   	
 
     	if ( $request->has('filter') ) { // проверка на кнопку фильтра
-			$filterByState = $request->get('filterByState');
-			$filterByRegion = $request->get('filterByRegion');
-			$filterByCorn = $request->get('arrcorns') ? '&'.http_build_query( array('arrcorns' => $request->arrcorns) ) : '' ;
-			$filterByPriceMin = $request->get('filterByPriceMin');
-			$filterByPriceMax = $request->get('filterByPriceMax');
 			
 			$elevators = $this->elevator
-				->filterByState($filterByState) //фильтруем данные по области
-				->filterByRegion($filterByRegion) //фильтруем данные по району
-				->filterByCorn( $request->get('arrcorns') ) //фильтруем данные по культуре
-				->filterByPriceMin( $request->get('filterByPriceMin') ) //фильтруем данные по прайсу
-				->filterByPriceMax( $request->get('filterByPriceMax') ); //фильтруем данные по прайсу
-		}       	
+				->filterByState( $request->get('filterByState') ) //фильтруем данные по области
+				->filterByRegion(  $request->get('filterByRegion') ); //фильтруем данные по району
+		}
+			
        
        	return view('elevator.index')->with([        
 			// viewdata выбор из модели по авторизироанному пользователю

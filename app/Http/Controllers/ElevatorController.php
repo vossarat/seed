@@ -9,6 +9,7 @@ use App\Reference\State;
 use App\Reference\Town;
 use App\Reference\Corn;
 use App\User;
+use Auth;
 
 class ElevatorController extends Controller
 {

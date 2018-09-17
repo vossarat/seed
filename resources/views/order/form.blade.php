@@ -1,5 +1,13 @@
 <input type="hidden" name="user_id" value="{{ Auth::id() }}">{{-- how users = orders --}}
 
+<div id="order-elevators" hidden>
+@foreach($elevators as $elevator)
+	@if( in_array( $elevator->id, $elevator_order ) )
+	<input name="elevators[]" value="{{ $elevator->id }}"/>
+	@endif
+@endforeach
+</div>
+
 <div class="form-group">
 	<div class="{{ $errors->has('corn_id') ? ' has-error' : '' }}"> 
 		
@@ -59,8 +67,8 @@
 	</div>
 </div>
 
-<div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
-	<label for="price" class="col-md-4 control-label">Возможен торг</label>
+<div class="form-group">
+	<label for="auction" class="col-md-4 control-label">Возможен торг</label>
 
 	<div class="col-md-2">
 		<label class="radio-inline">

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\User;
 use App\Elevator;
+use App\Farmer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Auth;
 use Gate;
 use Mail;
@@ -20,7 +22,7 @@ use App\Reference\Point;
 
 class OrderController extends Controller
 {
-	public function __construct(Order $order, Corn $corn, Pack $pack, Loadprice $loadprice, Elevator $elevator, Region $region, State $state, Town $town, Point $point, User $user)
+	public function __construct(Order $order, Corn $corn, Pack $pack, Loadprice $loadprice, Elevator $elevator, Region $region, State $state, Town $town, Point $point, User $user, Farmer $farmer)
 	{		
 		$this->order = $order;
 		$this->corn = $corn;
@@ -32,6 +34,7 @@ class OrderController extends Controller
 		$this->town = $town;
 		$this->point = $point;
 		$this->user = $user;
+		$this->farmer = $farmer;
 	}
     /**
      * Display a listing of the resource.
@@ -79,6 +82,10 @@ class OrderController extends Controller
 	       return view('layouts.sysmessage')->with('message', 'Для добавления заявки Вам необходимо <a href="/login">авторизоваться</a> или <a href="/register">зарегистрироваться</a>');
 	    }
 	    
+	    if(Auth::user()->profile === 'farmer'){
+	       return view('layouts.sysmessage')->with('message', 'Вы зарегистрированы как Фермер и не можете добавить заявку <a href="/order">назад</a>');
+	    }
+	    
         return view('order.create')->with([
 			'viewdata' => Auth::user(),
 			'corns' => $this->corn->orderBy('name','asc')->get(),
@@ -89,6 +96,8 @@ class OrderController extends Controller
 			'states' => $this->state->orderBy('name','asc')->get(),
 			'towns' => $this->town->orderBy('name','asc')->get(),
 			'points' => $this->point->orderBy('name','asc')->get(),
+			'fav_elevators' => $this->elevator->fav( Auth::id() )->get(), // избранные элеваторы
+			
 			'elevator_order' => [],
 			'disabled' => '',
 			'neworder' => true,
@@ -103,32 +112,26 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        /*Mail::send('order.index', ,
-            function ($message) use ($user)
-            {
-                $message->from('d.tarassov@akmzdrav.kz', 'Sender');
-                $message->to('')->subject('Test message');
-            });*/
-            
-        /*$data = array('name'=>"Virat Gandhi");
-  
-	     Mail::send(['text'=>'welcome'], $data, function($message) {
-	        $message->to('d.tarassov@akmzdrav.kz', 'Tutorials Point')->subject
-	           ('Laravel Basic Testing Mail');
-	        $message->from('xyz@gmail.com','Virat Gandhi');
-	     });*/
-	     
-		/*Mail::raw('Text', function ($message){
-			$message->to('d.tarassov@akmzdrav.kz');
-		});
-        
-    	dd( 'Send Message' );*/
-    	
+    	$this->validator( $request->all() );
     	
         $order = Order::create($request->all());
         
-        $order->user->update($request->all());		
+        $corn_name = $this->corn->find($request->corn_id)->name;
+        
+        $order->user->update($request->all());
+        $order->elevators()->attach($request->elevators); // сохраняем информацию по элеваторам		
 		$order->user->save();
+		
+		$farmerPhones = $this->farmer->farmersPhonesByCorn($request->corn_id) ;
+        
+        $message = 'На сайте Zelenka опубликована заявка по культуре '.$corn_name;
+        $smsRes = file_get_contents('http://smsc.kz/sys/send.php?login=Zelenka.kz&psw=espresso18return&phones='.implode(",", $farmerPhones).'&mes='.$message.'&charset=utf-8&sender');
+       
+        $farmerEmails = $this->farmer->farmersEmailsByCorn($request->corn_id) ;
+		Mail::send('farmer.email', ['corn_name' => $corn_name], function ($message) use ($farmerEmails) {
+		    $message->from('tarassov.dv@gmail.com', 'Администратор');
+			$message->to($farmerEmails, '')->subject('Тестовое Сообщение с портала Zelenka.Trade');
+		});
 		
 		return redirect(route('order.index'))->with([
 			'message' => "Информация по заявке $request->name добавлена",
@@ -143,29 +146,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-    	$selected_elevator_order = DB::table('order_elevator')
- 			->select('elevator_id')
- 			->where('order_id', $order->id)->get();
     	
-    	if(isset($selected_elevator_order)){
-			foreach($selected_elevator_order->all() as $item){
-				$elevator_order[] = $item->elevator_id;
-			}
-		}	
-		
-		return view('order.show')->with([
-			'viewdata' => $this->order->find($id),
-			'corns' => $this->corn->orderBy('name','asc')->get(),
-			'packs' => $this->pack->orderBy('name','asc')->get(),
-			'loadprices' => $this->loadprice->orderBy('name','asc')->get(),
-			'elevators' => $this->elevator->orderBy('title','asc')->get(),
-			'regions' => $this->region->orderBy('name','asc')->get(),
-			'states' => $this->state->orderBy('name','asc')->get(),
-			'towns' => $this->town->orderBy('name','asc')->get(),
-			'points' => $this->point->orderBy('name','asc')->get(),
-			'disabled' => 'disabled',
-			'elevator_order' => $elevator_order,
-		]);
     }
 
     /**
@@ -205,6 +186,7 @@ class OrderController extends Controller
 			'points' => $this->point->orderBy('name','asc')->get(),
 			'elevator_order' => $elevator_order,
 			'disabled' => '',
+			'fav_elevators' => $this->elevator->fav( Auth::id() )->get(), // избранные элеваторы
 		]);
     }
 
@@ -217,12 +199,16 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
+    	$this->validator( $request->all() );
+    	
         $order = $this->order->find($id);
  	
     	if(Gate::denies('update', $order)){
 		    return view('layouts.sysmessage')->with('message','Это на Ваша заявка. Вы не можете ее редактировать.');
 		}
         		
+		
+		
 		$order->update($request->all());
 		
 		$order->user->phone = $request->phone;
@@ -231,8 +217,7 @@ class OrderController extends Controller
 		
 		$order->user->save();
 		
-		//$order->elevators()->sync($request->elevators);
-		
+		$order->elevators()->sync($request->elevators);	
 		$order->save();
 		return redirect(route('order.index'))->with('message',"Информация по заявке $order->title изменена");
     }
@@ -253,5 +238,25 @@ class OrderController extends Controller
         
 		$order->delete();
 		return back()->with('message',"Заявка $order->title удалена");
+    }
+    
+    protected function validator(array $data)
+    {
+        return Validator::make($data, 
+        	[
+	        	'price' => 'required|max:255',
+	        	'count' => 'required|max:255',
+	        	'phone' => 'required',
+	        	'email' => 'required|email',
+            ],            
+            [
+           
+	            'price.required' => 'укажите цену за тонну',
+	            'count.required' => 'укажите количество в тоннах',
+	            'phone.required' => 'Обязательное поле',
+	        	'max' => 'Уменьшите количество символов',
+	        	'email' => 'некорректный email',
+            ]
+        )->validate();
     }
 }

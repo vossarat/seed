@@ -51,9 +51,9 @@ class Elevator extends Model
 	{
 		if($filterByState){
 			return $query
-	        	->leftJoin('towns',   'elevators.town_id', '=', 'towns.id')        		
-	        	->leftJoin('regions', 'towns.region_id',   '=', 'regions.id')    
-	        		->where('regions.state_id', '=', $filterByState)	;
+	        	->leftJoin('towns as t',   'elevators.town_id', '=', 't.id')        		
+	        	->leftJoin('regions as r', 't.region_id',   '=', 'r.id')  
+	        		->where('r.state_id', '=', $filterByState)	;
 		}
 		
 		return $query ;
@@ -63,9 +63,9 @@ class Elevator extends Model
 	{
 		if($filterByRegion){
 			return $query
-	        	->leftJoin('towns', 'elevators.town_id', '=', 'towns.id')        		
+	        	->leftJoin('towns as t', 'elevators.town_id', '=', 't.id')        		
 	        	//->rightJoin('elevators', 'towns.id', '=', 'elevators.town_id')    
-	        		->where('towns.region_id', '=', $filterByRegion)	;
+	        		->where('t.region_id', '=', $filterByRegion)	;
 		}
 		
 		return $query ;
@@ -109,15 +109,33 @@ class Elevator extends Model
 	* @param undefined $query
 	* @param undefined $user - авторизированный пользователь
 	* 
-	* @return $query к выборке добавляется столбец fav = "checked" когда $user = favorite_user_elevator.user_id
+	* @return $query к выборке добавляется столбец fav = "fa fa-star-o" когда $user = favorite_user_elevator.user_id
+	* fa fa-star-o закрашенная звезда
+	* иначе
+	* fa fa-star незакрашенная звезда
 	*/
 	public function ScopeFavUserElevators($query, $user, $fav)
 	{
 		if($user){
 			return $query				
-        		->leftJoin('favorite_user_elevator', 'elevators.id', '=', 'favorite_user_elevator.elevator_id') 
-        		->select('elevators.id', 'elevators.title', 'favorite_user_elevator.elevator_id',
-        		DB::raw("CASE WHEN (favorite_user_elevator.user_id = $user) THEN 'checked' ELSE '' END as fav"))
+        		->leftJoin('favorite_user_elevator', 'elevators.id', '=', 'favorite_user_elevator.elevator_id')
+        		->leftJoin('towns', 'elevators.town_id', '=', 'towns.id')        		
+	        	->leftJoin('regions', 'towns.region_id',   '=', 'regions.id') 
+        		->select('elevators.*', 'favorite_user_elevator.elevator_id', 'regions.name as region_name',
+        		DB::raw("CASE WHEN (favorite_user_elevator.user_id = $user) THEN 'fa fa-star' ELSE 'fa fa-star-o' END as fav"))
+        		->where(
+					function($query) use ($user, $fav){
+						if($fav){
+							$query->where('favorite_user_elevator.user_id', '=', $user);
+						}
+					});
+		} else {
+			return $query				
+        		->leftJoin('favorite_user_elevator', 'elevators.id', '=', 'favorite_user_elevator.elevator_id')
+        		->leftJoin('towns', 'elevators.town_id', '=', 'towns.id')        		
+	        	->leftJoin('regions', 'towns.region_id',   '=', 'regions.id') 
+        		->select('elevators.*', 'favorite_user_elevator.elevator_id', 'regions.name as region_name',
+        		DB::raw("'fa fa-star-o' as fav"))
         		->where(
 					function($query) use ($user, $fav){
 						if($fav){
@@ -128,5 +146,15 @@ class Elevator extends Model
 		return $query ;
 	}
 	
+	public function ScopeFav($query, $user)
+	{
+		if($user){
+			return $query				
+        		->leftJoin('favorite_user_elevator', 'elevators.id', '=', 'favorite_user_elevator.elevator_id') 
+        		->select('elevators.id', 'elevators.title')
+        		->where('favorite_user_elevator.user_id', '=', $user);
+		}		
+		return $query ;
+	}
 	
 }

@@ -14,3 +14,11 @@
 	</div>
 	
 </section>
+
+<section class="section text-center hidden-xs">
+	<form action="{{ route('order.create') }}">
+	    <button type="submit" class="button button-effect-ujarak button-block button-primary">
+	        Добавить заявку
+	    </button>
+	</form>	
+</section>

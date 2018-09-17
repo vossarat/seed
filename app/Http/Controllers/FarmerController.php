@@ -10,6 +10,7 @@ use App\Reference\Corn;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class FarmerController extends Controller
 {
@@ -53,6 +54,8 @@ class FarmerController extends Controller
      */
     public function store(Request $request)
     {
+    	$this->validator( $request->all() );
+    	
         $farmer = Farmer::create($request->all());
 
 		$farmer->user->update($request->all());
@@ -125,6 +128,7 @@ class FarmerController extends Controller
      */
     public function update(Request $request, $id)
     {
+    	$this->validator( $request->all() );
     	
         $validatedData = $request->validate([
 	        'newPassword' => 'confirmed',
@@ -158,5 +162,27 @@ class FarmerController extends Controller
     public function destroy(Farmer $farmer)
     {
         //
+    }
+    
+    protected function validator(array $data)
+    {
+        return Validator::make($data, 
+        	[
+	        	'name' => 'required|max:255',
+	        	'phone' => 'required',
+	        	'fio' => 'required|max:255',
+	        	'regions' => 'required',
+	        	'corns' => 'required',
+            ],            
+            [
+           
+	            'name.required' => 'укажите имя пользователя',
+	            'phone.required' => 'укажите номер телефона',	           
+	            'corns.required' => 'выберите культуру',	           
+	            'regions.required' => 'укажите район',	           
+	            'fio.required' => 'укажите ФИО',	           
+	        	'max' => 'уменьшите количество символов',
+            ]
+        )->validate();
     }
 }
