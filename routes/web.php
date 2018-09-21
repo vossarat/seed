@@ -48,6 +48,8 @@ Route::prefix('dashboard')->middleware('dashboard')->group(
 	    Route::resource('/elevator','ElevatorController');
 	    Route::resource('/corn','Reference\CornController');
 	    Route::resource('/post','PostController');
+	    Route::resource('/rate','Reference\RateController');
+	    Route::resource('/gost','Reference\GostController');
 	}
 );
 
@@ -59,8 +61,5 @@ Route::prefix('mapelevator')->group(
 	}
 );
 
-Route::get('/sysmessage', function () {
-    return view('layouts.sysmessage');
-})->name('sysmessage');
-
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/news','ArticleController@index')->name('news');
+Route::get('/news/{$id}', 'ArticleController@show')->name('showpost');

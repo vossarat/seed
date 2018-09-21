@@ -14,12 +14,12 @@
 		<label for="corn_id" class="col-md-4 control-label">Наименование культуры</label>		
 		
 		<div class="col-md-6">
-		<select class="" name="corn_id" {{ $disabled }}>		
+		<select id="corn_id" name="corn_id" {{ $disabled }}>		
 			@foreach($corns as $item)
 				@if(isset($viewdata))
 					<option {{ $viewdata->corn_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
 				@else
-					<option value="{{ $item->id }}">{{ $item->name }}</option>
+					<option value="{{ $item->id }}" gostcorn="1">{{ $item->name }}</option>
 				@endif
 			@endforeach			
 		</select>
@@ -261,7 +261,21 @@
     @endif	
 </div>
 
-@include('order.part_more_params') {{--отображение указать подробные параметры --}}
+{{-- старая форма отображение указать подробные параметры 
+@include('order.part_more_params') 
+--}}
+
+{{--отображение указать подробные параметры --}}
+<div class="form-group">
+	<div class="col-md-6 col-md-offset-4">
+		<button type="button" class="button button-effect-ujarak button-block button-default-outline toogle-params">
+        	Указать подробные параметры
+        </button>
+	</div> 
+</div>
+
+@include('order.part_params') 
+{{-- /отображение указать подробные параметры --}}
 
 @push('scripts')
 <script src="{{ asset('js/zepto.js') }}"></script>
@@ -278,7 +292,7 @@
 		});
 	});
 
-	$(function() {
+	/*$(function() {
 		$('div#menu-more-params').mmenu({
 			extensions: ["theme-white", "border-full", "shadow-page"],
 			navbar : {
@@ -299,7 +313,7 @@
 			$( '#form-order' ).append("<input type='hidden' name='"+$(this).attr('name')+"' value='"+inputValue+"'/>");
 		});		
 		
-	});
+	});*/
 	
 </script>
 @endpush						

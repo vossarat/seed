@@ -25,7 +25,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('xxx') }}">
+            <a href="{{ route('news') }}">
                 Новости
             </a>
         </li>

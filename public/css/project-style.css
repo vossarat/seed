@@ -12,6 +12,10 @@
     margin-right: 0;
 }
 
+.order-table-row.closed {
+	background: #fef1f4;
+}
+
 .toogle-order-detailed {
     border-bottom: 1px dotted #f8a63d;
 }
@@ -133,4 +137,24 @@ a > h6 {
 .content {
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.news-list {
+	margin-bottom: 20px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.news-list-date {
+	margin-bottom: 20px;
+}
+
+.shell > h3 {
+	margin-top: 15px;
+}
+
+.rates-mobile {
+	font-size:16px;
+	margin-bottom: 20px;
 }

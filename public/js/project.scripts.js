@@ -33,11 +33,19 @@ $(document).ready(function() {
 		
 		$( ".toogle-other" ).click(function( event ) {
 			event.preventDefault();
-			if($("#elevators").is(':visible')){
+			/*if($("#elevators").is(':visible')){
 				$("#elevators").hide();
-			}
+			}*/
 			$( "#other" ).toggle();
 		});
+		
+		// указать подробные параметры в форме заявок 
+		$("#params").hide();
+		$( ".toogle-params" ).click(function( event ) {
+			event.preventDefault();			
+			$( "#params" ).toggle();
+		});
+		
 		
 		$( ".toogle-elevator" ).click(function( event ) {
 			event.preventDefault();

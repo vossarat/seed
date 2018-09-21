@@ -28,12 +28,22 @@
                         </li>                        
                     </ul>
                 </li> {{-- Конец Справочники--}}
+                
+                <li class="dropdown"> {{-- Настройка--}}
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    	Настройка
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ route('rate.edit', 1) }}">Курсы валют</a>
+                        </li>                        
+                    </ul>
+                </li> {{-- Конец Настройка--}}
                 <li>
                     <a href="/dashboard/post">Новости</a>
                 </li>                
-                <li>
-                    <a href="/setup">Настройка</a>
-                </li>
+                
                 
                 
                 <li class="dropdown"> {{-- Справочники--}}
@@ -61,6 +71,10 @@
                         <li class="divider"></li> <!--Separator-->
                         <li>
                             <a href="{{route('corn.index')}}">Зерновые культуры</a>
+                        </li>
+                        <li class="divider"></li> <!--Separator-->
+                        <li>
+                            <a href="{{route('gost.index')}}">ГОСТ на культуры</a>
                         </li>
                         <li class="divider"></li> <!--Separator-->
                     

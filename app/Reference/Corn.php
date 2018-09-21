@@ -28,4 +28,9 @@ class Corn extends Model
 	{
 		return $this->hasOne('App\Order');
 	}
+	
+	public function gosts()
+    {
+        return $this->belongsToMany('App\Reference\Gost');
+    }
 }

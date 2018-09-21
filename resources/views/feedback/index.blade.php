@@ -34,8 +34,7 @@
                                 <label class="form-label rd-input-label" for="forms-message">
                                     Ваше сообщение
                                 </label>
-                                <textarea class="form-input form-control-has-validation form-control-last-child" id="forms-message" name="message" data-constraints="@Required">
-                                </textarea>
+                                <textarea class="form-input form-control-has-validation form-control-last-child" id="forms-message" name="message" data-constraints="@Required"></textarea>
 
                             </div>
                         </div>

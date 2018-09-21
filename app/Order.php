@@ -50,7 +50,12 @@ class Order extends Model
 	public function corn()
 	{
 	  	return $this->belongsTo('App\Reference\Corn');
-	} 
+	}
+	
+	public function gosts()
+    {
+        return $this->belongsToMany('App\Reference\Gost');
+    } 
 	
 	public function ScopeFilterByTitle($query, $filterByTitle)
 	{

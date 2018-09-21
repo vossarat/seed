@@ -25,3 +25,9 @@ Route::get('/order_to_elevator/{action}/{order_id}/{elevator_id}', 'ApiControlle
 
 // Увеличение счетчика просмотра заявки 
 Route::get('/views_order/{order_id}', 'ApiController@addViewOrder');  
+
+// Закрытие заявки
+Route::get('/closed_order/{order_id}', 'ApiController@closedOrder');  
+
+// значение гостов по культуре
+Route::get('/gost_by_corn/{corn_id}', 'ApiController@getGostsbyCorn');  

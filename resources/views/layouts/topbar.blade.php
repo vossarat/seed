@@ -58,15 +58,14 @@
                                 </div>
                                 --}}
                                 <div class="unit-body">
+                                   
+								{{-- Данные формируются через композер class App\Http\ViewComposers\RatesComposer, сам композер RatesComposer подключен через провайдер App\Providers\ComposerServiceProvider	при рендеринге вида layouts.topbar--}}
+										 
+                                    @foreach($rates as $rate)
                                     <p>
-                                        RUB : 5.47
-                                    </p>
-                                    <p>
-                                        USD : 373
-                                    </p>
-                                    <p>
-                                        EUR : 407
-                                    </p>
+                                        {{ $rate['title'].' : '. $rate['description'] }}
+                                    </p>                                  
+                                    @endforeach
                                     
                                 </div>
                             </div>
@@ -75,10 +74,10 @@
                             <div class="unit-link-with-icon unit unit-spacing-xs unit-horizontal">
                                 <div class="unit-body">
                                     <p>
-                                        Всего заявок на сайте : 100
+                                        Всего заявок на сайте : {{ $cnt_orders }}
                                     </p>
                                     <p>
-                                        Активных : {{ $cnt }}
+                                        Активных : {{ $cnt_active_orders }}
                                     </p>
                                     
                                     

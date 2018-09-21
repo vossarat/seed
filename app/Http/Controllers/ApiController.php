@@ -49,8 +49,25 @@ class ApiController extends Controller
     {
     	DB::table('orders')->where('id', $order_id)->increment('views');
     	$cnt = DB::table('orders')->select()->where('id', $order_id)->first();
-		return $cnt->views;
+		return "&nbsp;".$cnt->views;
     }
     
+    public function closedOrder($order_id)
+    {
+    	DB::table('orders')->where('id', $order_id)->update(['active' => 0]);
+    }
+    
+    // значение гостов по культуре
+    public function getGostsbyCorn($idCorn)
+    {
+    	$gosts = DB::table('corn_gost')->where('corn_id', $idCorn)->get();
+    	$corn_gost = [];
+    	if(isset($gosts)){
+			foreach($gosts as $item){
+				$corn_gost[] = $item->gost_id;
+			}
+		}
+    	return $corn_gost;
+    }    
     
 }

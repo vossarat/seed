@@ -1,3 +1,11 @@
+<section class="section text-center visible-xs">
+	<div class="shell rates-mobile">
+		@foreach($rates as $rate)
+			{{ $rate['title'].':'. $rate['description'] }}&nbsp;
+		@endforeach
+	</div>	
+</section>
+
 <section class="table-price section text-center">
 <div class="shell">
   <p class="">ТАБЛИЦА ЦЕН на зерно</p>

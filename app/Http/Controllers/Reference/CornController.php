@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Reference;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Reference\Corn;
+use App\Reference\Gost;
 
 class CornController extends Controller
 {
-	public function __construct(Corn $corn)
+	public function __construct(Corn $corn, Gost $gost)
 	{
 		$this->corn = $corn;
+		$this->gost = $gost;
 	}
     /**
      * Display a listing of the resource.
@@ -34,6 +36,8 @@ class CornController extends Controller
     	$viewdata = $this->corn->find(0);
         return view('dashboard.corn.create')->with([
 			'viewdata' => $viewdata,
+			'gosts' => $this->gost->all(),
+			'corn_gost' => [],
 		]);
     }
 
@@ -45,7 +49,9 @@ class CornController extends Controller
      */
     public function store(Request $request)
     {
-        $region = corn::create($request->all());
+        $corn = corn::create($request->all());
+        
+        $corn->gosts()->attach($request->gosts); // привязка к ГОСТ
 	
 		return redirect(route('corn.index'))->with([
 			'message' => "Информация по зерновой культуре $request->name добавлена",
@@ -71,10 +77,19 @@ class CornController extends Controller
      */
     public function edit($id)
     {
-        $corn = $this->corn->find($id);
+    	$corn = $this->corn->find($id);
     	
+    	$corn_gost = [];
+    	if(isset($corn->gosts)){
+			foreach($corn->gosts->all() as $item){
+				$corn_gost[] = $item->id;
+			}
+		}
+		
         return view('dashboard.corn.edit')->with([
 			'viewdata' => $corn,
+			'gosts' => $this->gost->all(),
+			'corn_gost' => $corn_gost,
 		]);
     }
 
@@ -88,7 +103,8 @@ class CornController extends Controller
     public function update(Request $request, $id)
     {
         $corn = $this->corn->find($id);
-		$corn->update($request->all());	
+		$corn->update($request->all());
+		$corn->gosts()->sync($request->gosts); // привязка к ГОСТ	
 		$corn->save();
 		return redirect(route('corn.index'))->with('message',"Информация по зерновой культуре $corn->name изменена");
     }

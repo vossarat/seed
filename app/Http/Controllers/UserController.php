@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -92,7 +93,24 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-    	dd(__METHOD__);
+    	
+    	$this->validator( $request->all() );
+    	
+        $validatedData = $request->validate([
+	        'newPassword' => 'confirmed',
+	    ]);
+	    
+		$user = $this->user->find($id);		
+		
+		$user->update($request->all());
+	
+		if( $request->newPassword ){
+			$user->password = \Hash::make($request->newPassword);
+		}		 
+		
+		$user->save();
+		
+		return redirect(route('user.index'))->with('message',"Информация по пользователю $user->name изменена");
 	    
     }
 
@@ -108,5 +126,21 @@ class UserController extends Controller
     	
 		$user->delete();
 		return back()->with('message',"Информация по $user->name удалена");
+    }
+    
+    protected function validator(array $data)
+    {
+        return Validator::make($data, 
+        	[
+	        	'name' => 'required|max:255' . auth()->user()->id ,
+	        	'phone' => 'required',
+            ],            
+            [
+           
+	            'name.required' => 'укажите имя пользователя',
+	            'phone.required' => 'укажите номер телефона',           
+	        	'max' => 'уменьшите количество символов',
+            ]
+        )->validate();
     }
 }

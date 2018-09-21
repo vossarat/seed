@@ -19,10 +19,11 @@ use App\Reference\Region;
 use App\Reference\State;
 use App\Reference\Town;
 use App\Reference\Point;
+use App\Reference\Gost;
 
 class OrderController extends Controller
 {
-	public function __construct(Order $order, Corn $corn, Pack $pack, Loadprice $loadprice, Elevator $elevator, Region $region, State $state, Town $town, Point $point, User $user, Farmer $farmer)
+	public function __construct(Order $order, Corn $corn, Pack $pack, Loadprice $loadprice, Elevator $elevator, Region $region, State $state, Town $town, Point $point, User $user, Farmer $farmer, Gost $gost)
 	{		
 		$this->order = $order;
 		$this->corn = $corn;
@@ -35,6 +36,7 @@ class OrderController extends Controller
 		$this->point = $point;
 		$this->user = $user;
 		$this->farmer = $farmer;
+		$this->gost = $gost;
 	}
     /**
      * Display a listing of the resource.
@@ -54,7 +56,7 @@ class OrderController extends Controller
 		}
     	
         return view('order.index')->with([        
-			'viewdata' => $orders->orderBy('id','desc')->paginate(5),
+			'viewdata' => $orders->orderBy('id','desc')->paginate(10),
 			'corns' => $this->corn->orderBy('name','asc')->get(),
 			'packs' => $this->pack->orderBy('name','asc')->get(),
 			'loadprices' => $this->loadprice->orderBy('name','asc')->get(),
@@ -63,6 +65,7 @@ class OrderController extends Controller
 			'states' => $this->state->orderBy('name','asc')->get(),
 			'towns' => $this->town->orderBy('name','asc')->get(),
 			'points' => $this->point->orderBy('name','asc')->get(),			
+			'gosts' => $this->gost->orderBy('name','asc')->get(),			
 			'filter' => $request->has('filter') ? 'filter' : '',
 			'selected_corns' => $request->get('arrcorns'),
 			'filterByPriceMin' => $request->get('filterByPriceMin'),
@@ -96,9 +99,11 @@ class OrderController extends Controller
 			'states' => $this->state->orderBy('name','asc')->get(),
 			'towns' => $this->town->orderBy('name','asc')->get(),
 			'points' => $this->point->orderBy('name','asc')->get(),
+			'gosts' => $this->gost->orderBy('name','asc')->get(),
 			'fav_elevators' => $this->elevator->fav( Auth::id() )->get(), // избранные элеваторы
 			
 			'elevator_order' => [],
+			'gost_order' => [],
 			'disabled' => '',
 			'neworder' => true,
 		]);
@@ -119,7 +124,8 @@ class OrderController extends Controller
         $corn_name = $this->corn->find($request->corn_id)->name;
         
         $order->user->update($request->all());
-        $order->elevators()->attach($request->elevators); // сохраняем информацию по элеваторам		
+        $order->elevators()->attach($request->elevators); // сохраняем информацию по элеваторам
+        $order->gosts()->attach($request->gosts); // привязка к ГОСТ		
 		$order->user->save();
 		
 		$farmerPhones = $this->farmer->farmersPhonesByCorn($request->corn_id) ;
@@ -168,8 +174,15 @@ class OrderController extends Controller
 			foreach($selected_elevator_order->all() as $item){
 				$elevator_order[] = $item->elevator_id;
 			}
-		}	
-   	
+		}
+		
+		$gost_order = [];
+    	if(isset($order->gosts)){
+			foreach($order->gosts->all() as $item){
+				$gost_order[] = $item->id;
+			}
+		}
+		
     	if(Gate::denies('update', $order)){
 		    return view('layouts.sysmessage')->with('message','Это на Ваша заявка. Вы не можете ее редактировать.');
 		}
@@ -184,7 +197,9 @@ class OrderController extends Controller
 			'states' => $this->state->orderBy('name','asc')->get(),
 			'towns' => $this->town->orderBy('name','asc')->get(),
 			'points' => $this->point->orderBy('name','asc')->get(),
+			'gosts' => $this->gost->orderBy('name','asc')->get(),
 			'elevator_order' => $elevator_order,
+			'gost_order' => $gost_order,
 			'disabled' => '',
 			'fav_elevators' => $this->elevator->fav( Auth::id() )->get(), // избранные элеваторы
 		]);
@@ -199,6 +214,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
+    	//dd( $request->all() );
     	$this->validator( $request->all() );
     	
         $order = $this->order->find($id);
@@ -217,7 +233,8 @@ class OrderController extends Controller
 		
 		$order->user->save();
 		
-		$order->elevators()->sync($request->elevators);	
+		$order->elevators()->sync($request->elevators);
+		$order->gosts()->sync($request->gosts); // привязка к ГОСТ		
 		$order->save();
 		return redirect(route('order.index'))->with('message',"Информация по заявке $order->title изменена");
     }

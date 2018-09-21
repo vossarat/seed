@@ -19,6 +19,9 @@
 
         <!-- Include Font-Awesome -->
         <link rel="stylesheet" href="{{ asset('css/dashboard/font-awesome.min.css') }}">
+        
+        <!-- Include Summernote -->
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.7/summernote.css" rel="stylesheet">
 
         <!-- additional CSS -->
         <link rel="stylesheet" href="{{ asset('css/dashboard/template.css') }}" />
@@ -66,6 +69,9 @@
         <script src="{{ asset('js/jquery.maskedinput.js') }}"></script>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js">
+		</script>
+		
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.7/summernote.js">
 		</script>
 
 
