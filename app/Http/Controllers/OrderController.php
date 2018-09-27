@@ -130,7 +130,7 @@ class OrderController extends Controller
 		
 		$farmerPhones = $this->farmer->farmersPhonesByCorn($request->corn_id) ;
         
-        $message = 'На сайте Zelenka опубликована заявка по культуре '.$corn_name;
+        $message = 'Новая заявка на '.$corn_name;
         $smsRes = file_get_contents('http://smsc.kz/sys/send.php?login=Zelenka.kz&psw=espresso18return&phones='.implode(",", $farmerPhones).'&mes='.$message.'&charset=utf-8&sender');
        
         $farmerEmails = $this->farmer->farmersEmailsByCorn($request->corn_id) ;

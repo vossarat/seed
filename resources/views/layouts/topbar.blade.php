@@ -86,36 +86,24 @@
                         </li>
                         <li>
                             <div class="unit-link-with-icon unit unit-spacing-xs unit-horizontal">
-                                <div class="unit-body">
-                                	@if( Auth::check() )
-                                    	<p>
-                                    		Вы вошли как
-                                    	</p>
-                                    	<p>
-                                    		{{ Auth::user()->name }}
-                                    	</p>
-                                    	<p>
-                                    		<a href="{{ route('logout') }}"
-								                onclick="event.preventDefault();
-								                	document.getElementById('logout-form').submit();">
-								                <span class="fa fa-sign-out"></span> Выход
-								            </a>
-                                    	</p>
-                                    	
-                                    @else
-                                    <p>
-                                        <a href="/login">
-											Войти в систему
-										</a>
-                                    </p>
-                                    <p>
-                                        <a href="/register">
-											Регистрация
-										</a>
-                                    </p>
-                                    @endif
-                                    
-                                    
+                                <div class="unit-body">                                	
+							        <!-- Секция меню  пользователя -->
+							        @if( Auth::check() )
+								        @section('usermenu')
+								        	@include('layouts.usermenu')
+								        @show
+							        @else
+							        	<p>
+											<a href="/login">
+												Войти в систему
+											</a>
+										</p>
+										<p>
+											<a href="/register">
+												Регистрация
+											</a>
+										</p>
+							        @endif
                                 </div>
                             </div>
                         </li>

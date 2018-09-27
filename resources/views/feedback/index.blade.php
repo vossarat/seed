@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="section section-lg bg-white text-center">
+<footer class="section section-lg bg-white text-center">
     <div class="shell">
         <div class="range range-xs-center range-60 range-lg-200">
             <div class="cell-xs-12">
@@ -60,6 +60,6 @@
             </div>
         </div>
     </div>
-</section>
+</footer>
 
 @endsection

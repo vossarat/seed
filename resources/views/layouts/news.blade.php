@@ -1,4 +1,4 @@
-<section class="section section-sm bg-gray-bright context-dark moderno-footer">
+<footer class="section section-sm bg-gray-bright context-dark moderno-footer">
     <div class="shell">
         <div class="range range-40">
             <div class="cell-md-3 cell-sm-5">
@@ -28,7 +28,8 @@
                     </div>
                 </div>
             </div>
-            <div class="cell-md-3 cell-sm-5">
+            
+            <div class="cell-md-3 cell-sm-5 hidden-xs">
                 <div class="preffix-xl-45 footer-item-custom footer-item-custom-2" style="max-width: 327px">
                     <h6 class="text-spacing-200 text-uppercase font-base">
                         НАШИ КОНТАКТЫ
@@ -59,10 +60,12 @@
                     </div>
                 </div>
             </div>
+            
+                        
             <div class="cell-md-4">
                 <div class="preffix-xl-70 footer-item-custom footer-item-custom-3" style="max-width: 433px">
                     <h6 class="text-spacing-200 text-uppercase font-base">
-                        ПОДАВАЙТЕ ЗАЯВКУ ПРЯМО СЕЙЧАС
+                        ПОДАЙТЕ ЗАЯВКУ ПРЯМО СЕЙЧАС
                     </h6>
                     <div class="divider-default">
                     </div>
@@ -71,6 +74,37 @@
                     </a>
                 </div>
             </div>
+            
+            <div class="cell-md-3 cell-sm-5 text-center visible-xs">
+                <div class="preffix-xl-45 footer-item-custom footer-item-custom-2" style="max-width: 327px">
+                    <a href="{{ route('order.index') }}">
+	                    <h6>
+	                        НА ГЛАВНУЮ
+	                    </h6>
+                    </a>
+                    <div class="divider divider-nav"></div>
+                    
+                    <a href="{{ route('order.create') }}">
+	                    <h6>
+	                        ДОБАВИТЬ ЗАЯВКУ
+	                    </h6>
+                    </a>
+                    <div class="divider divider-nav"></div>
+                    
+                    <a href="">
+	                    <h6>
+	                        МОЙ  ПРОФИЛЬ
+	                    </h6>
+                    </a>
+                    <div class="divider divider-nav"></div>
+                    <a href="{{ route('feedback') }}">
+	                    <h6>
+	                        О НАС
+	                    </h6>
+                    </a>
+                </div>
+            </div>
+            
         </div>
     </div>
-</section>
+</footer>

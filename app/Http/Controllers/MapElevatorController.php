@@ -50,12 +50,14 @@ class MapElevatorController extends Controller
 			$elevators = $this->elevator
 				->filterByState( $request->get('filterByState') ) //фильтруем данные по области
 				->filterByRegion(  $request->get('filterByRegion') ); //фильтруем данные по району
+			$filterByState = $request->get('filterByState');
+			$filterByRegion = $request->get('filterByRegion');
 		}
 			
        
        	return view('elevator.index')->with([        
 			// viewdata выбор из модели по авторизироанному пользователю
-			'viewdata' => $elevators->favUserElevators(Auth::id(), $fav)->orderBy('elevators.id','desc')->paginate(10),
+			'viewdata' => $elevators->favUserElevators(Auth::id(), $fav)->with(['town'])->orderBy('elevators.price','desc')->orderBy('towns.region_id','asc')->paginate(10),
 			'corns' => $this->corn->all(),	
 			'fav' => $fav,	
 			'filter' => $request->has('filter') ? 'filter' : '',	

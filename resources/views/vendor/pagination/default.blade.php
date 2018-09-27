@@ -30,9 +30,11 @@
 
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
-            <li><a href="{{ $paginator->nextPageUrl() }}" rel="next" style="color: #FFF">След&raquo;</a></li>
+            <li><a id="more-next" href="{{ $paginator->nextPageUrl() }}" rel="next" class = "button button-effect-ujarak button-block pagination">Показать еще</a></li>
+        
         @else
-            <li class="disabled"><span>След&raquo;</span></li>
+            <li class="disabled"><span id="more-next" class="pagination"></span></li>
         @endif
+       
     </ul>
 @endif

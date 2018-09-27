@@ -21,7 +21,7 @@
 
 <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
     <label for="price" class="col-md-4 control-label">
-        Цена за хранение
+        ЖД тупик
     </label>
 
     <div class="col-md-6">
@@ -218,8 +218,21 @@
 	<div class="col-md-1 col-xs-1">
        <button id="btn-whatsapp" class="btn btn-primary"><i class="fa fa-phone"></i></button>
     </div>
-</div>  
+</div>
 
+@foreach($attributes as $attribute)
+<div class="form-group">
+    <label class="col-md-4 control-label">
+        {{ $attribute->name }}
+    </label>
+
+    <div class="col-md-3">
+        <input type="text" class="form-control" name="attribute[{{$attribute->id}}]" value="{{ count($elevator_attribute) > 0 ? $elevator_attribute[$attribute->id] : '' }}">
+    </div>
+</div>
+@endforeach   
+
+{{--
 <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
 	<label for="description" class="col-md-4 control-label">Доп. услуги</label>
 
@@ -235,6 +248,7 @@
 		@endif
 	</div>
 </div>
+--}}
 
 @push('scripts')
 <script>

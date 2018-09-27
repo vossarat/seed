@@ -13,12 +13,12 @@
                 </li>
                 <li>
                     <a href="{{ route('order.index') }}">
-                        Все заявки
+                        Главная
                     </a>
                 </li>
             </ul>
         </li>
-       
+        
         <li>
             <a href="{{ route('mapelevator') }}">
                 Карта элеваторов
@@ -34,10 +34,11 @@
                 Обратная связь
             </a>
         </li>
-        
-        <!-- Секция меню  пользователя -->
-        @section('usermenu')
-        	@include('layouts.usermenu')
-        @show
+        <li>
+            <a href="{{ route('help') }}">
+                Помощь
+            </a>
+        </li>
+
     </ul>
 </div>

@@ -98,8 +98,11 @@ class GostController extends Controller
      * @param  \App\Reference\Gost  $gost
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gost $gost)
+    public function destroy($id)
     {
-        //
+        $gost = $this->gost->find($id);
+        
+		$gost->delete();
+		return back()->with('message',"ГОСТ $gost->name удален");
     }
 }

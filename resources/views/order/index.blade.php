@@ -41,8 +41,9 @@
         
                 
           
-            
+           
             <div class="order-table">
+            
 
                             @foreach($viewdata as $order)
                             <div class="row order-table-row {{ $order->active ? '' : 'closed'}}" id="row-order-{{ $order->id }}">
@@ -53,9 +54,9 @@
 	                                </div>
 	                                <div class="col-xs-6">
 	                                	@if($order->active)
-	                                	<a href="#close-order-modal" id="{{ $order->id }}" data-toggle="modal" data-backdrop="false" name = "{{ $order->corn['name'] }}, {{ $order->count . ' тонн' }}, {{ $order->price }} тенге">Завершить</a>
+	                                	<a href="#close-order-modal" id="{{ $order->id }}" data-toggle="modal" data-backdrop="false" name = "{{ $order->corn['name'] }}, {{ $order->count . ' тонн' }}">Завершить</a>
 	                                	@else
-	                                	<span style="color: #a94442;"><b>Заявка закрыта</b></span>
+	                                	<span style="color: #a94442;"><b>Заявка завершена</b></span>
 	                                	@endif
 	                                	
 	                                </div>
@@ -71,7 +72,7 @@
 		                                    	Ваша заявка
 		                                @else
 		                                	@if($order->active == 0)
-		                                		<span style="color: #a94442;"><b>Заявка закрыта</b></span>
+		                                		<span style="color: #a94442;"><b class="text-closed-order">Заявка закрыта</b></span>
 		                                	@endif
 		                                @endif
 	                                </div> 
@@ -82,9 +83,12 @@
                                 </div>
                                  <div class="row">
 	                                <div class="col-xs-12">
-	                                	<a class="toogle-order-detailed" href="/api/views_order/{{ $order->id }}" order-id={{ $order->id }}>{{ 'Куплю '.$order->corn['name'] }}, {{ $order->count . ' тонн' }}, {{ $order->price }} тенге</a>
-	                                <div class="order-detailed">
+	                                	<a class="toogle-order-detailed" href="/api/views_order/{{ $order->id }}" order-id={{ $order->id }}>{{ 'Куплю '.$order->corn['name'] }}, {{ $order->count . ' тонн' }}</a>
+	                                <div class="order-detailed toogle-off">
                                 		<ul>
+                                			<li><u>Цена:</u>
+                                				{{ Auth::check() ? $order->price : '*******' }} тенге
+                                			</li>
                                 			<li><u>Упаковка:</u> {{ $packs->find($order->pack_id ? $order->pack_id : '1')->name }}</li>
                                 			<li>{{ $loadprices->find($order->loadprice_id ? $order->loadprice_id : '1')->name }}, {{ $order->auction ? 'Торг' : 'Без торга' }}</li>
                                 			
@@ -117,19 +121,32 @@
                                 			{{ $order->notice }} 
                                 			</li>
                                 			@endif
-                                			<li>Разместил пользователь</li>
-                                			@if(  $order->user->name )
-                                			<li>&nbsp;&nbsp;&bull;Имя: {{ $order->user->name }}</li>
+                                			@if($order->active)
+	                                			<li>Разместил пользователь</li>
+	                                			@if(  $order->user->name )
+	                                			<li>&nbsp;&nbsp;&bull;Имя: 
+	                                				{{ Auth::check() ? $order->user->name : '*******' }}
+	                                			</li>
+	                                			@endif
+	                                			@if( $order->user->email )
+	                                			<li>&nbsp;&nbsp;&bull;E-mail: 
+	                                				<a href="mailto:{{ Auth::check() ? $order->user->email : '#' }}">
+	                                					{{ Auth::check() ? $order->user->email : '*******' }}
+	                                				</a>
+	                                			</li>
+	                                			@endif
+	                                			@if(  $order->user->phone )
+	                                				<li>&nbsp;&nbsp;&bull;Телефон: 
+	                                					{{ Auth::check() ? $order->user->phone : '*******' }}	                                					
+	                                				</li>
+	                                			@endif
+	                                			@if( $order->user->whatsapp )
+	                                			<li>&nbsp;&nbsp;&bull;WhatsApp: 
+	                                				<a href="https://wa.me/{{  Auth::check() ? Func::phoneOnlyNumber($order->user->whatsapp): '111' }}">{{ Auth::check() ? $order->user->whatsapp : '*******' }}</a>
+	                                			</li>
+	                                			@endif
                                 			@endif
-                                			@if( $order->user->email )
-                                			<li>&nbsp;&nbsp;&bull;E-mail: {{ $order->user->email }}</li>
-                                			@endif
-                                			@if(  $order->user->phone )
-                                			<li>&nbsp;&nbsp;&bull;Телефон: {{ $order->user->phone }}</li>
-                                			@endif
-                                			@if( $order->user->whatssapp )
-                                			<li>&nbsp;&nbsp;&bull;WhatsApp: {{ $order->user->whatssapp }}</li>
-                                			@endif
+                                			
                                 		</ul>
                                 	</div>
 	                                </div>
@@ -138,10 +155,13 @@
                             </div>
                             @endforeach
 
-
-               <!-- <div class="divider-edgewise"></div>-->
+            
             </div>
-        
+         
+            
+            <div id="more-order-list-2"></div>
+            
+
             
         
     </div>
@@ -170,7 +190,9 @@
 
 </section>
 
-<section class="section bg-white text-center">
+<section id="more-order" class="section bg-white text-center"></section>
+
+<section class="section bg-white text-center hidden">
 {{ $viewdata->appends([
 		'filter' => $filter ? 'filter' : '',		
 		'arrcorns' => $selected_corns,
@@ -190,18 +212,8 @@ $(document).ready(function() {
 	    var $modal = $(this),
 	        orderName = e.relatedTarget.name;
 	        orderId = e.relatedTarget.id;
-	    
-	//            $.ajax({
-	//                cache: false,
-	//                type: 'POST',
-	//                url: 'backend.php',
-	//                data: 'EID='+essay_id,
-	//                success: function(data) 
-	//                {
 	            $modal.find('.modal-order-content').html(orderName);
 	            $modal.find('.yes-close-modal').attr("name", orderId);
-	//                }
-	//            });
 	    
 	});
 	
@@ -217,6 +229,38 @@ $(document).ready(function() {
 		      }
 		  });	    
 	});
+	
+	// парсим строку адрса ссылки чтоб получить номер страницы
+	var getLinkParameter = function getLinkParameter(sParam, link) {
+		    var sPageURL = decodeURIComponent( link ),
+		        sURLVariables = sPageURL.split('&'),
+		        sParameterName,
+		        i;
+
+		    for (i = 0; i < sURLVariables.length; i++) {
+		        sParameterName = sURLVariables[i].split('=');
+
+		        if (sParameterName[0] === sParam) {
+		            return sParameterName[1] === undefined ? true : sParameterName[1];
+		        }
+		    }
+		};
+	
+	{{-- на див показать еще вешаем ссылку следующей cтраницы --}}
+	$('#more-order').append( $('#more-next') ); 
+	$('body').on('click', '#more-next', function(e) {
+		e.preventDefault();
+		var page = getLinkParameter('page', $( this ).attr('href') );
+				
+		$('#more-order-list-' + page).load( $( this ).attr('href') + ' .order-table' );
+		
+		$('.order-table').addClass("border-bottom-3px");
+		var nextpage = parseInt(page) + 1;
+		$('#more-order-list-' + page).after('<div id="more-order-list-' + nextpage + '"></div>');
+		$('#more-order').load( $( this ).attr('href') + ' #more-next' ); 
+	});
+	
+	
 });
 </script>
 

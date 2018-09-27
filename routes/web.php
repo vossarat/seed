@@ -50,6 +50,7 @@ Route::prefix('dashboard')->middleware('dashboard')->group(
 	    Route::resource('/post','PostController');
 	    Route::resource('/rate','Reference\RateController');
 	    Route::resource('/gost','Reference\GostController');
+	    Route::resource('/attribute','Reference\AttributeController');
 	}
 );
 
@@ -63,3 +64,10 @@ Route::prefix('mapelevator')->group(
 
 Route::get('/news','ArticleController@index')->name('news');
 Route::get('/news/{$id}', 'ArticleController@show')->name('showpost');
+
+//Route::get('/help','HelpController@index')->name('help');
+Route::get('/help', function () {
+    return view('layouts.help');
+})->middleware('auth')->name('help');
+
+Route::get('/help/{$id}', 'HelpController@show')->name('showhelp');

@@ -36,4 +36,11 @@ class Func {
 	                
         return $farmerId;
     }
+    
+    public static function phoneOnlyNumber($phoneNumber) 
+    {
+    	$phoneOnlyNumber = preg_replace("/[^0-9]/", '',  $phoneNumber); // убираем все кроме цифр
+	                
+        return $phoneOnlyNumber;
+    }
 }

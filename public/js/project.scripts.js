@@ -17,8 +17,7 @@ $(document).ready(function() {
 		$( "#elevators" ).hide();
 		$( "#other" ).hide();
 		
-		$( ".order-detailed" ).hide(); // детали заявки
-		$( ".toogle-order-detailed" ).click(function( event ) {
+		$( "body" ).on('click', '.toogle-order-detailed', function( event ) {
 			event.preventDefault();
 			var url_action =  $( this ).attr('href');		
 			var order_id =  $( this ).attr('order-id');		
@@ -63,9 +62,30 @@ $(document).ready(function() {
 		$( ".toogle-elevator-filter" ).click(function( event ) {
 			event.preventDefault();
 			$( "#elevator-filter" ).toggle();					
-		});	
+		});
 		
-		if($("a").is(".toogle-order-filter")) {
+		// функция определения параметров url
+		var getUrlParameter = function getUrlParameter(sParam) {
+		    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+		        sURLVariables = sPageURL.split('&'),
+		        sParameterName,
+		        i;
+
+		    for (i = 0; i < sURLVariables.length; i++) {
+		        sParameterName = sURLVariables[i].split('=');
+
+		        if (sParameterName[0] === sParam) {
+		            return sParameterName[1] === undefined ? true : sParameterName[1];
+		        }
+		    }
+		};
+		
+		// ищем параметр filter  в url
+		var filter = getUrlParameter('filter');	
+		
+		if(filter == 'filter') { // если находим то показываем форму фильтра
+			$( "#order-filter" ).show();
+		} else {
 			$( "#order-filter" ).hide();
 		}
 		

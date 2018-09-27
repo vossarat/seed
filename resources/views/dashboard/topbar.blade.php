@@ -77,6 +77,10 @@
                             <a href="{{route('gost.index')}}">ГОСТ на культуры</a>
                         </li>
                         <li class="divider"></li> <!--Separator-->
+                        <li>
+                            <a href="{{route('attribute.index')}}">Атрибуты элеватора</a>
+                        </li>
+                        <li class="divider"></li> <!--Separator-->
                     
                     </ul>
                 </li> {{-- Конец Справочники--}}

@@ -8,18 +8,20 @@ use App\Reference\Region;
 use App\Reference\State;
 use App\Reference\Town;
 use App\Reference\Corn;
+use App\Reference\Attribute;
 use App\User;
 use Auth;
 
 class ElevatorController extends Controller
 {
-	public function __construct(Elevator $elevator, Region $region, State $state, Town $town, Corn $corn, User $user)
+	public function __construct(Elevator $elevator, Region $region, State $state, Town $town, Corn $corn, User $user, Attribute $attribute)
 	{
 		$this->elevator = $elevator;
 		$this->region = $region;
 		$this->state = $state;
 		$this->town = $town;
 		$this->corn = $corn;
+		$this->attribute = $attribute;
 		$this->user = $user;
 	}
     /**
@@ -49,7 +51,9 @@ class ElevatorController extends Controller
 			'regions' => $this->region->all(),
 			'towns' => $this->town->all(),
 			'corns' => $this->corn->all(),
+			'attributes' => $this->attribute->all(),
 			'elevator_corn' => [],
+			'elevator_attribute' => [],
 		]);
     }
 
@@ -65,6 +69,13 @@ class ElevatorController extends Controller
         $elevator = elevator::create($request->all());
         
         $elevator->corns()->attach($request->corns); // сохраняем информацию по приему культуры
+        
+        // добавляем информацию по допуслугам элеваторов
+		$attributes = $request->attribute;
+		foreach($attributes as $id => $value){
+			$syncData[$id] = array( 'attr_value' => $value );
+		}		
+		$elevator->attributes()->attach($syncData); // добавляем информацию по допуслугам элеваторов
 	
 		return redirect(route('elevator.index'))->with([
 			'message' => "Информация по элеватору $request->name добавлена",
@@ -98,7 +109,15 @@ class ElevatorController extends Controller
 				$elevator_corn[] = $item->id;
 			}
 		}
-    	
+		
+		$elevator_attribute = [];
+   	
+    	if(isset($elevator->attributes)){
+			foreach($elevator->attributes->all() as $item){
+				$elevator_attribute[$item->id] = $item->pivot->attr_value;
+				
+			}
+		}   	
     	
         return view('dashboard.elevator.edit')->with([
 			'viewdata' => $elevator,
@@ -106,7 +125,9 @@ class ElevatorController extends Controller
 			'regions' => $this->region->all(),
 			'towns' => $this->town->all(),
 			'corns' => $this->corn->all(),
+			'attributes' => $this->attribute->all(),
 			'elevator_corn' => $elevator_corn,
+			'elevator_attribute' => $elevator_attribute,
 		]);
     }
 
@@ -119,9 +140,19 @@ class ElevatorController extends Controller
      */
     public function update(Request $request, $id)
     {
+    	
+    	//dd($request->all());
         $elevator = $this->elevator->find($id);
 		$elevator->update($request->all());	
 		$elevator->corns()->sync($request->corns); // сохраняем информацию по приему культуры
+		
+		// добавляем информацию по допуслугам элеваторов
+		$attributes = $request->attribute;
+		foreach($attributes as $id => $value){
+			$syncData[$id] = array( 'attr_value' => $value );
+		}		
+		$elevator->attributes()->sync($syncData); // добавляем информацию по допуслугам элеваторов
+		
 		$elevator->save();
 		return redirect(route('elevator.index'))->with('message',"Информация по элеватору $elevator->name изменена");
     }

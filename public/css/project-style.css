@@ -13,7 +13,7 @@
 }
 
 .order-table-row.closed {
-	background: #fef1f4;
+	background: #0000001a;
 }
 
 .toogle-order-detailed {
@@ -157,4 +157,36 @@ a > h6 {
 .rates-mobile {
 	font-size:16px;
 	margin-bottom: 20px;
+}
+
+.toogle-off {
+	display: none;
+}
+
+#more-next {
+	/*background: #02646f;*/
+	border: 1px solid #02646f;
+	color: #02646f;
+}
+
+.border-bottom-3px {
+	border-bottom: none;
+}
+
+section {
+	width: 100% !important;
+}
+
+.text-closed-order {
+	font-size: 12px;
+}
+
+.usermenu {
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 0;
+}
+
+.usermenu-dropdown {
+	z-index:9;
 }

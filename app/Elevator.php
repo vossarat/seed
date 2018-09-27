@@ -47,6 +47,11 @@ class Elevator extends Model
 		return $this->belongsTo('App\Reference\Town');
 	}
 	
+	public function attributes()
+    {
+        return $this->belongsToMany('App\Reference\Attribute')->withPivot('attr_value');
+    } 
+	
 	public function ScopeFilterByState($query, $filterByState)
 	{
 		if($filterByState){
