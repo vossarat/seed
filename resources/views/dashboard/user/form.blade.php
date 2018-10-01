@@ -130,6 +130,16 @@
     </div>
 </div>
 
+
+<div class="form-group">
+	<div class="col-md-6 col-md-offset-4">
+			<label class="lbl-sms-agree"> 
+				<input class="form-check-input" type="checkbox" name="sms" value="1" id="sms">
+				Отправить СМС о смене пароля
+			</label>
+		</div>
+</div>
+
 @push('scripts')
 <script src="{{ asset('js/jquery.maskedinput.js') }}">
 </script>

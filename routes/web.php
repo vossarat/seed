@@ -63,11 +63,9 @@ Route::prefix('mapelevator')->group(
 );
 
 Route::get('/news','ArticleController@index')->name('news');
-Route::get('/news/{$id}', 'ArticleController@show')->name('showpost');
+Route::get('/news/{id}', 'ArticleController@show')->name('onepost');
 
 //Route::get('/help','HelpController@index')->name('help');
 Route::get('/help', function () {
     return view('layouts.help');
 })->middleware('auth')->name('help');
-
-Route::get('/help/{$id}', 'HelpController@show')->name('showhelp');

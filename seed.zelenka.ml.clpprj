@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="C:\websites\seed.zelenka.ml\seed.zelenka.ml.clpprj">
 	<settings><PM_URL><![CDATA[C:\websites\seed.zelenka.ml\]]></PM_URL><PM_HOME_URL><![CDATA[C:\websites\seed.zelenka.ml\]]></PM_HOME_URL><PM_LIBS><![CDATA[]]></PM_LIBS><PM_FTP_CONNECTION><![CDATA[]]></PM_FTP_CONNECTION><PM_FTP_DIR><![CDATA[]]></PM_FTP_DIR><PM_FTP_UPLOAD_ON_SAVE><![CDATA[INT:0]]></PM_FTP_UPLOAD_ON_SAVE></settings><removed value=";C:\websites\seed.zelenka.ml\app\Http\Controllers\ReferenceRateController.php;C:\websites\seed.zelenka.ml\app\ReferenceRate.php;C:\websites\seed.zelenka.ml\database\migrations\2018_07_23_121418_create_grains_table.php;C:\websites\seed.zelenka.ml\database\migrations\2018_09_18_063239_create_reference_rates_table.php;C:\websites\seed.zelenka.ml\storage\framework\views\c46ae261134849ac9125df571a9d36906d4136c0.php;C:\websites\seed.zelenka.ml\storage\framework\views\fbb0d9d1b74df246be61e749c7a477a5e67ee574.php;C:\websites\seed.zelenka.ml\storage\framework\views\fc5e65c5828043c2ec6c4868f61520123e2280b0.php;"/><added value=""/><lastopfiles>
-		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\MapElevatorController.php"/>
-		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\ElevatorController.php"/>
-		<file name="C:\websites\seed.zelenka.ml\app\Elevator.php"/>
 	</lastopfiles>
 	<errors version="5.11">
 		<errfile name="C:\websites\seed.zelenka.ml\public\css\style.css">
@@ -701,7 +698,7 @@
 		<file name="C:\websites\seed.zelenka.ml\tests\Feature\ExampleTest.php" crc="1514998335"/>
 		<file name="C:\websites\seed.zelenka.ml\tests\TestCase.php" crc="1514998335"/>
 		<file name="C:\websites\seed.zelenka.ml\tests\CreatesApplication.php" crc="1514998335"/>
-		<file name="C:\websites\seed.zelenka.ml\routes\web.php" crc="1537964024"/>
+		<file name="C:\websites\seed.zelenka.ml\routes\web.php" crc="1538392612"/>
 		<file name="C:\websites\seed.zelenka.ml\routes\console.php" crc="1514998335"/>
 		<file name="C:\websites\seed.zelenka.ml\routes\channels.php" crc="1514998335"/>
 		<file name="C:\websites\seed.zelenka.ml\routes\api.php" crc="1537371117"/>
@@ -714,28 +711,30 @@
 		<file name="C:\websites\seed.zelenka.ml\resources\views\trader\form.blade.php" crc="1536662832"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\trader\edit.blade.php" crc="1536663106"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\trader\create.blade.php" crc="1536641555"/>
-		<file name="C:\websites\seed.zelenka.ml\resources\views\post\index.blade.php" crc="1537199593"/>
+		<file name="C:\websites\seed.zelenka.ml\resources\views\post\onepost.blade.php" crc="1538395235"/>
+		<file name="C:\websites\seed.zelenka.ml\resources\views\post\index.blade.php" crc="1538391461"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\order\show.blade.php" crc="1532432186"/>
-		<file name="C:\websites\seed.zelenka.ml\resources\views\order\part_params.blade.php" crc="1537373052"/>
+		<file name="C:\websites\seed.zelenka.ml\resources\views\order\part_standarts.blade.php" crc="1538055821"/>
+		<file name="C:\websites\seed.zelenka.ml\resources\views\order\part_params.blade.php" crc="1538055546"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\order\part_other.blade.php" crc="1533298374"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\order\part_more_params.blade.php" crc="1533467367"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\order\part_elevators.blade.php" crc="1536939356"/>
-		<file name="C:\websites\seed.zelenka.ml\resources\views\order\index.blade.php" crc="1537878174"/>
-		<file name="C:\websites\seed.zelenka.ml\resources\views\order\form.blade.php" crc="1537369941"/>
+		<file name="C:\websites\seed.zelenka.ml\resources\views\order\index.blade.php" crc="1538055003"/>
+		<file name="C:\websites\seed.zelenka.ml\resources\views\order\form.blade.php" crc="1538376662"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\order\filter.blade.php" crc="1537551296"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\order\edit.blade.php" crc="1536399171"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\order\create.blade.php" crc="1536399170"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\usermenumobile.blade.php" crc="1536658968"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\usermenu.blade.php" crc="1537975276"/>
-		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\topmenu.blade.php" crc="1537877786"/>
+		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\topmenu.blade.php" crc="1538396173"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\topbar.blade.php" crc="1537870345"/>
-		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\template.blade.php" crc="1537857819"/>
-		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\template-100.blade.php" crc="1537857827"/>
+		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\template.blade.php" crc="1538396394"/>
+		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\template-100.blade.php" crc="1538396400"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\tableprice.blade.php" crc="1537240560"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\sysmessage.blade.php" crc="1532000803"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\sidebar.blade.php" crc="1531330240"/>
-		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\news.blade.php" crc="1537877686"/>
-		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\help.blade.php" crc="1537876142"/>
+		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\news.blade.php" crc="1538395763"/>
+		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\help.blade.php" crc="1538395927"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\footer.blade.php" crc="1536259998"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\contact.blade.php" crc="1536177540"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\layouts\constraction.blade.php" crc="1530872137"/>
@@ -745,12 +744,12 @@
 		<file name="C:\websites\seed.zelenka.ml\resources\views\farmer\email.blade.php" crc="1537017176"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\farmer\edit.blade.php" crc="1536663028"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\farmer\create.blade.php" crc="1536640824"/>
-		<file name="C:\websites\seed.zelenka.ml\resources\views\errors\404.blade.php" crc="1537891458"/>
+		<file name="C:\websites\seed.zelenka.ml\resources\views\errors\404.blade.php" crc="1538192751"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\elevator\index.blade.php" crc="1538028014"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\elevator\filter.blade.php" crc="1537549955"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\dashboard\user\show.blade.php" crc="1532187701"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\dashboard\user\index.blade.php" crc="1532187022"/>
-		<file name="C:\websites\seed.zelenka.ml\resources\views\dashboard\user\form.blade.php" crc="1532187823"/>
+		<file name="C:\websites\seed.zelenka.ml\resources\views\dashboard\user\form.blade.php" crc="1538279341"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\dashboard\user\edit.blade.php" crc="1532239795"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\dashboard\user\create.blade.php" crc="1532184433"/>
 		<file name="C:\websites\seed.zelenka.ml\resources\views\dashboard\territory\town\index.blade.php" crc="1532247556"/>
@@ -816,7 +815,7 @@
 		<file name="C:\websites\seed.zelenka.ml\public\js\zepto-selector.js" crc="1518100378"/>
 		<file name="C:\websites\seed.zelenka.ml\public\js\script.js" crc="1536403594"/>
 		<file name="C:\websites\seed.zelenka.ml\public\js\responsive-paginate.js" crc="1529657370"/>
-		<file name="C:\websites\seed.zelenka.ml\public\js\project.scripts.js" crc="1537606220"/>
+		<file name="C:\websites\seed.zelenka.ml\public\js\project.scripts.js" crc="1538055825"/>
 		<file name="C:\websites\seed.zelenka.ml\public\js\pointer-events.min.js" crc="1531879712"/>
 		<file name="C:\websites\seed.zelenka.ml\public\js\jquery.mmenu.js" crc="1530779292"/>
 		<file name="C:\websites\seed.zelenka.ml\public\js\jquery.mmenu.all.js" crc="1530779292"/>
@@ -834,7 +833,7 @@
 		<file name="C:\websites\seed.zelenka.ml\public\css\dashboard\bootstrap.min.css" crc="1519819020"/>
 		<file name="C:\websites\seed.zelenka.ml\public\css\style.css" crc="1536661632"/>
 		<file name="C:\websites\seed.zelenka.ml\public\css\style-rtl.css" crc="1531879712"/>
-		<file name="C:\websites\seed.zelenka.ml\public\css\project-style.css" crc="1537877567"/>
+		<file name="C:\websites\seed.zelenka.ml\public\css\project-style.css" crc="1538188910"/>
 		<file name="C:\websites\seed.zelenka.ml\public\css\jquery.mmenu.css" crc="1530779292"/>
 		<file name="C:\websites\seed.zelenka.ml\public\css\jquery.mmenu.all.css" crc="1530779292"/>
 		<file name="C:\websites\seed.zelenka.ml\public\css\fonts.css" crc="1531879712"/>
@@ -918,7 +917,7 @@
 		<file name="C:\websites\seed.zelenka.ml\app\Providers\RouteServiceProvider.php" crc="1514998335"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Providers\FuncServiceProvider.php" crc="1531138542"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Providers\EventServiceProvider.php" crc="1514998335"/>
-		<file name="C:\websites\seed.zelenka.ml\app\Providers\ComposerServiceProvider.php" crc="1537841089"/>
+		<file name="C:\websites\seed.zelenka.ml\app\Providers\ComposerServiceProvider.php" crc="1538188360"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Providers\BroadcastServiceProvider.php" crc="1514998335"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Providers\AuthServiceProvider.php" crc="1531660369"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Providers\AppServiceProvider.php" crc="1536131277"/>
@@ -949,16 +948,17 @@
 		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\Auth\RegisterController.php" crc="1536493908"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\Auth\LoginController.php" crc="1536488717"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\Auth\ForgotPasswordController.php" crc="1514998335"/>
-		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\UserController.php" crc="1537350060"/>
+		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\UserController.php" crc="1538279875"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php" crc="1536998900"/>
-		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\PostController.php" crc="1536300216"/>
+		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\PostController.php" crc="1538392114"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\OrderController.php" crc="1537878465"/>
+		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\NewsController.php" crc="1538392105"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\MapElevatorController.php" crc="1538050962"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\HomeController.php" crc="1530773398"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php" crc="1536994387"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\ElevatorController.php" crc="1538022182"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\Controller.php" crc="1514998335"/>
-		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\ArticleController.php" crc="1537199537"/>
+		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\ArticleController.php" crc="1538392636"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Http\Controllers\ApiController.php" crc="1537496034"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Http\Kernel.php" crc="1531585105"/>
 		<file name="C:\websites\seed.zelenka.ml\app\Helpers\Func.php" crc="1537769322"/>

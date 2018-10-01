@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta charset="utf-8">
-        <link rel="icon" href="images/favicon.png" type="image/x-icon">
+        <link rel="icon" href="/images/favicon.png" type="image/x-icon">
         <meta name="google-site-verification" content="_pffjJOVIaXUqZZOeFsStutak78nlFsrc2fjIEgI568" />
         <meta name="description" content="Покупка продажа зерна оптом и в розницу в Казахстане. Закупочные цены на зерно и сельхозпродукцию, пшеницу, кукурузу, подсолнечник и другие агро культуры">
         
@@ -94,9 +94,11 @@
                 <!-- /RD Navbar-->
 
             </header>
-
-            @yield('content')
-
+			
+			<div class = "row content">
+            	@yield('content')
+			</div>
+			
             <!-- News -->
             @section('news')
             @include('layouts.news')

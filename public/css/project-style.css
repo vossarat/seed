@@ -46,12 +46,11 @@
     background-size: cover;
     padding-top: 10px;
     padding-bottom: 10px;
-    /*width: 100%;*/
-    margin-top: 0;
     margin-bottom: 20px;
     font-size: 18px;
     font-weight: bolder;
     color: #FFF;
+    margin-top: 15px;
 }
 
 .button-tableprice-view {
@@ -134,11 +133,6 @@ a > h6 {
 	font-size: 14px;
 }
 
-.content {
-	margin-left: auto;
-	margin-right: auto;
-}
-
 .news-list {
 	margin-bottom: 20px;
 	width: 100%;
@@ -173,10 +167,6 @@ a > h6 {
 	border-bottom: none;
 }
 
-section {
-	width: 100% !important;
-}
-
 .text-closed-order {
 	font-size: 12px;
 }
@@ -189,4 +179,15 @@ section {
 
 .usermenu-dropdown {
 	z-index:9;
+}
+
+.help-content{
+	font-size: 16px;
+}
+
+.help-section {
+	background-color: #f8a63d;
+	padding: 10px;
+	font: 20px;
+	color: black;
 }

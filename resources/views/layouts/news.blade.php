@@ -10,7 +10,7 @@
                     </div>
                     <div class="post-minimal-wrap">
                        @foreach($posts as $post) 
-                        <a class="post-minimal" href="#">
+                        <a class="post-minimal" href="{{ route('onepost', $post->id) }}">
                             <div class="unit unit-horizontal unit-middle">
 								
                                 <div class="unit-body">
@@ -37,23 +37,32 @@
                     <div class="divider-default">
                     </div>
                     <div class="contact-data">
-                        <dl>
-                            <dt>
-                                Phone:
-                            </dt>
-                            <dd>
-                                <a class="link-call" href="tel:#">
-                                    1-800-700-6200
-                                </a>
-                            </dd>
-                        </dl>
+                        
                         <dl>
                             <dt>
                                 E-mail:
                             </dt>
                             <dd>
-                                <a href="mailto:#">
-                                    info@demolink.org
+                                <a href="mailto:info@zelenka.trade">
+                                    info@zelenka.trade
+                                </a>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                Адрес:
+                            </dt>
+                            <dd>
+                               г. Кокшетау, ул. Валиханова ⅓
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                Телефон:
+                            </dt>
+                            <dd>
+                                <a class="link-call" href="tel:#">
+                                    
                                 </a>
                             </dd>
                         </dl>

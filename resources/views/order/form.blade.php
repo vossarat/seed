@@ -67,6 +67,17 @@
 	</div>
 </div>
 
+{{--отображение указать Стандартизация --}}
+<div class="form-group">
+	<div class="col-md-6 col-md-offset-4">
+		<button type="button" class="button button-effect-ujarak button-block button-default-outline toogle-standarts">
+        	Стандартизация
+        </button>
+	</div> 
+</div>
+@include('order.part_standarts')
+{{-- /отображение указать Стандартизация --}} 
+
 <div class="form-group">
 	<label for="auction" class="col-md-4 control-label">Возможен торг</label>
 
@@ -109,6 +120,21 @@
 </div> 
 
 <div class="form-group">
+	<label for="loadprice_id" class="col-md-4 control-label">Цена</label>
+
+	<div class="col-md-6">
+		<label class="radio-inline">
+            <input type="radio" name="loadprice_id" value="1" {{ $viewdata->loadprice_id == 1 ? 'checked' : ''}}> с доставкой
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="loadprice_id" value="0" {{ $viewdata->loadprice_id == 0 ? 'checked' : ''}}> с места
+        </label>
+
+	</div>
+</div>
+
+{{--
+<div class="form-group">
 	<div class="{{ $errors->has('loadprice_id') ? ' has-error' : '' }}"> 
 		
 			
@@ -133,7 +159,8 @@
 		@endif
 		</div>
 	</div>
-</div> 
+</div>
+--}} 
 
 @include('order.part_elevators') {{--отображение выбрать элеватор --}}
 

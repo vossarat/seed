@@ -4,7 +4,8 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta charset="utf-8">
+        <meta charset="utf-8">        
+        <link rel="icon" href="/images/favicon.png" type="image/x-icon">
         <meta name="google-site-verification" content="_pffjJOVIaXUqZZOeFsStutak78nlFsrc2fjIEgI568" />
         <meta name="description" content="Покупка продажа зерна оптом и в розницу в Казахстане. Закупочные цены на зерно и сельхозпродукцию, пшеницу, кукурузу, подсолнечник и другие агро культуры">
         
@@ -29,7 +30,7 @@
 		  gtag('config', 'UA-125944126-1');
 		</script>
         
-        <link rel="icon" href="images/favicon.png" type="image/x-icon">
+        
 
         <title>
             @section('title')
@@ -102,11 +103,11 @@
 				@show
 			</div>
 
-            <div class = "row content">
+            <div class = "row">
                 <div class = "col-xs-12 col-sm-7">
                     @yield('content')
                 </div>
-                <div class = "col-sm-5 hidden-xs" style="margin-top: 15px;">
+                <div class = "col-sm-5 hidden-xs" style="padding-right: 0">
 					@section('tableprice')
 					    @include('layouts.tableprice')
 					@show

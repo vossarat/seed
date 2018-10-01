@@ -45,6 +45,12 @@ $(document).ready(function() {
 			$( "#params" ).toggle();
 		});
 		
+		$("#standarts").hide();
+		$( ".toogle-standarts" ).click(function( event ) {
+			event.preventDefault();			
+			$( "#standarts" ).toggle();
+		});
+		
 		
 		$( ".toogle-elevator" ).click(function( event ) {
 			event.preventDefault();

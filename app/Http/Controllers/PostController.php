@@ -56,9 +56,14 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+    	dd($id);
+        $post = $this->post->find($id);
+    	
+        return view('post.onepost')->with([
+			'viewdata' => $post,
+		]);
     }
 
     /**

@@ -16,6 +16,7 @@ class ComposerServiceProvider extends ServiceProvider
     {
         View::composer('layouts.usermenu', 'App\Http\ViewComposers\UserMenuComposer');
         View::composer('layouts.usermenumobile', 'App\Http\ViewComposers\UserMenuComposer');
+        View::composer('layouts.help', 'App\Http\ViewComposers\UserMenuComposer');
         View::composer('layouts.topbar', 'App\Http\ViewComposers\RatesComposer');
         View::composer('layouts.tableprice', 'App\Http\ViewComposers\RatesComposer');
         View::composer('layouts.news', 'App\Http\ViewComposers\NewsComposer');

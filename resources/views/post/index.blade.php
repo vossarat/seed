@@ -24,7 +24,7 @@
 	    		{{ $post->title }}
 	    	</div>
 	    	<div class="row">
-	    		<a href="{{ route('showpost',$post->id) }}">Подробнее</a>
+	    		<a href="{{ route('onepost', $post->id) }}">Подробнее</a>
 	    	</div>
 	    	<div class="divider-default"></div>
     	</div>
