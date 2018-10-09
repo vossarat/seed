@@ -9,9 +9,7 @@
 <section class="section section-lg bg-white text-center">
     <div class="shell">
         <div class="range range-xs-center range-60 range-lg-200">
-            <div class="cell-xs-12">
-
-                <div class="block-left" style="max-width: 720px">
+             <div class="cell-xs-12 order-form">               
 
                     <h2>
                         Редактирование заявки
@@ -42,7 +40,7 @@
                         </div>
 
                     </form>
-                </div>
+               
             </div>
         </div>
     </div>

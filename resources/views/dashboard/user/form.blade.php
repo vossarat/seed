@@ -1,10 +1,10 @@
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-    <label for="name" class="col-md-4 control-label">
+    <label for="name" class="col-md-4  col-xs-7 control-label">
         Имя пользователя
     </label>
 
-    <div class="col-md-6">
-        <input id="name" type="text" class="form-control" name="name" value="{{ $viewdata->name or old('name') }}" {{ $disabled }} required>
+    <div class="col-md-5 col-xs-9">
+        <input id="name" type="text" class="form-control" name="name" value="{{ $viewdata->name or old('name') }}"  {{ $disabled }} required>
 
         @if ($errors->has('name'))
         <span class="help-block">
@@ -14,6 +14,14 @@
         </span>
         @endif
     </div>
+
+    <div class="col-md-1 col-xs-1">
+        <button id="btn-name" class="btn btn-primary">
+            <i class="fa fa-phone">
+            </i>
+        </button>
+    </div>
+
 </div>
 
 <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
@@ -40,7 +48,7 @@
     </label>
 
     <div class="col-md-6">
-        <input id="email" type="text" class="form-control" name="email" value="{{ $viewdata->email or old('email') }}" {{ $disabled }} required>
+        <input id="email" type="text" class="form-control" name="email" value="{{ $viewdata->email or old('email') }}">
 
         @if ($errors->has('email'))
         <span class="help-block">
@@ -145,4 +153,15 @@
 </script>
 <script src="{{ asset('js/project.scripts.js') }}">
 </script>
+<script>
+$(document).ready(function() {	
+	$("#name").mask("+9 (999) 999-99-99", {placeholder: "" });
+	
+	$( "#btn-name" ).click(function( event ) {
+                event.preventDefault();
+                $("#name").val( $("#phone").val() );
+            });
+});	
+</script>
+
 @endpush                

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="section bg-white text-center">
+<section class="section bg-white text-center index-order">
 
 
 
@@ -46,6 +46,18 @@
             
 
                             @foreach($viewdata as $order)
+	                            @if(Auth::check() && Auth::user()->id == 1)
+	                            <div class="row">
+	                            	
+	                            	<form action="{{ route('order.destroy', $order->id) }}" method="POST">
+									<input type="hidden" name="_method" value="DELETE">
+									{{ csrf_field() }}
+					                	<button type="submit" class="btn btn-danger">удалить</button>
+					                </form>
+	                            	
+	                            	
+	                            </div>
+	                            @endif
                             <div class="row order-table-row {{ $order->active ? '' : 'closed'}}" id="row-order-{{ $order->id }}">
                                 @if(Auth::check() && Auth::user()->id == $order->user_id)
                                 <div class="row">
@@ -64,10 +76,10 @@
                                 @endif
                                 
                                 <div class="row">
-	                                <div class="col-xs-4">
+	                                <div class="col-xs-4 text-center" id="created_at_{{ $order->id }}">
 	                                	{{ date('d.m.Y',strtotime($order->created_at)) }}
 	                                </div>
-	                                <div class="col-xs-5">
+	                                <div class="col-xs-4 text-center">
 	                                	@if(Auth::check() && Auth::user()->id == $order->user_id)
 		                                    	Ваша заявка
 		                                @else
@@ -76,21 +88,29 @@
 		                                	@endif
 		                                @endif
 	                                </div> 
-	                                <div class="col-xs-3 text-left">
+	                                <div class="col-xs-4 text-center">
 	                                	<span id="views_{{ $order->id }}" class="fa fa-eye views_order">&nbsp;{{ $order->views }}</span> 
 	                                	
 	                                </div>
                                 </div>
                                  <div class="row">
 	                                <div class="col-xs-12">
-	                                	<a class="toogle-order-detailed" href="/api/views_order/{{ $order->id }}" order-id={{ $order->id }}>{{ 'Куплю '.$order->corn['name'] }}, {{ $order->count . ' тонн' }}</a>
+	                                	@if( $order->active )
+	                                	<a class="toogle-order-detailed" href="/api/views_order/{{ $order->id }}" order-id={{ $order->id }}>{{ 'Куплю:'.$order->corn['name'] }}, {{ $order->count . ' тонн' }}</a>
+	                                	@else
+	                                	<a href="javascript:void(0);">{{ 'Куплю:'.$order->corn['name'] }}, {{ $order->count . ' тонн' }}</a>
+	                                	@endif
 	                                <div class="order-detailed toogle-off">
                                 		<ul>
                                 			<li><u>Цена:</u>
-                                				{{ Auth::check() ? $order->price : '*******' }} тенге
+                                				@if( Auth::check() )
+                                					{{ $order->price }} тенге, {{ $order->loadprice_id ? 'Цена с доставкой' : 'Цена с места' }}, {{ $order->auction ? 'Торг' : 'Без торга' }}
+                                				@else
+                                					<a href="/login">*******</a> тенге
+                                				@endif
                                 			</li>
                                 			<li><u>Упаковка:</u> {{ $packs->find($order->pack_id ? $order->pack_id : '1')->name }}</li>
-                                			<li>{{ $loadprices->find($order->loadprice_id ? $order->loadprice_id : '1')->name }}, {{ $order->auction ? 'Торг' : 'Без торга' }}</li>
+                                			
                                 			
                                 			@if($order->elevators->count() > 0)
 	                                			<li><u>Элеваторы:</u>
@@ -100,14 +120,27 @@
 	                                			</li>
                                 			@endif
                                 			<li><u>Подробные параметры</u> </li>
-                                			@if($order->sort_standart or $order->sort_other or $order->sort_gost1 or $order->sort_gost2)
+                                			@if($order->gosts->count() > 0)
 	                                		<li>
-	                                			&nbsp;&nbsp;&bull;Класс или сорт продукции: 
+	                                			&nbsp;&nbsp;&bull;Качество: 
 	                                			@foreach($order->gosts as $gost)
 	                                				{{ $gost['name'] . ';' }} 
 	                                			@endforeach
                                 			</li>
                                 			@endif
+                                			@if($order->class_corn )
+	                                			<li>
+		                                			&nbsp;&nbsp;&bull;Класс: 
+		                                			{{ $order->class_corn }} 
+	                                			</li>
+                                			@endif
+                                			@if($order->notice )
+	                                			<li>
+		                                			&nbsp;&nbsp;&bull;Доп.параметры: 
+		                                			{{ $order->notice }} 
+	                                			</li>
+                                			@endif
+                                			{{--
                                 			@if($order->agreement or $order->rewrite )
                                 			<li>
                                 			&nbsp;&nbsp;&bull;Условия оплаты продукции: 
@@ -115,34 +148,46 @@
                                 			{{ $order->rewrite  ? 'По факту переписки;' : '' }}
                                 			</li>
                                 			@endif
-                                			@if($order->notice )
-                                			<li>
-                                			&nbsp;&nbsp;&bull;Комментарий: 
-                                			{{ $order->notice }} 
-                                			</li>
-                                			@endif
+                                			--}}
+                                			
                                 			@if($order->active)
-	                                			<li>Разместил пользователь</li>
+	                                			<li><u>Разместил пользователь</u></li>
 	                                			@if(  $order->user->name )
 	                                			<li>&nbsp;&nbsp;&bull;Имя: 
-	                                				{{ Auth::check() ? $order->user->name : '*******' }}
+	                                				@if( Auth::check() )
+	                                				{{  $order->user->name }}
+	                                				@else
+                                						<a href="/login">*******</a>
+                                					@endif
 	                                			</li>
 	                                			@endif
 	                                			@if( $order->user->email )
 	                                			<li>&nbsp;&nbsp;&bull;E-mail: 
-	                                				<a href="mailto:{{ Auth::check() ? $order->user->email : '#' }}">
-	                                					{{ Auth::check() ? $order->user->email : '*******' }}
+	                                				@if( Auth::check() )
+	                                				<a href="mailto:{{ $order->user->email }}">{{$order->user->email }}
 	                                				</a>
+	                                				@else
+	                                					<a href="/login">*******</a>
+	                                				@endif
 	                                			</li>
 	                                			@endif
 	                                			@if(  $order->user->phone )
 	                                				<li>&nbsp;&nbsp;&bull;Телефон: 
-	                                					{{ Auth::check() ? $order->user->phone : '*******' }}	                                					
+	                                					@if( Auth::check() )
+	                                					{{ $order->user->phone }}
+	                                					@else
+	                                						<a href="/login">*******</a>
+	                                					@endif
 	                                				</li>
 	                                			@endif
 	                                			@if( $order->user->whatsapp )
 	                                			<li>&nbsp;&nbsp;&bull;WhatsApp: 
-	                                				<a href="https://wa.me/{{  Auth::check() ? Func::phoneOnlyNumber($order->user->whatsapp): '111' }}">{{ Auth::check() ? $order->user->whatsapp : '*******' }}</a>
+	                                			@if( Auth::check() )
+	                                				<a href="https://wa.me/{{Func::phoneOnlyNumber($order->user->whatsapp)}}">{{$order->user->whatsapp}}</a>
+	                                				@else
+	                                					<a href="/login">*******</a>
+	                                				@endif
+	                                				
 	                                			</li>
 	                                			@endif
                                 			@endif
@@ -172,7 +217,6 @@
     <div class="modal-content">
       <!-- Заголовок модального окна -->
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h4 class="modal-title">Завершить заявку</h4>
       </div>
       <!-- Основное содержимое модального окна -->
@@ -180,9 +224,9 @@
         Вы действительно хотитите завершить заявку ?
       </div>
       <!-- Футер модального окна -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Нет</button>
-        <button type="button" name="" class="btn btn-primary yes-close-modal" data-dismiss="modal">Да</button>
+      <div class="modal-footer row">        
+        <button type="button" name="" class="btn btn-primary yes-close-modal col-xs-4 col-xs-offset-2" data-dismiss="modal">Завершить</button>
+        <button type="button" class="btn btn-default col-xs-4 col-xs-offset-1" data-dismiss="modal">Отмена</button>
       </div>
     </div>
   </div>
@@ -202,6 +246,11 @@
 	])->links() }}
 </section>
 
+<section class="section bg-white text-center index-info">
+<p>Zelenka. Trade - это уникальный автоматизированный портал, призванный помочь производителям, элеваторам и трейдерам в торговле зерновыми культурами.</p>
+<p>С порталом Zelenka.Trade прибыль от Ваших сделок, не уйдет посредникам, Вам больше не придется осуществлять десятки телефонных звонков и тратить время на то, чтобы продать или приобрести зерновые культуры, с помощью данного портала Вы сможете не только расширить границы и возможности Вашего бизнеса, но  и сократить временной цикл сделки до 5 минут.</p>
+</section>
+
 @push('scripts')
 <script src="{{ asset('js/project.scripts.js') }}"></script>
 
@@ -209,10 +258,26 @@
 $(document).ready(function() {
 	$('#close-order-modal').on('show.bs.modal', function(e) {
 	    
+	    console.log( $('#views_' + e.relatedTarget.id ).text() );
 	    var $modal = $(this),
 	        orderName = e.relatedTarget.name;
 	        orderId = e.relatedTarget.id;
-	            $modal.find('.modal-order-content').html(orderName);
+	        orderViews = $('#views_'+orderId).text();
+	        orderCreateDate = $('#created_at_'+orderId).text();
+	        
+	            contentModal = 	'<div class="row">'+
+	            				'<div class="col-xs-6">'+
+	            				  orderCreateDate+
+	            				'</div>'+
+	            				'<div class="col-xs-6">'+
+	            				  '<span class="fa fa-eye views_order">'+ orderViews +'</span>' +
+	            				'</div>'+
+	            				'<div class="col-xs-12">'+
+	            				  'Куплю:' + orderName +
+	            				'</div>'+
+	            				'</div>';
+	            //$modal.find('.modal-order-content').html( 'Куплю:' + orderName + '_' +orderViews + '_'+ orderCreateDate );
+	            $modal.find('.modal-order-content').html( contentModal );
 	            $modal.find('.yes-close-modal').attr("name", orderId);
 	    
 	});

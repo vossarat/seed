@@ -137,6 +137,8 @@ class FarmerController extends Controller
 		$farmer = $this->farmer->find($id);		
 		$farmer->update($request->all());
 	
+		$farmer->user->email = $request->email;
+		$farmer->user->phone = $request->phone;
 		$farmer->user->whatsapp = $request->whatsapp;
 		$farmer->user->telegram = $request->telegram;			
 		
@@ -170,8 +172,9 @@ class FarmerController extends Controller
         	[
 	        	'name' => 'required|max:255',
 	        	'phone' => 'required',
+	        	'email' => 'email|nullable',
 	        	'fio' => 'required|max:255',
-	        	'regions' => 'required',
+	        	//'regions' => 'required',
 	        	'corns' => 'required',
             ],            
             [
@@ -179,9 +182,10 @@ class FarmerController extends Controller
 	            'name.required' => 'укажите имя пользователя',
 	            'phone.required' => 'укажите номер телефона',	           
 	            'corns.required' => 'выберите культуру',	           
-	            'regions.required' => 'укажите район',	           
+	            //'regions.required' => 'укажите район',	           
 	            'fio.required' => 'укажите ФИО',	           
 	        	'max' => 'уменьшите количество символов',
+	        	'email.email' => 'e-mail некорректен',
             ]
         )->validate();
     }

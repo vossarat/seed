@@ -26,7 +26,7 @@
         
         <li>
             <a href="{{ route('mapelevator') }}">
-                Карта элеваторов
+                Элеваторы
             </a>
         </li>
         <li>

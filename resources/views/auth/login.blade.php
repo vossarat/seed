@@ -14,7 +14,7 @@
                     	{{ csrf_field() }}
                         <div class="form-wrap form-wrap-validation {{ $errors->has('name') ? ' has-error' : '' }}">
                             <label class="form-label" for="name">
-                                Имя пользователя
+                                Телефон
                             </label>
                             <input class="form-input" id="name" type="text" name="name" data-constraints="@Required">
                             @if ($errors->has('name'))
@@ -52,7 +52,7 @@
                         <button class="button button-effect-ujarak button-block button-square button-primary" type="submit">
                             Войти
                         </button>
-                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                        <a class="btn btn-link" href="javascript:void();{{-- route('password.request') --}}">
                             Забыли пароль ?
                         </a>
                     </form>
@@ -61,6 +61,14 @@
         </div>
     </div>
 </section>
+
+@push('scripts')
+<script>
+$(document).ready(function() {	
+	$("#name").mask("+9 (999) 999-99-99", {placeholder: "" });
+});	
+</script>
+@endpush
 
 @endsection
 

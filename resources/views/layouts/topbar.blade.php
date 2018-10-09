@@ -31,7 +31,7 @@
                 </form>
             </div>
         --}}
-       
+       <section>
         <div class="rd-navbar-top-panel">
             <div class="rd-navbar-top-panel-inner">
                 <!-- RD Navbar Brand-->
@@ -41,9 +41,9 @@
                     	{{-- Zelenka.Trade --}}    	
                      
                         <img src="/images/logo.png" alt="" width="622" height="184"/>
- 					
+ 						
                     </a> 
-                   
+                <h1>ОНЛАЙН ПОКУПКА И ПРОДАЖА ЗЕРНА В КАЗАХСТАНЕ</h1>   
                 </div>
                 
                 {{--Топбар (курс валют, инфо по заявкам, вход)--}}
@@ -115,6 +115,8 @@
             
             </div>
         </div>
+        </section>
+        <section>
         <div class="rd-navbar-inner rd-navbar-inner-bottom">
             <!-- RD Navbar Panel-->
             <div class="rd-navbar-panel">
@@ -129,6 +131,7 @@
                     	{{--Zelenka.Trade--}}
                         
                         <img src="/images/logo.png" alt="" width="522" height="84"/>
+                        <h1 style="font-size: 2vw;">ОНЛАЙН ПОКУПКА И ПРОДАЖА ЗЕРНА В КАЗАХСТАНЕ</h1>
                         
                     </a>
                 </div>
@@ -139,6 +142,7 @@
 
             </div>
         </div>
+        </section>
     </nav>
 </div>
 

@@ -1,8 +1,8 @@
 {
   "useSmtp": false,
-  "host": "stmp.gmail.com",              
-  "port": 465,													 
-  "username": "tarassov.dv@gmail.com",					 
-  "password": "nau%alti",						 
+  "host": "zelenka.trade",              
+  "port": 587,													 
+  "username": "admin@zelenka.trade",					 
+  "password": "ABC123abc",						 
   "recipientEmail":  "tarassov.dv@gmail.com"		 
 }

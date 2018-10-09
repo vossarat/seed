@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -85,10 +86,20 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
+    {	
+        
+        $userProfile =  $data['profile'] == 'farmer' ? 'Производитель СПХ' : 'Трейдер';       
+        Mail::send('auth.admin_email', ['viewdata' => $data, 'profile' => $userProfile], function ($message) use ($data, $userProfile) {
+		    $message->from('admin@zelenka.trade', 'ZELENKA.TRADE');
+			$message->to('serazhiyevr@gmail.com', '')->subject('Регистрация нового пользователя: ' . $userProfile);
+		});
+		
+		dd($data);
+    	
         return User::create([
             'name' => $data['name'],
             //'email' => $data['email'],
+            'phone' => $data['name'],
             'password' => bcrypt($data['password']),
             'profile' => $data['profile'],
         ]);

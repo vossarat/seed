@@ -29,6 +29,7 @@ Route::get('/xxx', function () {
 Route::get('/feedback', function () {
     return view('feedback.index');
 })->name('feedback');
+Route::post('/feedback','FeedbackController@send')->name('feedback_send');
 
 /*Route::get('/dashboard', function () {
     return view('dashboard.template');
@@ -65,7 +66,6 @@ Route::prefix('mapelevator')->group(
 Route::get('/news','ArticleController@index')->name('news');
 Route::get('/news/{id}', 'ArticleController@show')->name('onepost');
 
-//Route::get('/help','HelpController@index')->name('help');
 Route::get('/help', function () {
     return view('layouts.help');
 })->middleware('auth')->name('help');

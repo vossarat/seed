@@ -1,6 +1,6 @@
 <input type="hidden" name="user_id" value="{{ Auth::id() }}">{{-- how users = traders --}}
 
-<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} hidden">
 	<label for="name" class="col-md-4 control-label">Имя пользователя</label>
 
 	<div class="col-md-6">
@@ -35,10 +35,8 @@
 <div class="form-group">
 	<div class="{{ $errors->has('corns') ? ' has-error' : '' }}"> 
 		
-		<label for="corns" class="col-md-4 control-label">Выращиваемые культуры</label>		
-		
-		<div class="col-md-6">
-		<select id="select-corns" multiple class="form-control" name="corns[]" name="corns" size="5">			
+		<div class="col-md-4">
+		<select id="select-corns" multiple class="form-control" name="corns[]" size="5">			
 			@foreach($corns as $item)
 				@if(isset($viewdata))
 					<option {{ in_array($item->id, $farmer_corn )  ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
@@ -55,6 +53,10 @@
 		</span>
 		@endif
 		</div>
+		
+		<label class="col-md-6 text-center" id="lbl-corns"></label>		
+		
+		
 	</div>
 </div>	
 
@@ -120,7 +122,7 @@
 	<label for="phone" class="col-md-4 control-label">Телефон</label>
 
 	<div class="col-md-6">
-		<input id="phone" type="text" class="form-control" name="phone" value="{{ isset($viewdata->user) ? $viewdata->user->phone : old('phone') }}" >
+		<input id="phone" type="text" class="form-control" name="phone" value="{{ Auth::check() ? Auth::user()->phone : old('phone') }}" >
 
 		@if ($errors->has('phone'))
 		<span class="help-block">

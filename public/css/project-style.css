@@ -1,3 +1,13 @@
+h1 {
+	color: #f8a63d;
+	font-size: 0.8em;
+	width: 330px;
+}
+
+.content-field{
+	max-width: 1500px;
+}
+
 #s2id_select-corns, #s2id_select-regions {
     display: none;
 }
@@ -42,7 +52,7 @@
 }
 
 .table-price {
-    background-image: url(/images/combine.png);
+    background-image: url(/images/Banner.jpg);
     background-size: cover;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -51,6 +61,20 @@
     font-weight: bolder;
     color: #FFF;
     margin-top: 15px;
+}
+
+.table-price h2 {
+	color:white;
+	font-size: 24px;
+}
+
+.table-price h3 {
+	color:white;
+	font-size: 18px;
+}
+
+.table-price a {
+	border: 4px solid white;
 }
 
 .button-tableprice-view {
@@ -87,7 +111,7 @@ a > h6 {
     margin: auto;
     padding:0;
     font-size: 22px;
-	line-height: 46px;
+	line-height: 46px;	
 }
 
 .rd-navbar-toggle {
@@ -191,3 +215,44 @@ a > h6 {
 	font: 20px;
 	color: black;
 }
+
+.order-form{
+	padding: 20px;
+	border: 2px solid #f8a63d;
+}
+
+.alert {
+	margin-top: 24px;
+}
+.index-info {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	text-align: justify;
+	width: 100% !important;
+}
+
+.index-order, .table-price, .table-price-add-order {
+	width: 100% !important;
+}
+
+.contact-data dt {
+    min-width: 0;
+    padding-right: 0; 
+}
+
+.social-networking > dt {
+	min-width: 90px;
+	padding-right: 15px; 
+}
+
+.modal-dialog {
+	width: 400px;
+}
+	.modal-header{
+		padding: 5px;
+		background: #ddd;
+	}
+	.yes-close-modal {
+		background: #02646f;
+	}
+	

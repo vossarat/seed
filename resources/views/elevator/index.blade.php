@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.template-100')
 
 @section('tableprice')
     @include('layouts.tableprice')
@@ -12,10 +12,12 @@
 <section class="section bg-white text-center">
 
 <div class="shell">
+<div class = "row">
+            <div class = "col-xs-12 col-sm-8 col-sm-offset-2">
 
-    <h3>
-        Карта элеваторов
-    </h3>
+    <h2>
+        Элеваторы
+    </h2>
     
    
     <div class="row-filter">
@@ -78,7 +80,7 @@
 	                    			<li><u>Услуги:</u>                    				
 	                    				@foreach($elevator->attributes as $attribute)
 	                    					@if($attribute->pivot->attr_value != '')
-	                    					{{ $attribute->name }} - {{ $attribute->pivot->attr_value }};
+	                    					{{ $attribute->name }} - {{ $attribute->pivot->attr_value }}</br>
 	                    					@endif
 	                    				@endforeach	                    			
 	                    			</li>
@@ -96,17 +98,28 @@
     <div id="more-elevator-list-2"></div>      
     
 </div>
+</div>
+</div>
 </section>
 
-<section id="more-elevator" class="section bg-white text-center"></section>
+<div class = "row">
+    <div class = "col-xs-12 col-sm-8 col-sm-offset-2">
+        <section id="more-elevator" class="section bg-white text-center">
+        </section>
+    </div>
+</div>
 
 <section class="section bg-white text-center hidden">
-{{ $viewdata->appends([
-		'filter' => $filter ? 'filter' : '',		
-		'arrcorns' => $selected_corns,		
-		'filterByPriceMin' => $filterByPriceMin,		
-		'filterByPriceMax' => $filterByPriceMax,		
-	])->links() }}
+    <div class = "row">
+        <div class = "col-xs-12 col-sm-8 col-sm-offset-2">
+            {{ $viewdata->appends([
+            'filter' => $filter ? 'filter' : '',
+            'arrcorns' => $selected_corns,
+            'filterByPriceMin' => $filterByPriceMin,
+            'filterByPriceMax' => $filterByPriceMax,
+            ])->links() }}
+        </div>
+    </div>
 </section>
 
 @push('scripts')

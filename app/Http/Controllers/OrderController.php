@@ -130,13 +130,15 @@ class OrderController extends Controller
 		
 		$farmerPhones = $this->farmer->farmersPhonesByCorn($request->corn_id) ;
         
-        $message = 'Новая заявка на '.$corn_name;
+        $message = 'Портал www.zelenka.trade - Новая заявка:'.$corn_name;
         $smsRes = file_get_contents('http://smsc.kz/sys/send.php?login=Zelenka.kz&psw=espresso18return&phones='.implode(",", $farmerPhones).'&mes='.$message.'&charset=utf-8&sender');
        
-        $farmerEmails = $this->farmer->farmersEmailsByCorn($request->corn_id) ;
-		Mail::send('farmer.email', ['corn_name' => $corn_name], function ($message) use ($farmerEmails) {
-		    $message->from('tarassov.dv@gmail.com', 'Администратор');
-			$message->to($farmerEmails, '')->subject('Тестовое Сообщение с портала Zelenka.Trade');
+		$farmerEmails = $this->farmer->farmersEmailsByCorn($request->corn_id) ;
+		$farmerEmails[] = "serazhiyevr@gmail.com"; // добавляем админа
+		
+		Mail::send('farmer.email', ['corn_name' => $corn_name], function ($message) use ($farmerEmails, $corn_name) {
+		    $message->from('admin@zelenka.trade', 'ZELENKA.TRADE');
+			$message->to($farmerEmails, '')->subject('Куплю: ' . $corn_name);
 		});
 		
 		return redirect(route('order.index'))->with([
@@ -249,12 +251,18 @@ class OrderController extends Controller
     {
         $order = $this->order->find($id);
     	
-    	if(Gate::denies('delete', $order)){
+    	/*if(Gate::denies('delete', $order)){
 		    return view('layouts.sysmessage')->with('message','Вы не можете удалить эту заявку.');
+		}*/
+		
+		if(Auth::check() && Auth::user()->id == 1){
+		    $order->delete();
+			return back()->with('message',"Заявка $order->title удалена");
+		} else {
+			 return view('layouts.sysmessage')->with('message','Вы не можете удалить эту заявку.');
 		}
         
-		$order->delete();
-		return back()->with('message',"Заявка $order->title удалена");
+		
     }
     
     protected function validator(array $data)

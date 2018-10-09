@@ -20,7 +20,7 @@ class UserController extends Controller
     public function index()
     {
         return view('dashboard.user.index')->with([        
-			'viewdata' => $this->user->all(),
+			'viewdata' => $this->user->orderBy('name')->get(),
 		]);
     }
 
@@ -46,8 +46,8 @@ class UserController extends Controller
     {
         $requestArray = $request->all();
         $requestAddPass = array_add($requestArray, 'password', bcrypt($request->newPassword));
-               
-        $user = User::create($requestAddPass);        
+        
+        $user = User::create($requestAddPass);
 
 		return redirect(route('user.index'))->with([
 			'message' => "Информация по пользователю $request->name добавлена",
@@ -111,7 +111,7 @@ class UserController extends Controller
 		$user->save();
 		
 		if($request->sms) {
-			$message = "Портал www.zelenka.trade Имя:$request->name Пароль:$request->newPassword";
+			$message = "Портал www.zelenka.trade/help Имя:$request->name Пароль:$request->newPassword";
 			$phone = preg_replace("/[^,.0-9]/", '', $request->phone);
 			
 			$smsRes = file_get_contents('http://smsc.kz/sys/send.php?login=Zelenka.kz&psw=espresso18return&phones='.$phone.'&mes='.$message.'&charset=utf-8&sender');

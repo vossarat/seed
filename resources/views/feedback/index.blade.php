@@ -6,11 +6,22 @@
     <div class="shell">
         <div class="range range-xs-center range-60 range-lg-200">
             <div class="cell-xs-12">
-                <h4 class="text-regular">
+                <h2 class="text-regular">
                     Обратная связь
-                </h4>
+                </h2>
+                
+                {{-- информационное сообщение --}}
+				@if(Session::has('message'))
+				<div class="alert alert-success block-center" style="max-width: 840px">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					{{Session::get('message')}}
+				</div>
+				@endif
+				{{-- /информационное сообщение --}}
+                
                 <!-- RD Mailform-->
-                <form class="rd-mailform block-center" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" style="max-width: 840px" novalidate="novalidate">
+                <form class="block-center" data-form-output="form-output-global" data-form-type="contact" method="post" action="{{ route('feedback_send') }}" style="max-width: 840px" novalidate="novalidate">
+                	{{ csrf_field() }}
                     <div class="range range-xs-center range-20 range-narrow">
                         <div class="cell-sm-5">
                             <div class="form-wrap form-wrap-validation has-error">

@@ -131,6 +131,8 @@ $(document).ready(function() {
                 var labels = [];
                 options.each(function () {
                     labels.push($(this).text());
+                    $( "#lbl-corns" ).text( labels );
+                    
                 });
                 return labels.join(' - ');
             }

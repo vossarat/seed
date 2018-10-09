@@ -15,7 +15,7 @@
                     	{{ csrf_field() }}
                         <div class="form-wrap form-wrap-validation {{ $errors->has('name') ? ' has-error' : '' }}">
                             <label class="form-label" for="name">
-                                Имя пользователя
+                                Телефон
                             </label>
                             <input class="form-input" id="name" type="text" name="name" required>
                             @if ($errors->has('name'))
@@ -56,7 +56,7 @@
                             </div>
                             <div class="cell-md-2 cell-xs-12">
                                 <label class="radio-inline">
-                                    <input type="radio" name="profile" value="farmer"> Фермер
+                                    <input type="radio" name="profile" value="farmer">Производитель СПХ
                                 </label>
                             </div>
 
@@ -73,4 +73,15 @@
         </div>
     </div>
 </section>
+
+@push('scripts')
+<script>
+$(document).ready(function() {	
+	$("#name").mask("+7 (999) 999-99-99", {placeholder: "+7 (XXX) XXX-XX-XX" });
+});	
+</script>
+@endpush	
+
 @endsection
+
+

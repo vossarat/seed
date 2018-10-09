@@ -71,12 +71,26 @@
 <div class="form-group">
 	<div class="col-md-6 col-md-offset-4">
 		<button type="button" class="button button-effect-ujarak button-block button-default-outline toogle-standarts">
-        	Стандартизация
+        	Качество продукции
         </button>
 	</div> 
 </div>
 @include('order.part_standarts')
 {{-- /отображение указать Стандартизация --}} 
+
+{{--отображение указать подробные параметры 
+<div class="form-group">
+	<div class="col-md-6 col-md-offset-4">
+		<button type="button" class="button button-effect-ujarak button-block button-default-outline toogle-params">
+        	Указать подробные параметры
+        </button>
+	</div> 
+</div>
+--}}
+{{--
+@include('order.part_params') 
+ /отображение указать подробные параметры --}}
+
 
 <div class="form-group">
 	<label for="auction" class="col-md-4 control-label">Возможен торг</label>
@@ -198,6 +212,7 @@
 	</div>
 </div>
 
+{{--
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 	<label for="name" class="col-md-4 control-label">Имя пользователя</label>
 
@@ -213,6 +228,7 @@
 		@endif
 	</div>
 </div>
+--}}
 
 <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
 	<label for="phone" class="col-md-4 control-label">Телефон</label>
@@ -291,18 +307,6 @@
 {{-- старая форма отображение указать подробные параметры 
 @include('order.part_more_params') 
 --}}
-
-{{--отображение указать подробные параметры --}}
-<div class="form-group">
-	<div class="col-md-6 col-md-offset-4">
-		<button type="button" class="button button-effect-ujarak button-block button-default-outline toogle-params">
-        	Указать подробные параметры
-        </button>
-	</div> 
-</div>
-
-@include('order.part_params') 
-{{-- /отображение указать подробные параметры --}}
 
 @push('scripts')
 <script src="{{ asset('js/zepto.js') }}"></script>

@@ -2,7 +2,7 @@
 <div id="standarts">
 
 <div class="form-group">
-	<label class="col-md-4 control-label">Класс или сорт продукции</label>		
+	<label class="col-md-4 control-label">Качество</label>		
 	<div class="col-md-8"></div>
 	
 	{{--
@@ -13,6 +13,21 @@
 	</div>
 	@endforeach
 </div>
+
+<div class="form-group">
+	<label for="class_corn" class="col-md-4 control-label">Класс</label>
+	<div class="col-md-6">
+		<input id="class_corn" type="text" class="form-control" name="class_corn"value="{{ $viewdata->class_corn or old('class_corn') }}">
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="notice" class="col-md-4 control-label">Доп.параметры</label>
+
+	<div class="col-md-6">		
+		<textarea class="form-control" id="notice" name="notice"  rows="3" placeholder="Укажите клейковину, влажность, белок, и другие подробные параметры">{{ $viewdata->notice or old('notice') }}</textarea>
+	</div>
+</div> 
 
 </div>
 

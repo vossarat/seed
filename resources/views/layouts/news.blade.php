@@ -56,15 +56,38 @@
                                г. Кокшетау, ул. Валиханова ⅓
                             </dd>
                         </dl>
+                        
                         <dl>
                             <dt>
                                 Телефон:
                             </dt>
                             <dd>
-                                <a class="link-call" href="tel:#">
-                                    
+                                <a href="tel:#87084445606">
+                                    +7 (708) 444-56-06
                                 </a>
                             </dd>
+                            </br>
+                            <dt style="color: transparent">
+                                Телефон:
+                            </dt>
+                            <dd>
+                                <a href="tel:#87162445606">
+                                    +7 (7162) 44-56-06
+                                </a>
+                            </dd>
+                        </dl>
+                        
+                        <dl class="social-networking">
+                            <dt>
+                                <a href="https://www.facebook.com/zelenka.trade"><span class="fa fa-facebook fa-3x"></span></a>
+                            </dt>
+                            <dt>
+                                <a href="https://www.instagram.com/zelenka.trade"><span class="fa fa-instagram fa-3x"></span></a>
+                            </dt>
+                            <dt>
+                                <a href="javascript:void(0);"><span class="fa fa-google-plus fa-3x"></span></a>
+                            </dt>
+                            
                         </dl>
                     </div>
                 </div>

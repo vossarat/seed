@@ -143,7 +143,7 @@ class TraderController extends Controller
         	[
 	        	'name' => 'required|max:255|unique:users,name,' . auth()->user()->id ,
 	        	'phone' => 'required' ,
-	        	'email' => 'required' ,
+	        	'email' => 'required|email' ,
 	        	
             ],            
             [

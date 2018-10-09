@@ -11,7 +11,7 @@
 
 
                     <h2>
-                        Информация о фермере
+                        Информация о производителе СПХ
                     </h2>
 
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('farmer.update', $viewdata->id) }}">
@@ -43,7 +43,7 @@
                         <div class="form-group">
 							<div class="col-xs-12">
 									<label class="lbl-sms-agree">
-										Вы зарегистрированы как Фермер. Для изменения типа профиля на Трейдера нажмите кнопку ниже
+										Вы зарегистрированы как Производитель СПХ. Для изменения типа профиля на Трейдера нажмите кнопку ниже
 									</label>
 								</div>
 						</div>

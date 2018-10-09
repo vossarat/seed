@@ -28,6 +28,7 @@ class Order extends Model
 		'point_id', //пункт приема
 		'point_name', //населенный пункт из див другой
 		'point_adress', //адрес населенный пункт из див другой
+		'class_corn', 
 		'sort_standart', 
 		'sort_other', 
 		'sort_gost1', 
