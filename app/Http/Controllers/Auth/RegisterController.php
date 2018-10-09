@@ -93,9 +93,7 @@ class RegisterController extends Controller
 		    $message->from('admin@zelenka.trade', 'ZELENKA.TRADE');
 			$message->to('serazhiyevr@gmail.com', '')->subject('Регистрация нового пользователя: ' . $userProfile);
 		});
-		
-		dd($data);
-    	
+   	
         return User::create([
             'name' => $data['name'],
             //'email' => $data['email'],

@@ -22,6 +22,21 @@
             gtag('js', new Date());
 
             gtag('config', 'UA-127042687-1');
+            gtag('config', 'AW-785620431');
+            
+            function gtag_report_conversion(url) {
+			  var callback = function () {
+			    if (typeof(url) != 'undefined') {
+			      window.location = url;
+			    }
+			  };
+			  gtag('event', 'conversion', {
+			      'send_to': 'AW-785620431/KcfSCJq47ooBEM-7zvYC',
+			      'event_callback': callback
+			  });
+			  return false;
+			}
+            
         </script>
         
         <title>

@@ -217,7 +217,7 @@
     <div class="modal-content">
       <!-- Заголовок модального окна -->
       <div class="modal-header">
-        <h4 class="modal-title">Завершить заявку</h4>
+        <h4 class="modal-title">Хотитите завершить заявку?</h4>
       </div>
       <!-- Основное содержимое модального окна -->
       <div class="modal-body modal-order-content">

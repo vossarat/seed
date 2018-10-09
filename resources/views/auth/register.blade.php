@@ -11,7 +11,7 @@
                         Регистрация
                     </h2>
 
-                    <form class="text-left" method="POST" action="{{ route('register') }}">
+                    <form id="regform" class="text-left" method="POST" action="{{ route('register') }}">
                     	{{ csrf_field() }}
                         <div class="form-wrap form-wrap-validation {{ $errors->has('name') ? ' has-error' : '' }}">
                             <label class="form-label" for="name">
@@ -78,6 +78,11 @@
 <script>
 $(document).ready(function() {	
 	$("#name").mask("+7 (999) 999-99-99", {placeholder: "+7 (XXX) XXX-XX-XX" });
+	
+	$( "#regform" ).submit(function( event ) {
+		gtag_report_conversion();	
+	});
+	
 });	
 </script>
 @endpush	
