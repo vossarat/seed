@@ -29,6 +29,10 @@
         <link rel="stylesheet" href="{{ asset('css/dashboard/topbar.css') }}" />
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+        
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
 
 
         <!-- Include Some Style -->
@@ -73,6 +77,9 @@
 		
 		<script src="//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.7/summernote.js">
 		</script>
+		
+		<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+		<script src="//cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 
 
         <script src="{{ asset('js/project.scripts.js') }}"></script>

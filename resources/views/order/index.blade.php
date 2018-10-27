@@ -152,6 +152,7 @@
                                 			
                                 			@if($order->active)
 	                                			<li><u>Разместил пользователь</u></li>
+	                                			{{--
 	                                			@if(  $order->user->name )
 	                                			<li>&nbsp;&nbsp;&bull;Имя: 
 	                                				@if( Auth::check() )
@@ -161,6 +162,7 @@
                                 					@endif
 	                                			</li>
 	                                			@endif
+	                                			--}}
 	                                			@if( $order->user->email )
 	                                			<li>&nbsp;&nbsp;&bull;E-mail: 
 	                                				@if( Auth::check() )

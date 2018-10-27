@@ -35,7 +35,7 @@
 <div class="form-group">
 	<div class="{{ $errors->has('corns') ? ' has-error' : '' }}"> 
 		
-		<div class="col-md-4">
+		<div class="col-md-4 text-right">
 		<select id="select-corns" multiple class="form-control" name="corns[]" size="5">			
 			@foreach($corns as $item)
 				@if(isset($viewdata))
@@ -122,7 +122,7 @@
 	<label for="phone" class="col-md-4 control-label">Телефон</label>
 
 	<div class="col-md-6">
-		<input id="phone" type="text" class="form-control" name="phone" value="{{ Auth::check() ? Auth::user()->phone : old('phone') }}" >
+		<input id="phone" type="text" class="form-control" name="phone" value="{{ isset($viewdata->user) ? $viewdata->user->phone : old('phone') }}" >
 
 		@if ($errors->has('phone'))
 		<span class="help-block">
@@ -192,7 +192,7 @@
 
 
 <div class="form-group">
-	<div class="col-md-12">
+	<div class="col-md-12 text-center">
 			<label class="lbl-sms-agree">
 			<input type="checkbox" name="sms" value="0" hidden="hidden" checked="checked">
 			<input class="form-check-input" type="checkbox" name="sms" value="1" id="sms" 

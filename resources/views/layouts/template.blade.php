@@ -49,10 +49,8 @@
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:400,700%7CQuattrocento+Sans:400,700">
         -->
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-
-
-
-        <!-- Bootstrap core CSS -->
+		
+		<!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 
         <!-- Include Font-Awesome -->
@@ -70,6 +68,9 @@
 
         <!-- Include Some Style -->
         @stack('css')
+
+
+       
 
     </head>
 
@@ -149,8 +150,8 @@
 
         <!-- Global Mailform Output-->
         <div class="snackbars" id="form-output-global">
-        </div>
-
+        </div>		
+		
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <script src="{{ asset('js/core.min.js') }}">

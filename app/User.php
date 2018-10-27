@@ -49,6 +49,11 @@ class User extends Authenticatable
 		return $this->hasOne(Elevator::class);
 	}
 	
+	public function forwarder()
+	{
+		return $this->hasOne(Forwarder::class);
+	}
+	
 	public function ScopeFarmersEmailByCorn($query, $corns)
 	{
 		if( $corns ){

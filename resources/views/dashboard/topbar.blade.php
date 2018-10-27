@@ -5,7 +5,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="">Административная панель Zelenka.Trader</a>
+                    <a href="/dashboard">Административная панель Zelenka.Trader</a>
                 </li>
                 <li class="dropdown"> {{-- Справочники--}}
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -93,7 +93,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="{{ route('home') }}"
-                    	<i class="fa fa-sign-out"></i> На главную
+                    	<i class="fa fa-sign-out"></i> На сайт
                     </a>
                 </li>
             </ul>

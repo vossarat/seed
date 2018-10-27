@@ -70,7 +70,7 @@ class FarmerController extends Controller
 		$deletedTrader = Trader::where('user_id', Auth::user()->id )->delete();
 
 		return redirect(route('order.index'))->with([
-			'message' => "Информация по фермеру $request->title добавлена",
+			'message' => "Информация по производителю СХП $request->title добавлена",
 		]);
     }
 
@@ -152,7 +152,7 @@ class FarmerController extends Controller
 		$farmer->user->save();
 		$farmer->save();		
 		
-		return redirect(route('order.index'))->with('message',"Информация по фермеру $farmer->title изменена");
+		return redirect(route('order.index'))->with('message',"Информация по производителю СХП $farmer->title изменена");
     }
 
     /**

@@ -85,8 +85,8 @@ class OrderController extends Controller
 	       return view('layouts.sysmessage')->with('message', 'Для добавления заявки Вам необходимо <a href="/login">авторизоваться</a> или <a href="/register">зарегистрироваться</a>');
 	    }
 	    
-	    if(Auth::user()->profile === 'farmer'){
-	       return view('layouts.sysmessage')->with('message', 'Вы зарегистрированы как Фермер и не можете добавить заявку <a href="/order">назад</a>');
+	    if(Auth::user()->profile != 'trader'){
+	       return view('layouts.sysmessage')->with('message', 'Добавить заявку могут только пользователи с профилем "Трейдер" <a href="/order">назад</a>');
 	    }
 	    
         return view('order.create')->with([
@@ -134,10 +134,10 @@ class OrderController extends Controller
         $smsRes = file_get_contents('http://smsc.kz/sys/send.php?login=Zelenka.kz&psw=espresso18return&phones='.implode(",", $farmerPhones).'&mes='.$message.'&charset=utf-8&sender');
        
 		$farmerEmails = $this->farmer->farmersEmailsByCorn($request->corn_id) ;
-		$farmerEmails[] = "serazhiyevr@gmail.com"; // добавляем админа
+		$farmerEmails[] = env('MAIL_USERNAME'); // добавляем админа
 		
 		Mail::send('farmer.email', ['corn_name' => $corn_name], function ($message) use ($farmerEmails, $corn_name) {
-		    $message->from('admin@zelenka.trade', 'ZELENKA.TRADE');
+		    $message->from(env('MAIL_USERNAME'), 'ZELENKA.TRADE');
 			$message->to($farmerEmails, '')->subject('Куплю: ' . $corn_name);
 		});
 		

@@ -1,4 +1,5 @@
-<input type="hidden" name="user_id" value="{{ Auth::id() }}">{{-- how users = traders --}}
+<input type="hidden" name="user_id" value="{{ isset($viewdata) ? $viewdata->user_id : Auth::id() }}">{{-- how users = traders --}}
+{{--<input type="hidden" name="id" value="{{ $viewdata->id }}"> id для удаления профилей трейдера или фермера --}}
 
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} hidden">
 	<label for="name" class="col-md-4 control-label">Имя пользователя</label>
@@ -68,7 +69,7 @@
 	<label for="phone" class="col-md-4 control-label">Телефон</label>
 
 	<div class="col-md-6">
-		<input id="phone" type="text" class="form-control" name="phone" value="{{ Auth::check() ? Auth::user()->phone : old('phone') }}" >
+		<input id="phone" type="text" class="form-control" name="phone" value="{{ isset($viewdata->user) ? $viewdata->user->phone : old('phone') }}" >
 
 		@if ($errors->has('phone'))
 		<span class="help-block">
@@ -121,7 +122,7 @@
 </div>
 
 <div class="form-group">
-	<div class="col-md-12">
+	<div class="col-md-12 text-center">
 			<label class="lbl-sms-agree">
 			<input type="checkbox" name="sms" value="0" hidden="hidden" checked="checked">
 			<input class="form-check-input" type="checkbox" name="sms" value="1" id="sms" 

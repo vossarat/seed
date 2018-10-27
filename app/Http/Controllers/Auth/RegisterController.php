@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Trader;
+use App\Farmer;
+use App\Forwarder;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Mail;
+use Auth;
+use Func;
 
 class RegisterController extends Controller
 {
@@ -45,7 +50,11 @@ class RegisterController extends Controller
     protected function redirectTo()
 	{
 		$route = $this->request->profile;
-	    return route("$route.create");
+		
+		$id = Func::idByProfile( Auth::id() ); // из Func
+		
+	    return route("$route.edit", $id);
+	    
 	}
 
     /**
@@ -64,17 +73,13 @@ class RegisterController extends Controller
             ],
             
             [
-	            /*'email.required' => 'укажите Ваш e-mail',
-	            'email.email' => 'e-mail некоректен',
-	            'email.unique' => 'Пользователь с таким e-mail уже зарегистрирован',*/
-	            
+            
 	            'name.required' => 'укажите Имя пользователя',
 	            'name.unique' => 'Пользователь с таким именем уже зарегистрирован',
 	            
 	            'password.min' => 'Пароль должен содержать не менее 6 символов',
 	            'password.confirmed' => 'Неправильное подтверждение пароля',
 	            'password.required' => 'Заполните пароль',
-	            'password' => 'required|string|min:6|confirmed',
             ]
         );
     }
@@ -86,20 +91,28 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {	
+    {	    
+        $userProfile = Func::profile($data['profile']);
+        $userProfileTitle = $userProfile['title'];
+        $userProfileModel = 'App\\' . $userProfile['model'];
         
-        $userProfile =  $data['profile'] == 'farmer' ? 'Производитель СПХ' : 'Трейдер';       
-        Mail::send('auth.admin_email', ['viewdata' => $data, 'profile' => $userProfile], function ($message) use ($data, $userProfile) {
+        //dd( $userProfile['name']);
+            
+        Mail::send('auth.admin_email', [ 'viewdata' => $data, 'profile' => $userProfileTitle ], function ($message) use ( $data, $userProfileTitle ) {
 		    $message->from('admin@zelenka.trade', 'ZELENKA.TRADE');
-			$message->to('serazhiyevr@gmail.com', '')->subject('Регистрация нового пользователя: ' . $userProfile);
+			$message->to( env('MAIL_USERNAME',false), '')->subject('Регистрация нового пользователя: ' .$userProfileTitle);
 		});
-   	
-        return User::create([
+   		   		
+   		$createUser = User::create([
             'name' => $data['name'],
             //'email' => $data['email'],
             'phone' => $data['name'],
             'password' => bcrypt($data['password']),
             'profile' => $data['profile'],
         ]);
+ 	
+		$userProfileModel::create(['user_id' => $createUser->id]);  // добавление профиля в базу
+        
+        return $createUser;
     }
 }

@@ -14,8 +14,8 @@ class FeedbackController extends Controller
     	
     	$viewdata = $request->all();
     	Mail::send('feedback.email', ['viewdata' =>  $viewdata], function ($message) use ($viewdata) {
-		    $message->from('admin@zelenka.trade', 'Форма обратная связь ZELENKA.TRADE');
-			$message->to('tarassov.dv@gmail.com', '')->subject('Сообщение от пользователя ' . $viewdata['name']);
+		    $message->from(env('MAIL_USERNAME'), 'Форма обратная связь ZELENKA.TRADE');
+			$message->to(env('MAIL_USERNAME'), '')->subject('Сообщение от пользователя ' . $viewdata['name']);
 		});
     	       
         return redirect(route('feedback'))->with('message',"Сообщение отправлено");

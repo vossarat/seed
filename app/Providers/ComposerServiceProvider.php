@@ -14,12 +14,10 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('layouts.usermenu', 'App\Http\ViewComposers\UserMenuComposer');
-        View::composer('layouts.usermenumobile', 'App\Http\ViewComposers\UserMenuComposer');
-        View::composer('layouts.help', 'App\Http\ViewComposers\UserMenuComposer');
-        View::composer('layouts.topbar', 'App\Http\ViewComposers\RatesComposer');
-        View::composer('layouts.tableprice', 'App\Http\ViewComposers\RatesComposer');
+        View::composer(['layouts.usermenu', 'layouts.usermenumobile', 'layouts.help', 'layouts.news'], 'App\Http\ViewComposers\UserMenuComposer');
+        View::composer(['layouts.topbar','layouts.tableprice'], 'App\Http\ViewComposers\RatesComposer');
         View::composer('layouts.news', 'App\Http\ViewComposers\NewsComposer');
+        View::composer(['dashboard.index', 'layouts.topbar'], 'App\Http\ViewComposers\DashboardComposer');
     }
 
     /**

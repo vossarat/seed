@@ -26,9 +26,7 @@ class TraderController extends Controller
      */
     public function index()
     {
-        return view('trader.index')->with([        
-			'viewdata' => $this->trader->all(),
-		]);
+        return view('errors.404');
     }
 
     /**

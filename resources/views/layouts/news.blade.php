@@ -123,11 +123,21 @@
                     </a>
                     <div class="divider divider-nav"></div>
                     
-                    <a href="">
-	                    <h6>
-	                        МОЙ  ПРОФИЛЬ
-	                    </h6>
-                    </a>
+                   
+                    @if( $profile_type === 'trader')
+						@if( $profile_action === 'create' )
+							<a href="{{ route('trader.create') }}"><h6>МОЙ  ПРОФИЛЬ</h6></a>
+						@else
+							<a href="{{ route('trader.edit', $profile_id) }}"><h6>МОЙ  ПРОФИЛЬ</h6></a>
+						@endif
+					@else
+						@if( $profile_action === 'create' )
+							<a href="{{ route('farmer.create') }}"><h6>МОЙ  ПРОФИЛЬ</h6></a>
+						@else
+							<a href="{{ route('farmer.edit', $profile_id) }}"><h6>МОЙ  ПРОФИЛЬ</h6></a>
+						@endif
+					@endif
+                    
                     <div class="divider divider-nav"></div>
                     <a href="{{ route('feedback') }}">
 	                    <h6>

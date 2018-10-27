@@ -20,11 +20,12 @@
 </div>
 @endif
   
-<table class="table table-striped">
+<table id="viewtable" class="table table-striped">
 	<thead>
 		<tr>
 			<th>Наименование элеватора</th>
-			<th class="col-md-4" colspan="2"></th>
+			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -48,5 +49,37 @@
 		@endforeach
 	</tbody>
 </table>
+
+@push('scripts')
+<script>
+$(document).ready(function() { 
+	$('#viewtable').DataTable({
+		"language": {
+	        "sProcessing":    "Процесс...",
+	        "sLengthMenu":    "Показать _MENU_ записей",
+	        "sZeroRecords":   "Нет записей для отображения",
+	        "sEmptyTable":    "Нет записей для отображения",
+	        "sInfo":          "Показано с _START_ по _END_ из _TOTAL_ записей",
+	        "sInfoEmpty":     "Нет записей для отображения",
+	        "sInfoFiltered":  "",
+	        "sInfoPostFix":   "",
+	        "sSearch":        "Поиск:",
+	        "sUrl":           "",
+	        "sInfoThousands":  ",",
+	        "sLoadingRecords": "Загрузка...",
+	        "oPaginate": {
+	            "sFirst":   "Первая",
+	            "sLast":    "Последняя",
+	            "sNext":    "След",
+	            "sPrevious":"Пред"
+	        },
+    	},
+    	"aoColumnDefs": [
+          { 'bSortable': false, 'aTargets': [ 1, 2 ] }
+       ]
+	}); 
+} );
+</script>
+@endpush
 
 @endsection

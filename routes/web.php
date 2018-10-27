@@ -16,11 +16,17 @@ Artisan::call('view:clear');
 
 Auth::routes();
 
+Route::get('welcome/{locale}', function ($locale) {
+    App::setLocale($locale);
+    return redirect()->back();
+});
+
 Route::get('/','OrderController@index')->name('home');
 
 Route::resource('order','OrderController');
 Route::resource('trader','TraderController');
 Route::resource('farmer','FarmerController');
+Route::resource('forwarder','ForwarderController');
 
 Route::get('/xxx', function () {
     return view('layouts.sysmessage')->with('message','Страница в разработке ... ');
@@ -38,10 +44,14 @@ Route::post('/feedback','FeedbackController@send')->name('feedback_send');
 Route::prefix('dashboard')->middleware('dashboard')->group(
 	function ()
 	{
-	    Route::get('/', function () {
+	    /*Route::get('/', function () {
 		    return view('dashboard.template');
-		})->name('dashboard');
-	    Route::resource('/user', 'UserController');
+		})->name('dashboard');*/
+		Route::get('/','DashboardController@index')->name('dashboard');
+	    Route::resource('/dashboard_user', 'Dashboard\UserController');
+	    Route::resource('/dashboard_trader', 'Dashboard\TraderController');
+	    Route::resource('/dashboard_farmer', 'Dashboard\FarmerController');
+	    Route::resource('/dashboard_forwarder', 'Dashboard\ForwarderController');
 	    Route::resource('/country', 'Reference\CountryController');
 	    Route::resource('/state', 'Reference\StateController');
 	    Route::resource('/region', 'Reference\RegionController');

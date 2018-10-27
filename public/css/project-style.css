@@ -252,4 +252,12 @@ a > h6 {
 	.yes-close-modal {
 		background: #02646f;
 	}
-	
+
+.count-user {
+	color: #9b9b9b;
+	 border: 3px solid #9b9b9b;
+	 margin-left: 15px;
+	 margin-right: 15px;
+	 padding: 11px 11px 11px 11px;
+	 line-height: 0.7 ;
+}

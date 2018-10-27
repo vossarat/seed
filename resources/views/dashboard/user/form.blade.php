@@ -1,10 +1,35 @@
+<div class="form-group" {{ $errors->has('profile') ? ' has-error' : '' }}">
+	<div class="col-md-4 col-md-offset-4 text-left">
+	    <label class="radio-inline">
+	        <input type="radio" name="profile" value="trader" {{ $viewdata->profile == 'trader' ? 'checked' :  '' }}> Трейдер
+	    </label>
+	     <label class="radio-inline">
+	        <input type="radio" name="profile" value="farmer" {{ $viewdata->profile == 'farmer' ? 'checked' :  '' }}>Производитель СХП
+	    </label>
+	    <label class="radio-inline">
+	        <input type="radio" name="profile" value="forwarder" {{ $viewdata->profile == 'forwarder' ? 'checked' :  '' }}>Экспедитор
+	    </label>
+	
+	@if ($errors->has('profile'))
+	    <span class="help-block">
+	        <strong style="color:#a94442;">
+	            {{ $errors->first('profile') }}
+	        </strong>
+	    </span>
+    @endif
+    
+	</div>
+	
+</div>
+
+{{--
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
     <label for="name" class="col-md-4  col-xs-7 control-label">
         Имя пользователя
     </label>
 
     <div class="col-md-5 col-xs-9">
-        <input id="name" type="text" class="form-control" name="name" value="{{ $viewdata->name or old('name') }}"  {{ $disabled }} required>
+        <input id="name" type="text" class="form-control" name="name" value="{{ $viewdata->name or old('name') }}">
 
         @if ($errors->has('name'))
         <span class="help-block">
@@ -23,10 +48,11 @@
     </div>
 
 </div>
+--}}
 
 <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
     <label for="phone" class="col-md-4 control-label">
-        Телефон
+        Телефон (логин)
     </label>
 
     <div class="col-md-6">

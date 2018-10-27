@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
-
+use App\Reference\Rate;
 use App\Elevator;
 use App\User;
 
@@ -68,6 +68,13 @@ class ApiController extends Controller
 			}
 		}
     	return $corn_gost;
-    }    
+    }  
+    
+    public function setRates(Rate $rate)
+    {    	
+    	$rates = $rate->find(1);    	
+    	$rates->update( $rate->setRates() ); // дергаем курс из модели Rate
+    	$rates->save();    	
+    }  
     
 }

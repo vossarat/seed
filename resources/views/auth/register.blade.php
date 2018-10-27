@@ -51,12 +51,17 @@
                         <div class="form-wrap form-wrap-validation">
                             <div class="cell-md-2 cell-xs-12">
                                 <label class="radio-inline">
-                                    <input type="radio" name="profile" value="trader" checked="checked"> Трейдер
+                                    <input type="radio" name="profile" value="trader" checked="checked">Трейдер
                                 </label>
                             </div>
                             <div class="cell-md-2 cell-xs-12">
                                 <label class="radio-inline">
-                                    <input type="radio" name="profile" value="farmer">Производитель СПХ
+                                    <input type="radio" name="profile" value="farmer">Производитель СХП
+                                </label>
+                            </div>
+                            <div class="cell-md-2 cell-xs-12">
+                                <label class="radio-inline">
+                                    <input type="radio" name="profile" value="forwarder">Экспедитор
                                 </label>
                             </div>
 

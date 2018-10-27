@@ -18,7 +18,7 @@
 <treenode node="up;PHP:Function Name;C:\websites\seed.zelenka.ml\database\migrations\2018_09_08_112745_add_views_to_orders_table.php;f11;13;5;18;;;;vpos;;vvoid;;r&#10;Definition&#10;    up()&#10;&#10;Description&#10;     Run the migrations.;;d4,14;;b1,0;;m">
 </treenode>
 </treenode>
-<treenode node="ApiController;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\ApiController.php;f0;11;1;72;;;;vpos;;vController;;c;;r;;d0,12;;b0,0;;m">
+<treenode node="ApiController;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\ApiController.php;f0;11;1;79;;;;vpos;;vController;;c;;r;;d0,12;;b0,0;;m">
 <treenode node="__construct;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\ApiController.php;f8;13;2;17;;;;vpos;;v;;r;;d1,14;;b1,0;;melevator;;puser;;p">
 </treenode>
 <treenode node="addViewOrder;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\ApiController.php;f11;47;5;52;;;;vpos;;v;;r;;d4,48;;b1,0;;morder_id;;p">
@@ -30,6 +30,8 @@
 <treenode node="getGostsbyCorn;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\ApiController.php;f11;60;5;70;;;;vpos;;v;;r;;d4,61;;b1,0;;midCorn;;p">
 </treenode>
 <treenode node="orderToElevator;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\ApiController.php;f11;33;5;45;;;;vpos;;v;;r;;d4,34;;b1,0;;maction;;porder_id;;pelevator_id;;p">
+</treenode>
+<treenode node="setRates;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\ApiController.php;f11;72;5;77;;;;vpos;;v;;r;;d4,73;;b1,0;;mrate;;p">
 </treenode>
 </treenode>
 <treenode node="AppServiceProvider;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Providers\AppServiceProvider.php;f0;8;1;30;;;;vpos;;vServiceProvider;;c;;r;;d0,9;;b0,0;;m">
@@ -80,10 +82,10 @@
 <treenode node="boot;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Providers\BroadcastServiceProvider.php;f11;14;5;19;;;;vpos;;vvoid;;r&#10;Definition&#10;    boot()&#10;&#10;Description&#10;     Bootstrap any application services.;;d4,15;;b1,0;;m">
 </treenode>
 </treenode>
-<treenode node="ComposerServiceProvider;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Providers\ComposerServiceProvider.php;f0;7;1;33;;;;vpos;;vServiceProvider;;c;;r;;d0,8;;b0,0;;m">
-<treenode node="boot;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Providers\ComposerServiceProvider.php;f11;14;5;22;;;;vpos;;vvoid;;r&#10;Definition&#10;    boot()&#10;&#10;Description&#10;     Bootstrap the application services.;;d4,15;;b1,0;;m">
+<treenode node="ComposerServiceProvider;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Providers\ComposerServiceProvider.php;f0;7;1;31;;;;vpos;;vServiceProvider;;c;;r;;d0,8;;b0,0;;m">
+<treenode node="boot;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Providers\ComposerServiceProvider.php;f11;14;5;20;;;;vpos;;vvoid;;r&#10;Definition&#10;    boot()&#10;&#10;Description&#10;     Bootstrap the application services.;;d4,15;;b1,0;;m">
 </treenode>
-<treenode node="register;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Providers\ComposerServiceProvider.php;f11;29;5;32;;;;vpos;;vvoid;;r&#10;Definition&#10;    register()&#10;&#10;Description&#10;     Register the application services.;;d4,30;;b1,0;;m">
+<treenode node="register;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Providers\ComposerServiceProvider.php;f11;27;5;30;;;;vpos;;vvoid;;r&#10;Definition&#10;    register()&#10;&#10;Description&#10;     Register the application services.;;d4,28;;b1,0;;m">
 </treenode>
 </treenode>
 <treenode node="Controller;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Controller.php;f0;9;1;12;;;;vpos;;vBaseController;;cAuthorizesRequests;;c;;r;;d0,10;;b0,0;;m">
@@ -136,18 +138,6 @@
 <treenode node="store;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CountryController.php;f11;44;5;51;;;;vpos;;v;;r&#10;Definition&#10;    store(Request $request)&#10;&#10;Description&#10;     Store a newly created resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request;;d4,45;;b1,0;;m\Illuminate\Http\Request $request;;p">
 </treenode>
 <treenode node="update;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\CountryController.php;f11;86;5;92;;;;vpos;;v;;r&#10;Definition&#10;    update(Request $request, $id)&#10;&#10;Description&#10;     Update the specified resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request&#10;    int $id;;d4,87;;b1,0;;m\Illuminate\Http\Request $request;;pint $id;;p">
-</treenode>
-</treenode>
-<treenode node="CreateAttributeElevatorTable;PHP:Class Name;C:\websites\seed.zelenka.ml\database\migrations\2018_09_26_160924_create_attribute_elevator_table.php;f0;6;1;34;;;;vpos;;vMigration;;c;;r;;d0,7;;b0,0;;m">
-<treenode node="down;PHP:Function Name;C:\websites\seed.zelenka.ml\database\migrations\2018_09_26_160924_create_attribute_elevator_table.php;f11;30;5;33;;;;vpos;;vvoid;;r&#10;Definition&#10;    down()&#10;&#10;Description&#10;     Reverse the migrations.;;d4,31;;b1,0;;m">
-</treenode>
-<treenode node="up;PHP:Function Name;C:\websites\seed.zelenka.ml\database\migrations\2018_09_26_160924_create_attribute_elevator_table.php;f11;13;5;23;;;;vpos;;vvoid;;r&#10;Definition&#10;    up()&#10;&#10;Description&#10;     Run the migrations.;;d4,14;;b1,0;;m">
-</treenode>
-</treenode>
-<treenode node="CreateAttributesTable;PHP:Class Name;C:\websites\seed.zelenka.ml\database\migrations\2018_09_26_115146_create_attributes_table.php;f0;6;1;31;;;;vpos;;vMigration;;c;;r;;d0,7;;b0,0;;m">
-<treenode node="down;PHP:Function Name;C:\websites\seed.zelenka.ml\database\migrations\2018_09_26_115146_create_attributes_table.php;f11;27;5;30;;;;vpos;;vvoid;;r&#10;Definition&#10;    down()&#10;&#10;Description&#10;     Reverse the migrations.;;d4,28;;b1,0;;m">
-</treenode>
-<treenode node="up;PHP:Function Name;C:\websites\seed.zelenka.ml\database\migrations\2018_09_26_115146_create_attributes_table.php;f11;13;5;20;;;;vpos;;vvoid;;r&#10;Definition&#10;    up()&#10;&#10;Description&#10;     Run the migrations.;;d4,14;;b1,0;;m">
 </treenode>
 </treenode>
 <treenode node="CreateCornElevatorTable;PHP:Class Name;C:\websites\seed.zelenka.ml\database\migrations\2018_07_25_083856_create_corn_elevator_table.php;f0;6;1;33;;;;vpos;;vMigration;;c;;r;;d0,7;;b0,0;;m">
@@ -214,6 +204,12 @@
 <treenode node="down;PHP:Function Name;C:\websites\seed.zelenka.ml\database\migrations\2018_08_16_154250_create_favorite_user_elevator_table.php;f11;27;5;30;;;;vpos;;vvoid;;r&#10;Definition&#10;    down()&#10;&#10;Description&#10;     Reverse the migrations.;;d4,28;;b1,0;;m">
 </treenode>
 <treenode node="up;PHP:Function Name;C:\websites\seed.zelenka.ml\database\migrations\2018_08_16_154250_create_favorite_user_elevator_table.php;f11;13;5;20;;;;vpos;;vvoid;;r&#10;Definition&#10;    up()&#10;&#10;Description&#10;     Run the migrations.;;d4,14;;b1,0;;m">
+</treenode>
+</treenode>
+<treenode node="CreateForwardersTable;PHP:Class Name;C:\websites\seed.zelenka.ml\database\migrations\2018_10_24_134901_create_forwarders_table.php;f0;6;1;33;;;;vpos;;vMigration;;c;;r;;d0,7;;b0,0;;m">
+<treenode node="down;PHP:Function Name;C:\websites\seed.zelenka.ml\database\migrations\2018_10_24_134901_create_forwarders_table.php;f11;29;5;32;;;;vpos;;vvoid;;r&#10;Definition&#10;    down()&#10;&#10;Description&#10;     Reverse the migrations.;;d4,30;;b1,0;;m">
+</treenode>
+<treenode node="up;PHP:Function Name;C:\websites\seed.zelenka.ml\database\migrations\2018_10_24_134901_create_forwarders_table.php;f11;13;5;22;;;;vpos;;vvoid;;r&#10;Definition&#10;    up()&#10;&#10;Description&#10;     Run the migrations.;;d4,14;;b1,0;;m">
 </treenode>
 </treenode>
 <treenode node="CreateGostOrderTable;PHP:Class Name;C:\websites\seed.zelenka.ml\database\migrations\2018_09_19_134457_create_gost_order_table.php;f0;6;1;33;;;;vpos;;vMigration;;c;;r;;d0,7;;b0,0;;m">
@@ -338,6 +334,18 @@
 <treenode node="handle;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Middleware\Dashboard.php;f11;17;2;26;;;;vpos;;vmixed;;r&#10;Definition&#10;    handle($request, Closure $next)&#10;&#10;Description&#10;     Handle an incoming request.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request&#10;    \Closure $next;;d4,18;;b1,0;;m\Illuminate\Http\Request $request;;p\Closure $next;;p">
 </treenode>
 </treenode>
+<treenode node="DashboardComposer;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\ViewComposers\UserMenuComposer.php;f0;7;1;29;;C:\websites\seed.zelenka.ml\app\Http\ViewComposers\DashboardComposer.php;f0;11;1;37;;;;vpos;;v;;r;;d24,11;;b0,0;;m">
+<treenode node="__construct;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\ViewComposers\UserMenuComposer.php;f11;9;5;13;;C:\websites\seed.zelenka.ml\app\Http\ViewComposers\DashboardComposer.php;f11;13;5;17;;;;vpos;;v;;r;;d4,14;;b1,0;;m">
+</treenode>
+<treenode node="compose;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\ViewComposers\UserMenuComposer.php;f11;21;5;27;;C:\websites\seed.zelenka.ml\app\Http\ViewComposers\DashboardComposer.php;f11;25;5;35;;;;vpos;;vvoid;;r&#10;Definition&#10;    compose(View $view)&#10;&#10;Description&#10;     Bind data to the view.&#10;&#10;Parameters:&#10;    View $view;;d4,26;;b1,0;;mView $view;;p">
+</treenode>
+</treenode>
+<treenode node="DashboardController;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\DashboardController.php;f0;6;1;12;;;;vpos;;vController;;c;;r;;d0,7;;b0,0;;m">
+<treenode node="index;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\DashboardController.php;f11;8;5;11;;;;vpos;;v;;r;;d4,9;;b1,0;;m">
+</treenode>
+</treenode>
+<treenode node="DashboardTraderController;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\DashboardTraderController.php;f0;6;1;9;;;;vpos;;vController;;c;;r;;d0,9;;b0,0;;m">
+</treenode>
 <treenode node="DatabaseSeeder;PHP:Class Name;C:\websites\seed.zelenka.ml\database\seeds\DatabaseSeeder.php;f0;4;1;15;;;;vpos;;vSeeder;;c;;r;;d0,5;;b0,0;;m">
 <treenode node="run;PHP:Function Name;C:\websites\seed.zelenka.ml\database\seeds\DatabaseSeeder.php;f11;11;5;14;;;;vpos;;vvoid;;r&#10;Definition&#10;    run()&#10;&#10;Description&#10;     Run the database seeds.;;d4,12;;b1,0;;m">
 </treenode>
@@ -424,24 +432,24 @@
 <treenode node="user;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Farmer.php;f8;19;2;22;;;;vpos;;v;;r;;d1,20;;b1,0;;m">
 </treenode>
 </treenode>
-<treenode node="FarmerController;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f0;14;1;191;;;;vpos;;vController;;c;;r;;d0,15;;b0,0;;m">
-<treenode node="__construct;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f8;16;2;22;;;;vpos;;v;;r;;d1,17;;b1,0;;mfarmer;;puser;;pregion;;pcorn;;p">
+<treenode node="FarmerController;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f0;14;1;191;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f0;15;1;172;;;;vpos;;vController;;c;;r;;d0,16;;b0,0;;m">
+<treenode node="__construct;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f8;16;2;22;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f8;17;2;23;;;;vpos;;v;;r;;d1,18;;b1,0;;mfarmer;;puser;;pregion;;pcorn;;p">
 </treenode>
-<treenode node="create;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f11;38;5;46;;;;vpos;;v;;r&#10;Definition&#10;    create()&#10;&#10;Description&#10;     Show the form for creating a new resource.;;d4,39;;b1,0;;m">
+<treenode node="create;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f11;38;5;46;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f11;41;5;44;;;;vpos;;v;;r&#10;Definition&#10;    create()&#10;&#10;Description&#10;     Show the form for creating a new resource.;;d4,42;;b1,0;;m">
 </treenode>
-<treenode node="destroy;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f11;163;5;166;;;;vpos;;v;;r&#10;Definition&#10;    destroy(Farmer $farmer)&#10;&#10;Description&#10;     Remove the specified resource from storage.&#10;&#10;Parameters:&#10;    \App\Farmer $farmer;;d4,164;;b1,0;;m\App\Farmer $farmer;;p">
+<treenode node="destroy;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f11;163;5;166;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f11;152;5;155;;;;vpos;;v;;r&#10;Definition&#10;    destroy($id)&#10;&#10;Description&#10;     Remove the specified resource from storage.&#10;&#10;Parameters:&#10;    int $id;;d4,153;;b1,0;;mint $id;;p">
 </treenode>
-<treenode node="edit;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f11;93;5;119;;;;vpos;;v;;r&#10;Definition&#10;    edit($id)&#10;&#10;Description&#10;     Show the form for editing the specified resource.&#10;&#10;Parameters:&#10;    \App\Farmer $farmer;;d4,94;;b1,0;;m\App\Farmer $farmer;;p">
+<treenode node="edit;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f11;93;5;119;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f11;74;5;101;;;;vpos;;v;;r&#10;Definition&#10;    edit($id)&#10;&#10;Description&#10;     Show the form for editing the specified resource.&#10;&#10;Parameters:&#10;    int $id;;d4,75;;b1,0;;mint $id;;p">
 </treenode>
-<treenode node="index;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f11;28;5;31;;;;vpos;;v;;r&#10;Definition&#10;    index()&#10;&#10;Description&#10;     Display a listing of the resource.;;d4,29;;b1,0;;m">
+<treenode node="index;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f11;28;5;31;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f11;29;5;34;;;;vpos;;v;;r&#10;Definition&#10;    index()&#10;&#10;Description&#10;     Display a listing of the resource.;;d4,30;;b1,0;;m">
 </treenode>
-<treenode node="show;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f11;82;5;85;;;;vpos;;v;;r&#10;Definition&#10;    show(Farmer $farmer)&#10;&#10;Description&#10;     Display the specified resource.&#10;&#10;Parameters:&#10;    \App\Farmer $farmer;;d4,83;;b1,0;;m\App\Farmer $farmer;;p">
+<treenode node="show;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f11;82;5;85;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f11;63;5;66;;;;vpos;;v;;r&#10;Definition&#10;    show($id)&#10;&#10;Description&#10;     Display the specified resource.&#10;&#10;Parameters:&#10;    int $id;;d4,64;;b1,0;;mint $id;;p">
 </treenode>
-<treenode node="store;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f11;54;5;74;;;;vpos;;v;;r&#10;Definition&#10;    store(Request $request)&#10;&#10;Description&#10;     Store a newly created resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request;;d4,55;;b1,0;;m\Illuminate\Http\Request $request;;p">
+<treenode node="store;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f11;54;5;74;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f11;52;5;55;;;;vpos;;v;;r&#10;Definition&#10;    store(Request $request)&#10;&#10;Description&#10;     Store a newly created resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request;;d4,53;;b1,0;;m\Illuminate\Http\Request $request;;p">
 </treenode>
-<treenode node="update;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f11;128;5;155;;;;vpos;;v;;r&#10;Definition&#10;    update(Request $request, $id)&#10;&#10;Description&#10;     Update the specified resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request&#10;    \App\Farmer $farmer;;d4,129;;b1,0;;m\Illuminate\Http\Request $request;;p\App\Farmer $farmer;;p">
+<treenode node="update;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f11;128;5;155;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f11;110;5;144;;;;vpos;;v;;r&#10;Definition&#10;    update(Request $request, $id)&#10;&#10;Description&#10;     Update the specified resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request&#10;    int $id;;d4,111;;b1,0;;m\Illuminate\Http\Request $request;;pint $id;;p">
 </treenode>
-<treenode node="validator;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f14;168;5;190;;;;vpos;;v;;r;;d4,169;;b2,0;;mdata;;p">
+<treenode node="validator;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FarmerController.php;f14;168;5;190;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f14;157;5;171;;;;vpos;;v;;r;;d4,158;;b2,0;;mdata;;p">
 </treenode>
 </treenode>
 <treenode node="FeedbackController;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\FeedbackController.php;f0;8;1;40;;;;vpos;;vController;;c;;r;;d0,9;;b0,0;;m">
@@ -454,10 +462,38 @@
 <treenode node="__construct;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Auth\ForgotPasswordController.php;f11;27;5;30;;;;vpos;;vvoid;;r&#10;Definition&#10;    __construct()&#10;&#10;Description&#10;     Create a new controller instance.;;d4,28;;b1,0;;m">
 </treenode>
 </treenode>
-<treenode node="Func;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Helpers\Func.php;f0;8;1;45;;;;vpos;;v;;r;;d11,8;;b0,0;;m">
+<treenode node="Forwarder;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Forwarder.php;f0;6;1;22;;;;vpos;;vModel;;c;;r;;d0,7;;b0,0;;m">
+<treenode node="user;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Forwarder.php;f8;18;2;21;;;;vpos;;v;;r;;d1,19;;b1,0;;m">
+</treenode>
+</treenode>
+<treenode node="ForwarderController;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\ForwarderController.php;f0;13;1;145;;C:\websites\seed.zelenka.ml\app\Http\Controllers\ForwarderController.php;f0;7;1;84;;;;vpos;;vController;;c;;r;;d0,8;;b0,0;;m">
+<treenode node="__construct;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\ForwarderController.php;f11;15;5;20;;;;vpos;;v;;r;;d4,16;;b1,0;;mforwarder;;puser;;p">
+</treenode>
+<treenode node="create;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\ForwarderController.php;f11;38;5;41;;C:\websites\seed.zelenka.ml\app\Http\Controllers\ForwarderController.php;f11;24;5;27;;;;vpos;;v;;r&#10;Definition&#10;    create()&#10;&#10;Description&#10;     Show the form for creating a new resource.;;d4,25;;b1,0;;m">
+</treenode>
+<treenode node="destroy;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\ForwarderController.php;f11;122;5;125;;C:\websites\seed.zelenka.ml\app\Http\Controllers\ForwarderController.php;f11;80;5;83;;;;vpos;;v;;r&#10;Definition&#10;    destroy(Forwarder $forwarder)&#10;&#10;Description&#10;     Remove the specified resource from storage.&#10;&#10;Parameters:&#10;    \App\Forwarder $forwarder;;d4,81;;b1,0;;m\App\Forwarder $forwarder;;p">
+</treenode>
+<treenode node="edit;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\ForwarderController.php;f11;71;5;76;;C:\websites\seed.zelenka.ml\app\Http\Controllers\ForwarderController.php;f11;57;5;60;;;;vpos;;v;;r&#10;Definition&#10;    edit(Forwarder $forwarder)&#10;&#10;Description&#10;     Show the form for editing the specified resource.&#10;&#10;Parameters:&#10;    \App\Forwarder $forwarder;;d4,58;;b1,0;;m\App\Forwarder $forwarder;;p">
+</treenode>
+<treenode node="index;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\ForwarderController.php;f11;26;5;31;;C:\websites\seed.zelenka.ml\app\Http\Controllers\ForwarderController.php;f11;14;5;17;;;;vpos;;v;;r&#10;Definition&#10;    index()&#10;&#10;Description&#10;     Display a listing of the resource.;;d4,15;;b1,0;;m">
+</treenode>
+<treenode node="show;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\ForwarderController.php;f11;60;5;63;;C:\websites\seed.zelenka.ml\app\Http\Controllers\ForwarderController.php;f11;46;5;49;;;;vpos;;v;;r&#10;Definition&#10;    show(Forwarder $forwarder)&#10;&#10;Description&#10;     Display the specified resource.&#10;&#10;Parameters:&#10;    \App\Forwarder $forwarder;;d4,47;;b1,0;;m\App\Forwarder $forwarder;;p">
+</treenode>
+<treenode node="store;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\ForwarderController.php;f11;49;5;52;;C:\websites\seed.zelenka.ml\app\Http\Controllers\ForwarderController.php;f11;35;5;38;;;;vpos;;v;;r&#10;Definition&#10;    store(Request $request)&#10;&#10;Description&#10;     Store a newly created resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request;;d4,36;;b1,0;;m\Illuminate\Http\Request $request;;p">
+</treenode>
+<treenode node="update;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\ForwarderController.php;f11;85;5;114;;C:\websites\seed.zelenka.ml\app\Http\Controllers\ForwarderController.php;f11;69;5;72;;;;vpos;;v;;r&#10;Definition&#10;    update(Request $request, Forwarder $forwarder)&#10;&#10;Description&#10;     Update the specified resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request&#10;    \App\Forwarder $forwarder;;d4,70;;b1,0;;m\Illuminate\Http\Request $request;;p\App\Forwarder $forwarder;;p">
+</treenode>
+<treenode node="validator;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\ForwarderController.php;f14;127;5;144;;;;vpos;;v;;r;;d4,128;;b2,0;;mdata;;p">
+</treenode>
+</treenode>
+<treenode node="Func;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Helpers\Func.php;f0;8;1;70;;;;vpos;;v;;r;;d11,8;;b0,0;;m">
 <treenode node="farmerByUserId;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Helpers\Func.php;f18;31;5;37;;;;vpos;;v;;r;;d4,32;;b1,5;;muserId;;p">
 </treenode>
-<treenode node="phoneOnlyNumber;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Helpers\Func.php;f18;39;5;44;;;;vpos;;v;;r;;d4,40;;b1,5;;mphoneNumber;;p">
+<treenode node="idByProfile;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Helpers\Func.php;f18;39;5;46;;;;vpos;;v;;r;;d4,40;;b1,5;;muserId;;p">
+</treenode>
+<treenode node="phoneOnlyNumber;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Helpers\Func.php;f18;48;5;53;;;;vpos;;v;;r;;d4,49;;b1,5;;mphoneNumber;;p">
+</treenode>
+<treenode node="profile;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Helpers\Func.php;f18;55;5;69;;;;vpos;;v;;r;;d4,56;;b1,5;;mprofileValue;;p">
 </treenode>
 <treenode node="traderByUserId;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Helpers\Func.php;f18;14;5;29;;;;vpos;;vstring;;r&#10;Definition&#10;    traderByUserId($userId)&#10;&#10;Description&#10;      User-id&#10;&#10;Parameters:&#10;    int $user_id - User-id;;d4,15;;b1,5;;mint $user_id;;p">
 </treenode>
@@ -884,7 +920,9 @@
 <treenode node="update;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\PostController.php;f11;90;5;96;;;;vpos;;v;;r&#10;Definition&#10;    update(Request $request, $id)&#10;&#10;Description&#10;     Update the specified resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request&#10;    \App\Post $post;;d4,91;;b1,0;;m\Illuminate\Http\Request $request;;p\App\Post $post;;p">
 </treenode>
 </treenode>
-<treenode node="Rate;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Reference\Rate.php;f0;6;1;15;;;;vpos;;vModel;;c;;r;;d0,7;;b0,0;;m">
+<treenode node="Rate;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Reference\Rate.php;f0;6;1;36;;;;vpos;;vModel;;c;;r;;d0,7;;b0,0;;m">
+<treenode node="setRates;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Reference\Rate.php;f8;16;5;35;;;;vpos;;v;;r;;d4,17;;b1,0;;m">
+</treenode>
 </treenode>
 <treenode node="RateController;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\RateController.php;f0;8;1;98;;;;vpos;;vController;;c;;r;;d0,9;;b0,0;;m">
 <treenode node="__construct;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\RateController.php;f8;10;2;13;;;;vpos;;v;;r;;d1,11;;b1,0;;mrate;;p">
@@ -948,14 +986,14 @@
 <treenode node="update;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Reference\RegionController.php;f11;91;5;97;;;;vpos;;v;;r&#10;Definition&#10;    update(Request $request, $id)&#10;&#10;Description&#10;     Update the specified resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request&#10;    int $id;;d4,92;;b1,0;;m\Illuminate\Http\Request $request;;pint $id;;p">
 </treenode>
 </treenode>
-<treenode node="RegisterController;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Auth\RegisterController.php;f0;11;1;104;;;;vpos;;vController;;cRegistersUsers;;c;;r;;d0,12;;b0,0;;m">
-<treenode node="__construct;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Auth\RegisterController.php;f11;38;5;42;;;;vpos;;vvoid;;r&#10;Definition&#10;    __construct(Request $request)&#10;&#10;Description&#10;     Create a new controller instance.;;d4,39;;b1,0;;mrequest;;p">
+<treenode node="RegisterController;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Auth\RegisterController.php;f0;16;1;132;;;;vpos;;vController;;cRegistersUsers;;c;;r;;d0,17;;b0,0;;m">
+<treenode node="__construct;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Auth\RegisterController.php;f11;43;5;47;;;;vpos;;vvoid;;r&#10;Definition&#10;    __construct(Request $request)&#10;&#10;Description&#10;     Create a new controller instance.;;d4,44;;b1,0;;mrequest;;p">
 </treenode>
-<treenode node="create;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Auth\RegisterController.php;f14;87;5;103;;;;vpos;;v;;r&#10;Definition&#10;    create(array $data)&#10;&#10;Description&#10;     Create a new user instance after a valid registration.&#10;&#10;Parameters:&#10;    array $data;;d4,88;;b2,0;;marray $data;;p">
+<treenode node="create;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Auth\RegisterController.php;f14;97;5;131;;;;vpos;;v;;r&#10;Definition&#10;    create(array $data)&#10;&#10;Description&#10;     Create a new user instance after a valid registration.&#10;&#10;Parameters:&#10;    array $data;;d4,98;;b2,0;;marray $data;;p">
 </treenode>
-<treenode node="redirectTo;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Auth\RegisterController.php;f14;44;2;48;;;;vpos;;v;;r;;d1,45;;b2,0;;m">
+<treenode node="redirectTo;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Auth\RegisterController.php;f14;49;2;59;;;;vpos;;v;;r;;d1,50;;b2,0;;m">
 </treenode>
-<treenode node="validator;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Auth\RegisterController.php;f14;56;5;79;;;;vpos;;v;;r&#10;Definition&#10;    validator(array $data)&#10;&#10;Description&#10;     Get a validator for an incoming registration request.&#10;&#10;Parameters:&#10;    array $data;;d4,57;;b2,0;;marray $data;;p">
+<treenode node="validator;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Auth\RegisterController.php;f14;67;5;89;;;;vpos;;v;;r&#10;Definition&#10;    validator(array $data)&#10;&#10;Description&#10;     Get a validator for an incoming registration request.&#10;&#10;Parameters:&#10;    array $data;;d4,68;;b2,0;;marray $data;;p">
 </treenode>
 </treenode>
 <treenode node="RequestParameters;PHP:Class Name;C:\websites\seed.zelenka.ml\public\bat\ReCaptcha\RequestParameters.php;f0;31;1;102;;;;vpos;;v;;r&#10;Definition&#10;    class RequestParameters&#10;&#10;Description&#10;     Stores and formats the parameters for the request to the reCAPTCHA service.;;d0,32;;b0,0;;m">
@@ -1156,68 +1194,64 @@
 <treenode node="user;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Trader.php;f8;22;2;25;;;;vpos;;v;;r;;d1,23;;b1,0;;m">
 </treenode>
 </treenode>
-<treenode node="TraderController;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f0;13;1;161;;;;vpos;;vController;;c;;r;;d0,14;;b0,0;;m">
-<treenode node="__construct;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f8;15;2;19;;;;vpos;;v;;r;;d1,16;;b1,0;;mtrader;;puser;;p">
+<treenode node="TraderController;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f0;13;1;159;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\TraderController.php;f0;11;1;157;;;;vpos;;vController;;c;;r;;d0,12;;b0,0;;m">
+<treenode node="__construct;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f8;15;2;19;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f8;13;2;16;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\TraderController.php;f8;13;2;16;;;;vpos;;v;;r;;d1,14;;b1,0;;mtrader;;p">
 </treenode>
-<treenode node="create;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f11;38;5;41;;;;vpos;;v;;r&#10;Definition&#10;    create()&#10;&#10;Description&#10;     Show the form for creating a new resource.;;d4,39;;b1,0;;m">
+<treenode node="create;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f11;36;5;39;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f11;34;5;38;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\TraderController.php;f11;34;5;38;;;;vpos;;v;;r&#10;Definition&#10;    create()&#10;&#10;Description&#10;     Show the form for creating a new resource.;;d4,35;;b1,0;;m">
 </treenode>
-<treenode node="destroy;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f11;133;5;136;;;;vpos;;v;;r&#10;Definition&#10;    destroy(Trader $trader)&#10;&#10;Description&#10;     Remove the specified resource from storage.&#10;&#10;Parameters:&#10;    \App\Trader $trader;;d4,134;;b1,0;;m\App\Trader $trader;;p">
+<treenode node="destroy;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f11;131;5;134;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f11;139;5;142;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\TraderController.php;f11;139;5;142;;;;vpos;;v;;r&#10;Definition&#10;    destroy($id)&#10;&#10;Description&#10;     Remove the specified resource from storage.&#10;&#10;Parameters:&#10;    int $id;;d4,140;;b1,0;;mint $id;;p">
 </treenode>
-<treenode node="edit;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f11;85;5;90;;;;vpos;;v;;r&#10;Definition&#10;    edit($id)&#10;&#10;Description&#10;     Show the form for editing the specified resource.&#10;&#10;Parameters:&#10;    \App\Trader $trader;;d4,86;;b1,0;;m\App\Trader $trader;;p">
+<treenode node="edit;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f11;83;5;88;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f11;86;5;92;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\TraderController.php;f11;86;5;92;;;;vpos;;v;;r&#10;Definition&#10;    edit($id)&#10;&#10;Description&#10;     Show the form for editing the specified resource.&#10;&#10;Parameters:&#10;    int $id;;d4,87;;b1,0;;mint $id;;p">
 </treenode>
-<treenode node="index;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f11;26;5;31;;;;vpos;;v;;r&#10;Definition&#10;    index()&#10;&#10;Description&#10;     Display a listing of the resource.;;d4,27;;b1,0;;m">
+<treenode node="index;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f11;26;5;29;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f11;22;5;27;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\TraderController.php;f11;22;5;27;;;;vpos;;v;;r&#10;Definition&#10;    index()&#10;&#10;Description&#10;     Display a listing of the resource.;;d4,23;;b1,0;;m">
 </treenode>
-<treenode node="show;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f11;74;5;77;;;;vpos;;v;;r&#10;Definition&#10;    show(Trader $trader)&#10;&#10;Description&#10;     Display the specified resource.&#10;&#10;Parameters:&#10;    \App\Trader $trader;;d4,75;;b1,0;;m\App\Trader $trader;;p">
+<treenode node="show;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f11;72;5;75;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f11;75;5;78;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\TraderController.php;f11;75;5;78;;;;vpos;;v;;r&#10;Definition&#10;    show($id)&#10;&#10;Description&#10;     Display the specified resource.&#10;&#10;Parameters:&#10;    int $id;;d4,76;;b1,0;;mint $id;;p">
 </treenode>
-<treenode node="store;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f11;49;5;66;;;;vpos;;v;;r&#10;Definition&#10;    store(Request $request)&#10;&#10;Description&#10;     Store a newly created resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request;;d4,50;;b1,0;;m\Illuminate\Http\Request $request;;p">
+<treenode node="store;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f11;47;5;64;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f11;46;5;67;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\TraderController.php;f11;46;5;67;;;;vpos;;v;;r&#10;Definition&#10;    store(Request $request)&#10;&#10;Description&#10;     Store a newly created resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request;;d4,47;;b1,0;;m\Illuminate\Http\Request $request;;p">
 </treenode>
-<treenode node="update;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f11;99;5;125;;;;vpos;;v;;r&#10;Definition&#10;    update(Request $request, $id)&#10;&#10;Description&#10;     Update the specified resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request&#10;    \App\Trader $trader;;d4,100;;b1,0;;m\Illuminate\Http\Request $request;;p\App\Trader $trader;;p">
+<treenode node="update;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f11;97;5;123;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f11;101;5;131;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\TraderController.php;f11;101;5;131;;;;vpos;;v;;r&#10;Definition&#10;    update(Request $request, $id)&#10;&#10;Description&#10;     Update the specified resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request&#10;    int $id;;d4,102;;b1,0;;m\Illuminate\Http\Request $request;;pint $id;;p">
 </treenode>
-<treenode node="validator;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f14;138;5;160;;;;vpos;;v;;r;;d4,139;;b2,0;;mdata;;p">
+<treenode node="validator;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\TraderController.php;f14;136;5;158;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\FarmerController.php;f14;144;5;166;;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\TraderController.php;f14;144;5;156;;;;vpos;;v;;r;;d4,145;;b2,0;;mdata;;p">
 </treenode>
 </treenode>
 <treenode node="TrimStrings;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Middleware\TrimStrings.php;f0;6;1;17;;;;vpos;;vMiddleware;;c;;r;;d0,7;;b0,0;;m">
 </treenode>
 <treenode node="TrustProxies;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Middleware\TrustProxies.php;f0;7;1;28;;;;vpos;;vMiddleware;;c;;r;;d0,8;;b0,0;;m">
 </treenode>
-<treenode node="User;PHP:Class Name;C:\websites\seed.zelenka.ml\app\User.php;f0;9;1;76;;;;vpos;;vAuthenticatable;;cNotifiable;;c;;r;;d0,10;;b0,0;;m">
+<treenode node="User;PHP:Class Name;C:\websites\seed.zelenka.ml\app\User.php;f0;9;1;81;;;;vpos;;vAuthenticatable;;cNotifiable;;c;;r;;d0,10;;b0,0;;m">
 <treenode node="elevator;PHP:Function Name;C:\websites\seed.zelenka.ml\app\User.php;f8;46;2;49;;;;vpos;;v;;r;;d1,47;;b1,0;;m">
 </treenode>
 <treenode node="farmer;PHP:Function Name;C:\websites\seed.zelenka.ml\app\User.php;f8;36;2;39;;;;vpos;;v;;r;;d1,37;;b1,0;;m">
 </treenode>
+<treenode node="forwarder;PHP:Function Name;C:\websites\seed.zelenka.ml\app\User.php;f8;51;2;54;;;;vpos;;v;;r;;d1,52;;b1,0;;m">
+</treenode>
 <treenode node="order;PHP:Function Name;C:\websites\seed.zelenka.ml\app\User.php;f8;41;2;44;;;;vpos;;v;;r;;d1,42;;b1,0;;m">
 </treenode>
-<treenode node="ScopeFarmersEmailByCorn;PHP:Function Name;C:\websites\seed.zelenka.ml\app\User.php;f8;51;2;62;;;;vpos;;v;;r;;d1,52;;b1,0;;mquery;;pcorns;;p">
+<treenode node="ScopeFarmersEmailByCorn;PHP:Function Name;C:\websites\seed.zelenka.ml\app\User.php;f8;56;2;67;;;;vpos;;v;;r;;d1,57;;b1,0;;mquery;;pcorns;;p">
 </treenode>
-<treenode node="ScopeFarmersPhoneByCorn;PHP:Function Name;C:\websites\seed.zelenka.ml\app\User.php;f8;64;2;74;;;;vpos;;v;;r;;d1,65;;b1,0;;mquery;;pcorns;;p">
+<treenode node="ScopeFarmersPhoneByCorn;PHP:Function Name;C:\websites\seed.zelenka.ml\app\User.php;f8;69;2;79;;;;vpos;;v;;r;;d1,70;;b1,0;;mquery;;pcorns;;p">
 </treenode>
 <treenode node="trader;PHP:Function Name;C:\websites\seed.zelenka.ml\app\User.php;f11;31;2;34;;;;vpos;;v;;r;;d1,32;;b1,0;;m">
 </treenode>
 </treenode>
-<treenode node="UserController;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\UserController.php;f0;8;1;152;;;;vpos;;vController;;c;;r;;d0,9;;b0,0;;m">
-<treenode node="__construct;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\UserController.php;f8;10;2;13;;;;vpos;;v;;r;;d1,11;;b1,0;;muser;;p">
+<treenode node="UserController;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\UserController.php;f0;12;1;200;;;;vpos;;vController;;c;;r;;d0,13;;b0,0;;m">
+<treenode node="__construct;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\UserController.php;f8;14;2;17;;;;vpos;;v;;r;;d1,15;;b1,0;;muser;;p">
 </treenode>
-<treenode node="create;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\UserController.php;f11;31;5;36;;;;vpos;;v;;r&#10;Definition&#10;    create()&#10;&#10;Description&#10;     Show the form for creating a new resource.;;d4,32;;b1,0;;m">
+<treenode node="create;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\UserController.php;f11;40;5;47;;;;vpos;;v;;r&#10;Definition&#10;    create()&#10;&#10;Description&#10;     Show the form for creating a new resource.;;d4,41;;b1,0;;m">
 </treenode>
-<treenode node="destroy;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\UserController.php;f11;129;5;135;;;;vpos;;v;;r&#10;Definition&#10;    destroy($id)&#10;&#10;Description&#10;     Remove the specified resource from storage.&#10;&#10;Parameters:&#10;    int $id;;d4,130;;b1,0;;mint $id;;p">
+<treenode node="destroy;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\UserController.php;f11;177;5;183;;;;vpos;;v;;r&#10;Definition&#10;    destroy($id)&#10;&#10;Description&#10;     Remove the specified resource from storage.&#10;&#10;Parameters:&#10;    int $id;;d4,178;;b1,0;;mint $id;;p">
 </treenode>
-<treenode node="edit;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\UserController.php;f11;76;5;84;;;;vpos;;v;;r&#10;Definition&#10;    edit($id)&#10;&#10;Description&#10;     Show the form for editing the specified resource.&#10;&#10;Parameters:&#10;    int $id;;d4,77;;b1,0;;mint $id;;p">
+<treenode node="edit;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\UserController.php;f11;102;5;110;;;;vpos;;v;;r&#10;Definition&#10;    edit($id)&#10;&#10;Description&#10;     Show the form for editing the specified resource.&#10;&#10;Parameters:&#10;    int $id;;d4,103;;b1,0;;mint $id;;p">
 </treenode>
-<treenode node="index;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\UserController.php;f11;19;5;24;;;;vpos;;v;;r&#10;Definition&#10;    index()&#10;&#10;Description&#10;     Display a listing of the resource.;;d4,20;;b1,0;;m">
+<treenode node="index;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\UserController.php;f11;23;5;33;;;;vpos;;v;;r&#10;Definition&#10;    index(Request $request)&#10;&#10;Description&#10;     Display a listing of the resource.;;d4,24;;b1,0;;mrequest;;p">
 </treenode>
-<treenode node="show;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\UserController.php;f11;62;5;68;;;;vpos;;v;;r&#10;Definition&#10;    show($id)&#10;&#10;Description&#10;     Display the specified resource.&#10;&#10;Parameters:&#10;    int $id;;d4,63;;b1,0;;mint $id;;p">
+<treenode node="show;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\UserController.php;f11;88;5;94;;;;vpos;;v;;r&#10;Definition&#10;    show($id)&#10;&#10;Description&#10;     Display the specified resource.&#10;&#10;Parameters:&#10;    int $id;;d4,89;;b1,0;;mint $id;;p">
 </treenode>
-<treenode node="store;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\UserController.php;f11;44;5;54;;;;vpos;;v;;r&#10;Definition&#10;    store(Request $request)&#10;&#10;Description&#10;     Store a newly created resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request;;d4,45;;b1,0;;m\Illuminate\Http\Request $request;;p">
+<treenode node="store;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\UserController.php;f11;55;5;80;;;;vpos;;v;;r&#10;Definition&#10;    store(Request $request)&#10;&#10;Description&#10;     Store a newly created resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request;;d4,56;;b1,0;;m\Illuminate\Http\Request $request;;p">
 </treenode>
-<treenode node="update;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\UserController.php;f11;93;5;121;;;;vpos;;v;;r&#10;Definition&#10;    update(Request $request, $id)&#10;&#10;Description&#10;     Update the specified resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request&#10;    int $id;;d4,94;;b1,0;;m\Illuminate\Http\Request $request;;pint $id;;p">
+<treenode node="update;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\UserController.php;f11;119;5;169;;;;vpos;;v;;r&#10;Definition&#10;    update(Request $request, $id)&#10;&#10;Description&#10;     Update the specified resource in storage.&#10;&#10;Parameters:&#10;    \Illuminate\Http\Request $request&#10;    int $id;;d4,120;;b1,0;;m\Illuminate\Http\Request $request;;pint $id;;p">
 </treenode>
-<treenode node="validator;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\UserController.php;f14;137;5;151;;;;vpos;;v;;r;;d4,138;;b2,0;;mdata;;p">
-</treenode>
-</treenode>
-<treenode node="UserMenuComposer;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\ViewComposers\UserMenuComposer.php;f0;6;1;52;;;;vpos;;v;;r;;d23,6;;b0,0;;m">
-<treenode node="__construct;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\ViewComposers\UserMenuComposer.php;f11;8;5;12;;;;vpos;;v;;r;;d4,9;;b1,0;;m">
-</treenode>
-<treenode node="compose;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\ViewComposers\UserMenuComposer.php;f11;20;5;50;;;;vpos;;vvoid;;r&#10;Definition&#10;    compose(View $view)&#10;&#10;Description&#10;     Bind data to the view.&#10;&#10;Parameters:&#10;    View $view;;d4,21;;b1,0;;mView $view;;p">
+<treenode node="validator;PHP:Function Name;C:\websites\seed.zelenka.ml\app\Http\Controllers\Dashboard\UserController.php;f14;185;5;199;;;;vpos;;v;;r;;d4,186;;b2,0;;mdata;;p">
 </treenode>
 </treenode>
 <treenode node="VerifyCsrfToken;PHP:Class Name;C:\websites\seed.zelenka.ml\app\Http\Middleware\VerifyCsrfToken.php;f0;6;1;16;;;;vpos;;vMiddleware;;c;;r;;d0,7;;b0,0;;m">

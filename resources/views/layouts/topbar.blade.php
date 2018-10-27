@@ -51,6 +51,26 @@
                     <ul class="list-spreader list-spreader-xl">
                         <li>
                             <div class="unit-link-with-icon unit unit-spacing-xs unit-horizontal">
+                                <div class="unit-body">
+                                    <p style="color: #f8a63d; ">
+                                        С нами работают
+                                    </p>
+                                    <p>
+                                        Трейдеры : {{ $cntTrader }}
+                                    </p>
+                                    <p>
+                                        Производители СХП : {{ $cntFarmer }}
+                                    </p>
+                                    <p>
+                                        Элеваторы : {{ $cntElevator }}
+                                    </p>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </li>                        
+                        <li>
+                            <div class="unit-link-with-icon unit unit-spacing-xs unit-horizontal">
                                 {{--
                                 <div class="unit-left">
                                     <span class="icon icon-md-big icon-primary icon-circle mdi-phone">

@@ -30,4 +30,7 @@ Route::get('/views_order/{order_id}', 'ApiController@addViewOrder');
 Route::get('/closed_order/{order_id}', 'ApiController@closedOrder');  
 
 // значение гостов по культуре
-Route::get('/gost_by_corn/{corn_id}', 'ApiController@getGostsbyCorn');  
+Route::get('/gost_by_corn/{corn_id}', 'ApiController@getGostsbyCorn'); 
+
+// парсер валют
+Route::get('/rates', 'ApiController@setRates');  

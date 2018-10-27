@@ -11,7 +11,7 @@
 
 
                     <h2>
-                        Информация о производителе СПХ
+                        Информация о производителе СХП
                     </h2>
 
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('farmer.store') }}">
