@@ -67,6 +67,20 @@
 	</div>
 </div>
 
+<div class="form-group">
+
+	<div class="col-md-3 col-md-offset-4">
+		<label class="radio-inline">
+            <input type="radio" name="nds" value="1" {{ $viewdata->nds == 1 ? 'checked' : ''}}> с НДС
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="nds" value="0" {{ $viewdata->nds == 0 ? 'checked' : ''}}> без НДС
+        </label>
+
+	</div>
+</div>
+
+
 {{--отображение указать Стандартизация --}}
 <div class="form-group">
 	<div class="col-md-6 col-md-offset-4">

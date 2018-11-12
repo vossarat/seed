@@ -23,14 +23,26 @@ Route::get('/fav/{action}/{user_id}/{elevator_id}', 'ApiController@favorite');
 // заявки к элеватору
 Route::get('/order_to_elevator/{action}/{order_id}/{elevator_id}', 'ApiController@orderToElevator');  
 
-// Увеличение счетчика просмотра заявки 
-Route::get('/views_order/{order_id}', 'ApiController@addViewOrder');  
+
+
+/**
+* Увеличение счетчика просмотра заявки
+* id - идентификатор завяки
+* type - тип : заявка трейдера или заявка на экспедитора
+*/ 
+Route::get('/views/{id}/{type}', 'ApiController@addView');
 
 // Закрытие заявки
-Route::get('/closed_order/{order_id}', 'ApiController@closedOrder');  
+Route::get('/closed/{id}/{type}', 'ApiController@closedOrder');  
 
 // значение гостов по культуре
 Route::get('/gost_by_corn/{corn_id}', 'ApiController@getGostsbyCorn'); 
 
 // парсер валют
 Route::get('/rates', 'ApiController@setRates');  
+
+// временная ссылка для апдейта region_id un elevators по town_id
+Route::get('/update/region_id/', 'ApiController@updateRegion');  
+
+// временная ссылка для апдейта region_id un elevators по town_id
+Route::get('/update/state_id/', 'ApiController@updateState');  

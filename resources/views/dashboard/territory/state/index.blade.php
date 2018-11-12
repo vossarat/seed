@@ -1,10 +1,10 @@
 @extends('dashboard.template')
 
 @section('content')
-<h1 class="page-header">Страны</h1>
+<h1 class="page-header">Области</h1>
 
 <div class="form-group">
-	<form action="{{ route('country.create') }}">
+	<form action="{{ route('state.create') }}">
 
 			<button type="submit" class="btn btn-primary">
 				<i class="fa fa-plus"></i> Добавить
@@ -28,17 +28,17 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach($viewdata as $country)
+		@foreach($viewdata as $state)
 		<tr>
-			<td>{{ $country->name }}</td>
+			<td>{{ $state->name }}</td>
 			<td>
-				<form action="{{ route('country.edit', $country->id) }}">
+				<form action="{{ route('state.edit', $state->id) }}">
                 	<button type="submit" class="btn btn-warning"><i class="fa fa-edit"></i></button>
                 </form>
 			</td> 
 			
 			<td>
-				<form action="{{ route('country.destroy', $country->id) }}" method="POST">
+				<form action="{{ route('state.destroy', $state->id) }}" method="POST">
 				<input type="hidden" name="_method" value="DELETE">
 				{{ csrf_field() }}
                 	<button type="submit" class="btn btn-danger"><i class="fa fa-remove"></i></button>

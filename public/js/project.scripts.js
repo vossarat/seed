@@ -62,12 +62,12 @@ $(document).ready(function() {
 		});
 		
 		if($("a").is(".toogle-elevator-filter")) {
-			$( "#elevator-filter" ).hide();
+			//$( "#elevator-filter" ).hide();
 		}
 		
 		$( ".toogle-elevator-filter" ).click(function( event ) {
-			event.preventDefault();
-			$( "#elevator-filter" ).toggle();					
+			//event.preventDefault();
+			//$( "#elevator-filter" ).toggle();					
 		});
 		
 		// функция определения параметров url
@@ -104,6 +104,23 @@ $(document).ready(function() {
         $("#telegram").mask("+9 (999) 999-99-99", {placeholder: "" });
         $("#whatsapp").mask("+9 (999) 999-99-99", {placeholder: "" });
         
+        var sel_state = $('.kato_state'),
+		    cache_state = $('option', sel_state.eq(1));
+		    
+		sel_state.eq(0).on('change', function(){
+			
+		    var selectedColor_state = $(':selected',this).data('kato_state'),
+		        filtered;
+
+		    if(selectedColor_state == 'all') {
+		        filtered_state = cache_state;
+		    } else {
+		        filtered_state = cache_state.filter(function(){
+		          return $(this).data('kato_state') == selectedColor_state;
+		        });
+		    }
+		    sel_state.eq(1).html(filtered_state).prop('selectedIndex', 0);
+		});
         
         var sel = $('.kato'),
 		    cache = $('option', sel.eq(1));
@@ -122,6 +139,8 @@ $(document).ready(function() {
 		    }
 		    sel.eq(1).html(filtered).prop('selectedIndex', 0);
 		});
+		
+		
 		
 		$('#select-corns').multiselect({
             buttonText: function(options, select) {
@@ -150,7 +169,9 @@ $(document).ready(function() {
                 return labels.join(' - ');
             }
         });
-        
+
+       $("#region_id").chained("#state_id");
+       //$("#region_id").chained("#state_id");
        /* $("#town_id").chained("#region_id");
 		$("#elevator_id").chained("#town_id");*/
 	

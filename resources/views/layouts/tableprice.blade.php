@@ -8,6 +8,8 @@
 
 <section class="table-price section text-center">
     <div class="shell">
+        {{--
+		
         <h2>
             Расширение границ и возможностей Вашего бизнеса в 3 клика
         </h2>
@@ -22,6 +24,24 @@
                 </a>
             </div>
         </div>
+        --}}
+        <h2>
+            ЗАКУПОЧНЫЕ ЦЕНЫ НА ЗЕРНО
+        </h2>
+        <h3>
+            АО  «НК «Продкорпорация» 
+        </h3>
+        <h3>
+            обновлено 05.11.2018 
+        </h3>
+
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <a href="/news/16" class="button button-block button-effect-ujarak button-tableprice-view">
+                    ПОСМОТРЕТЬ
+                </a>
+            </div>
+        </div>
     </div>
 
 </section>
@@ -31,9 +51,23 @@
         <div class="col-xs-8 col-xs-offset-2">
             <form action="{{ route('order.create') }}">
                 <button type="submit" class="button button-effect-ujarak button-block button-primary">
-                    Добавить заявку
+                    Добавить заявку на зерно
                 </button>
             </form>
         </div>
     </div>
+    
+    
+	
+    <div class="form-group"></div>
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <form action="{{ route('wagon.create') }}">
+                <button type="submit" class="button button-effect-ujarak button-block button-order-wagon">
+                    Добавить заявку на вагоны
+                </button>
+            </form>
+        </div>
+    </div>
+
 </section>

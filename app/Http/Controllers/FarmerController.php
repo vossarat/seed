@@ -2,23 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Farmer;
 use App\Trader;
+use App\Farmer;
+use App\Forwarder;
 use App\User;
-use App\Reference\Region;
-use App\Reference\Corn;
-use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Auth;
+use App\Reference\State;
+use App\Reference\Region;
+use App\Reference\Corn;
+use Illuminate\Validation\Rule;
+
 
 class FarmerController extends Controller
 {
-	public function __construct(Farmer $farmer, User $user, Region $region, Corn $corn)
+	public function __construct(Farmer $farmer, User $user, State $state, Region $region, Corn $corn)
 	{
 		$this->farmer = $farmer;
 		$this->user = $user;
 		$this->region = $region;
+		$this->state = $state;
 		$this->corn = $corn;
 	}
     /**
@@ -39,6 +44,7 @@ class FarmerController extends Controller
     public function create()
     {
         return view('farmer.create')->with([
+			'states' => $this->state->orderBy('name','asc')->get(),
 			'regions' => $this->region->orderBy('name','asc')->get(),
 			'corns' => $this->corn->orderBy('name','asc')->get(),
 			'farmer_corn' => [],
@@ -66,8 +72,9 @@ class FarmerController extends Controller
 		$farmer->user->profile = 'farmer';
 		$farmer->user->save();
 		
-		// Удаление профиля трейдера
+		// Удаление других профилей если есть
 		$deletedTrader = Trader::where('user_id', Auth::user()->id )->delete();
+		$deletedForwarder = Forwarder::where('user_id', Auth::user()->id )->delete();
 
 		return redirect(route('order.index'))->with([
 			'message' => "Информация по производителю СХП $request->title добавлена",
@@ -94,7 +101,7 @@ class FarmerController extends Controller
     public function edit($id)
     {
     	$farmer = $this->farmer->find($id); 
-
+    	
     	$farmer_corn = [];
     	if(isset($farmer->corns)){
 			foreach($farmer->corns->all() as $item){
@@ -112,6 +119,7 @@ class FarmerController extends Controller
     	
         return view('farmer.edit')->with([
 			'viewdata' => $this->farmer->find($id),
+			'states' => $this->state->orderBy('name','asc')->get(),
 			'regions' => $this->region->orderBy('name','asc')->get(),
 			'corns' => $this->corn->orderBy('name','asc')->get(),
 			'farmer_corn' => $farmer_corn,
@@ -130,11 +138,8 @@ class FarmerController extends Controller
     {
     	$this->validator( $request->all() );
     	
-        $validatedData = $request->validate([
-	        'newPassword' => 'confirmed',
-	    ]);
-	    
-		$farmer = $this->farmer->find($id);		
+		$farmer = $this->farmer->find($id);
+
 		$farmer->update($request->all());
 	
 		$farmer->user->email = $request->email;
@@ -167,25 +172,21 @@ class FarmerController extends Controller
     }
     
     protected function validator(array $data)
-    {
-        return Validator::make($data, 
-        	[
-	        	'name' => 'required|max:255',
-	        	'phone' => 'required',
-	        	'email' => 'email|nullable',
-	        	'fio' => 'required|max:255',
-	        	//'regions' => 'required',
-	        	'corns' => 'required',
-            ],            
+    {    	
+        return Validator::make($data,
             [
-           
-	            'name.required' => 'укажите имя пользователя',
-	            'phone.required' => 'укажите номер телефона',	           
-	            'corns.required' => 'выберите культуру',	           
-	            //'regions.required' => 'укажите район',	           
-	            'fio.required' => 'укажите ФИО',	           
-	        	'max' => 'уменьшите количество символов',
-	        	'email.email' => 'e-mail некорректен',
+                'phone' => ['required', Rule::unique('users')->ignore($data['user_id'])],
+                'newPassword' => 'confirmed',
+                'corns' => 'required',
+                'email' => 'email|nullable',
+
+            ],
+            [
+                'phone.required' => 'укажите номер телефона',
+                'phone.unique' => 'данный номер телефона зарегистрирован',
+                'newPassword.confirmed' => 'Неправильное подтверждение пароля',
+                'corns.required' => 'выберите культуру',
+                'email.email' => 'e-mail некорректен',
             ]
         )->validate();
     }

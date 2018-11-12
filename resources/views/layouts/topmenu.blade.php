@@ -4,12 +4,12 @@
         
         	<li>
                 <a href="{{ route('order.index') }}">
-                    @lang('messages.mainpage')
+                    @lang('topmenu.mainpage')
                 </a>
             </li>
             <li>
                 <a href="{{ route('order.create') }}">
-                    Добавить заявку
+                    @lang('topmenu.addorder')
                 </a>
             </li>
             {{--
@@ -25,23 +25,23 @@
       		 --}}  
         
         <li>
-            <a href="{{ route('mapelevator') }}">
-                Элеваторы
+            <a href="{{ route('mapelevator') }}">                
+                @lang('topmenu.elevators')
             </a>
         </li>
         <li>
-            <a href="{{ route('news') }}">
-                Новости
+            <a href="{{ route('news') }}">                
+                @lang('topmenu.news')
             </a>
         </li>
         <li>
             <a href="{{ route('feedback') }}">
-                Обратная связь
+                @lang('topmenu.feedback')
             </a>
         </li>
         <li>
             <a href="{{ route('help') }}">
-                Помощь
+                @lang('topmenu.help')
             </a>
         </li>
         <li class="visible-xs">
@@ -60,31 +60,5 @@
 	            </p>
             </div>
         </li>
-       
-        {{--
-        <li>
-            <a href="#">
-                Язык
-            </a>
-            <ul class="rd-navbar-dropdown">
-				<li>
-				    <a href="/welcome/kz">
-				        Казахский
-				    </a>
-				</li>
-				<li>
-				    <a href="/welcome/ru">
-				        Русский
-				    </a>
-				</li> 
-				<li>
-				    <a href="/welcome/en">
-				        Английский
-				    </a>
-				</li>                
-            </ul> 
-        </li>
-      	--}}	
-
-    </ul>
+           </ul>
 </div>

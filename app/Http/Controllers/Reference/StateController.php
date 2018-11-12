@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Reference;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Reference\State;
 
 class StateController extends Controller
 {
+	public function __construct(State $state)
+	{
+		$this->state = $state;
+	}
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,9 @@ class StateController extends Controller
      */
     public function index()
     {
-        dd(__METHOD__);
+        return view('dashboard.territory.state.index')->with([        
+			'viewdata' => $this->state->all(),
+		]);
     }
 
     /**
@@ -24,7 +31,11 @@ class StateController extends Controller
      */
     public function create()
     {
-        //
+        $viewdata = $this->state->find(0);
+        return view('dashboard.territory.state.create')->with([
+			'viewdata' => $viewdata,
+			'states' => $this->state->all(),
+		]);
     }
 
     /**
@@ -35,7 +46,13 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd( $request->all() );
+        
+        $state = State::create($request->all());
+	
+		return redirect(route('state.index'))->with([
+			'message' => "Информация по области $request->name добавлена",
+		]);
     }
 
     /**
@@ -57,7 +74,12 @@ class StateController extends Controller
      */
     public function edit($id)
     {
-        //
+        $state = $this->state->find($id);
+    	
+        return view('dashboard.territory.state.edit')->with([
+			'viewdata' => $state,
+			'states' => $this->state->all(),
+		]);
     }
 
     /**
@@ -69,7 +91,10 @@ class StateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $state = $this->state->find($id);
+		$state->update($request->all());	
+		$state->save();
+		return redirect(route('state.index'))->with('message',"Информация по области $state->name изменена");
     }
 
     /**

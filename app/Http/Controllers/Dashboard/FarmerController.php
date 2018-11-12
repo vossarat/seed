@@ -2,23 +2,27 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Trader;
 use App\Farmer;
+use App\Forwarder;
 use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Auth;
+use App\Reference\State;
 use App\Reference\Region;
 use App\Reference\Corn;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class FarmerController extends Controller
 {
-	public function __construct(Farmer $farmer, User $user, Region $region, Corn $corn)
+	public function __construct(Farmer $farmer, User $user, State $state, Region $region, Corn $corn)
 	{
 		$this->farmer = $farmer;
 		$this->user = $user;
+		$this->state = $state;
 		$this->region = $region;
 		$this->corn = $corn;
 	}
@@ -94,6 +98,7 @@ class FarmerController extends Controller
     	
         return view('dashboard.farmer.edit')->with([
 			'viewdata' => $this->farmer->find($id),
+			'states' => $this->state->orderBy('name','asc')->get(),
 			'regions' => $this->region->orderBy('name','asc')->get(),
 			'corns' => $this->corn->orderBy('name','asc')->get(),
 			'farmer_corn' => $farmer_corn,
@@ -110,16 +115,7 @@ class FarmerController extends Controller
      */
     public function update(Request $request, $id)
     {
-		$this->validator( $request->all() );
-    	
-        $validatedData = $request->validate(
-	        [
-		        'newPassword' => 'confirmed',
-		    ],
-		    [
-		        'newPassword.confirmed' => 'Неправильное подтверждение пароля',
-		    ]
-	    );
+		$this->validator( $request->all() );    	
 	    
 		$farmer = $this->farmer->find($id);		
 		$farmer->update($request->all());
@@ -156,17 +152,21 @@ class FarmerController extends Controller
     }
     
     protected function validator(array $data)
-    {   
-		$id =  isset($data['id']) ? $data['id'] : '';
+    {    	
+        return Validator::make($data,
+            [
+                'phone' => ['required', Rule::unique('users')->ignore($data['user_id'])],
+                'newPassword' => 'confirmed',
+                'corns' => 'required',
+                'email' => 'email|nullable',
 
-        return Validator::make($data, 
-        	[
-	        	'phone' => 'required|unique:users,phone,' . $id,
-	        	
-            ],            
-            [           
-	            'phone.required' => 'укажите номер телефона',           
-	            'phone.unique' => 'данный номер телефона зарегистрирован',
+            ],
+            [
+                'phone.required' => 'укажите номер телефона',
+                'phone.unique' => 'данный номер телефона зарегистрирован',
+                'newPassword.confirmed' => 'Неправильное подтверждение пароля',
+                'corns.required' => 'выберите культуру',
+                'email.email' => 'e-mail некорректен',
             ]
         )->validate();
     }

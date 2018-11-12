@@ -1,6 +1,6 @@
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
     <label for="name" class="col-md-4 control-label">
-        Наименование страны
+        Наименование области
     </label>
 
     <div class="col-md-6">

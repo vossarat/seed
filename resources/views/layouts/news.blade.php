@@ -29,7 +29,7 @@
                 </div>
             </div>
             
-            <div class="cell-md-3 cell-sm-5 hidden-xs">
+            <div class="cell-md-3 cell-sm-5">
                 <div class="preffix-xl-45 footer-item-custom footer-item-custom-2" style="max-width: 327px">
                     <h6 class="text-spacing-200 text-uppercase font-base">
                         НАШИ КОНТАКТЫ
@@ -48,7 +48,7 @@
                                 </a>
                             </dd>
                         </dl>
-                        <dl>
+                        <dl class="hidden-xs">
                             <dt>
                                 Адрес:
                             </dt>
@@ -77,7 +77,7 @@
                             </dd>
                         </dl>
                         
-                        <dl class="social-networking">
+                        <dl class="social-networking hidden-xs">
                             <dt>
                                 <a href="https://www.facebook.com/zelenka.trade"><span class="fa fa-facebook fa-3x"></span></a>
                             </dt>

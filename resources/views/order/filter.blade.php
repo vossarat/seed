@@ -6,8 +6,8 @@
 	</div>
 
 	<div class="col-xs-6">
-		<a href="{{ route('order.index') }}" class="button button-effect-ujarak button-block button-default-outline button-filter">
-			Очистить Фильтр
+		<a href="{{ route('wagon.index') }}" class="button button-effect-ujarak button-block button-default-outline button-filter">
+			На вагоны
 		</a>
 	</div>
 </div>

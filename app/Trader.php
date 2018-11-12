@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
+use Auth;
 
 class Trader extends Model
 {
@@ -24,4 +26,24 @@ class Trader extends Model
 	{
 		return $this->belongsTo(User::class);
 	}
+	
+	public static function profileTitle()
+	{
+		return 'Трейдер';
+	}
+	
+	public static function id()
+	{		
+		$user = User::find( Auth::id() );
+		return $user->trader->id;
+	}
+	
+	public static function otherProfiles()
+	{		
+		return array( 
+			array('tip' => 'farmer', 'title'=> 'Производитель СХП'),		
+			array('tip' => 'forwarder', 'title'=> 'Экспедитор'),		
+		);
+	}
+	
 }

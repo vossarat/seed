@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Trader;
 use App\Farmer;
+use App\Forwarder;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Auth;
+use Illuminate\Validation\Rule;
 
 class TraderController extends Controller
 {
@@ -101,12 +105,7 @@ class TraderController extends Controller
      */
     public function update(Request $request, $id)
     {
-		$this->validator( $request->all() );
-    	
-    	/*$validatedData = $request->validate([
-	        'newPassword' => 'confirmed',
-	    ]);*/
-	    
+		$this->validator( $request->all() );    
     
 		$trader = $this->trader->find($id);		
 		$trader->update($request->all());
@@ -144,14 +143,18 @@ class TraderController extends Controller
     
     protected function validator(array $data)
     {
-    	$id =  isset($data['id']) ? $data['id'] : '';
-        return Validator::make($data, 
-        	[
-	        	'phone' => 'required|unique:users,phone,' . $id,
-            ],            
-            [           
-	            'phone.required' => 'укажите номер телефона',           
-	            'phone.unique' => 'данный номер телефона зарегистрирован',     
+    	
+        return Validator::make($data,
+            [
+                'phone' => ['required', Rule::unique('users')->ignore($data['user_id'])],
+                'newPassword' => 'confirmed',
+                'email' => 'email|nullable',
+            ],
+            [
+                'phone.required' => 'укажите номер телефона',
+                'phone.unique' => 'данный номер телефона зарегистрирован',
+                'newPassword.confirmed' => 'Неправильное подтверждение пароля',
+                'email.email' => 'e-mail некорректен',
             ]
         )->validate();
     }

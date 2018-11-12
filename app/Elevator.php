@@ -10,14 +10,16 @@ class Elevator extends Model
 {
     protected $table = 'elevators';
 	
-	/*protected $dates = [
+	protected $dates = [
         'created_at',
         'updated_at',
-    ];*/
+    ];
     
 	protected $fillable = [
 		'title',
 		'user_id',
+		'state_id',
+		'region_id',
 		'town_id',
 		'price',
 		'username',
@@ -47,6 +49,11 @@ class Elevator extends Model
 		return $this->belongsTo('App\Reference\Town');
 	}
 	
+	public function region()
+	{
+		return $this->belongsTo('App\Reference\Region', 'region_id', 'id');
+	}
+	
 	public function attributes()
     {
         return $this->belongsToMany('App\Reference\Attribute')->withPivot('attr_value');
@@ -56,9 +63,9 @@ class Elevator extends Model
 	{
 		if($filterByState){
 			return $query
-	        	->leftJoin('towns as t',   'elevators.town_id', '=', 't.id')        		
-	        	->leftJoin('regions as r', 't.region_id',   '=', 'r.id')  
-	        		->where('r.state_id', '=', $filterByState)	;
+	        	//->leftJoin('towns as t',   'elevators.town_id', '=', 't.id')        		
+	        	//->leftJoin('regions as r', 't.region_id',   '=', 'r.id')  
+	        		->where('elevators.state_id', '=', $filterByState)	;
 		}
 		
 		return $query ;
@@ -68,9 +75,9 @@ class Elevator extends Model
 	{
 		if($filterByRegion){
 			return $query
-	        	->leftJoin('towns as t', 'elevators.town_id', '=', 't.id')        		
+	        	//->leftJoin('towns as t', 'elevators.town_id', '=', 't.id')        		
 	        	//->rightJoin('elevators', 'towns.id', '=', 'elevators.town_id')    
-	        		->where('t.region_id', '=', $filterByRegion)	;
+	        		->where('elevators.region_id', '=', $filterByRegion)	;
 		}
 		
 		return $query ;
@@ -155,9 +162,9 @@ class Elevator extends Model
 	{
 		if($user){
 			return $query				
-        		->leftJoin('favorite_user_elevator', 'elevators.id', '=', 'favorite_user_elevator.elevator_id') 
+        		->leftJoin('favorite_user_elevator as fue', 'elevators.id', '=', 'fue.elevator_id') 
         		->select('elevators.id', 'elevators.title')
-        		->where('favorite_user_elevator.user_id', '=', $user);
+        		->where('fue.user_id', '=', $user);
 		}		
 		return $query ;
 	}

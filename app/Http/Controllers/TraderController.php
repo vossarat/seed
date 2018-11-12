@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Trader;
 use App\Farmer;
+use App\Forwarder;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Auth;
+use Illuminate\Validation\Rule;
 
 
 class TraderController extends Controller
@@ -47,8 +49,8 @@ class TraderController extends Controller
      */
     public function store(Request $request)
     {
-    	$this->validator( $request->all() );
-    	
+   		$this->validator( $request->all() );
+   		
         $trader = Trader::create($request->all());
 
 		$trader->user->update($request->all());		
@@ -56,8 +58,9 @@ class TraderController extends Controller
 		$trader->user->name = $request->name ;
 		$trader->user->save();
 		
-		// Удаление профиля фермера
+		// Удаление других профилей если есть
 		$deletedFarmer = Farmer::where('user_id', Auth::user()->id )->delete();
+		$deletedForwarder = Forwarder::where('user_id', Auth::user()->id )->delete();
 		
 		return redirect(route('order.index'))->with([
 			'message' => "Информация по трейдеру $request->title добавлена",
@@ -97,19 +100,14 @@ class TraderController extends Controller
      */
     public function update(Request $request, $id)
     {
-    	$this->validator( $request->all() );
-    	
-    	$validatedData = $request->validate([
-	        'newPassword' => 'confirmed',
-	    ]);
-	    
-		$trader = $this->trader->find($id);		
+		$this->validator( $request->all() );
+		
+		$trader = $this->trader->find($id);
+			
 		$trader->update($request->all());
 		
-		//$trader->user->update($request->all()); // сохраняем в user сразу все поля		
 		$trader->user->whatsapp = $request->whatsapp;
 		$trader->user->telegram = $request->telegram;
-		$trader->user->name = $request->name;
 		$trader->user->phone = $request->phone;
 		$trader->user->email = $request->email;
 		
@@ -135,25 +133,19 @@ class TraderController extends Controller
     }
     
     protected function validator(array $data)
-    {   
-
-        return Validator::make($data, 
-        	[
-	        	'name' => 'required|max:255|unique:users,name,' . auth()->user()->id ,
-	        	'phone' => 'required' ,
-	        	'email' => 'required|email' ,
-	        	
-            ],            
+    {
+    	
+        return Validator::make($data,
             [
-           
-	            'name.required' => 'укажите имя пользователя',
-	            'email.required' => 'укажите Ваш email',
-	            'phone.required' => 'укажите номер телефона',
-	        	'max' => 'уменьшите количество символов',
-	        	'email' => 'некорректный email',
-	        	'name.unique' => 'Пользователь с таким именем зарегистрирован',
-	        	'phone.unique' => 'Пользователь с таким телефоном зарегистрирован',
-	        	'email.unique' => 'Пользователь с таким email зарегистрирован',
+                'phone' => ['required', Rule::unique('users')->ignore($data['user_id'])],
+                'newPassword' => 'confirmed',
+                'email' => 'email|nullable',
+            ],
+            [
+                'phone.required' => 'укажите номер телефона',
+                'phone.unique' => 'данный номер телефона зарегистрирован',
+                'newPassword.confirmed' => 'Неправильное подтверждение пароля',
+                'email.email' => 'e-mail некорректен',
             ]
         )->validate();
     }

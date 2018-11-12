@@ -2,20 +2,20 @@
 
 @section('content')
 
-	<h1 class="page-header">Страна</h1>
+	<h1 class="page-header">Область</h1>
 
 	<div class="col-xs-12">
 		<div class="panel panel-default">
 			<div class="panel-heading"> {{-- заголовок окна --}}
-				Добавить страну
-				<a href="{{ route('country.index') }}" class="close" data-dismiss="alert" aria-hidden="true">&times;</a> {{-- х закрыть --}}
+				Добавить область
+				<a href="{{ route('state.index') }}" class="close" data-dismiss="alert" aria-hidden="true">&times;</a> {{-- х закрыть --}}
 			</div>
 
 			<div class="panel-body">
-				<form class="form-horizontal" role="form" method="POST" action="{{ route('country.store') }}">
+				<form class="form-horizontal" role="form" method="POST" action="{{ route('state.store') }}">
 					{{ csrf_field() }}
 
-					@include('dashboard.territory.country.form')
+					@include('dashboard.territory.state.form')
 
 					<div class="form-group">
 						<div class="col-xs-12">
@@ -27,7 +27,7 @@
 					
 					<div class="form-group">
 						<div class="col-xs-12">
-							<a href="{{ route('country.index') }}" class="btn btn-warning btn-block" data-dismiss="alert" aria-hidden="true">Отмена</a>
+							<a href="{{ route('state.index') }}" class="btn btn-warning btn-block" data-dismiss="alert" aria-hidden="true">Отмена</a>
 						</div>
 					</div>
 

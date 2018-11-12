@@ -22,10 +22,18 @@
 	
 	<div class="col-md-4 text-left">
 	    <label class="radio-inline">
-	        <input type="radio" name="transport_tip" value="1" {{ $viewdata->transport_tip == '1' ? 'checked' :  '' }}> авто
+	    	@if( isset($viewdata->transport_tip) )
+	        	<input type="radio" name="transport_tip" value="1" {{ $viewdata->transport_tip == '1' ? 'checked' :  '' }}> авто
+	        @else
+	        	<input type="radio" name="transport_tip" value="1"> авто
+	        @endif
 	    </label>
 	    <label class="radio-inline">
-	        <input type="radio" name="transport_tip" value="2" {{ $viewdata->transport_tip == '2' ? 'checked' :  '' }}>вагон
+	        @if( isset($viewdata->transport_tip) )
+	        	<input type="radio" name="transport_tip" value="2" {{ $viewdata->transport_tip == '2' ? 'checked' :  '' }}> вагон
+	        @else
+	        	<input type="radio" name="transport_tip" value="2"> вагон
+	        @endif
 	    </label>
 	
 	@if ($errors->has('transport_tip'))

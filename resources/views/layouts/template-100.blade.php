@@ -135,6 +135,12 @@
         <script src="{{ asset('js/jquery.mmenu.all.js') }}">
         </script>
 
+        <script src="{{ asset('js/zepto.js') }}">
+        </script>
+        <script src="{{ asset('js/zepto-selector.js') }}">
+        </script>
+        <script src="{{ asset('js/jquery.chained.js') }}">
+        </script>
         <script src="{{ asset('js/jquery.maskedinput.js') }}">
         </script>
         <script src="{{ asset('/js/bootstrap-multiselect.js') }}">

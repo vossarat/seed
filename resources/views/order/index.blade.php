@@ -13,13 +13,27 @@
 
                 <form action="{{ route('order.create') }}">
                     <button type="submit" class="button button-effect-ujarak button-block button-primary">
-                        Добавить заявку
+                        Добавить заявку на зерно
                     </button>
                 </form>
 
             </div>
         </div>
+        
+        		
+        <div class="range range-xs-center range-md-left visible-xs">
+            <div class="cell-xs-12">
 
+                <form action="{{ route('wagon.create') }}">
+                    <button type="submit" class="button button-effect-ujarak button-block button-order-wagon">
+                        Добавить заявку на вагоны
+                    </button>
+                </form>
+
+            </div>
+        </div>
+        
+        
 		{{-- информационное сообщение --}}
 		@if(Session::has('message'))
 		<div class="alert alert-success">
@@ -30,7 +44,7 @@
 		{{-- /информационное сообщение --}}
 
         <h3>
-            Заявки
+            Заявки на зерно
         </h3>
 
         <div class="row-filter">
@@ -96,7 +110,7 @@
                                  <div class="row">
 	                                <div class="col-xs-12">
 	                                	@if( $order->active )
-	                                	<a class="toogle-order-detailed" href="/api/views_order/{{ $order->id }}" order-id={{ $order->id }}>{{ 'Куплю:'.$order->corn['name'] }}, {{ $order->count . ' тонн' }}</a>
+	                                	<a class="toogle-order-detailed" href="/api/views/{{ $order->id }}/orders" order-id={{ $order->id }}>{{ 'Куплю:'.$order->corn['name'] }}, {{ $order->count . ' тонн' }}</a>
 	                                	@else
 	                                	<a href="javascript:void(0);">{{ 'Куплю:'.$order->corn['name'] }}, {{ $order->count . ' тонн' }}</a>
 	                                	@endif
@@ -104,7 +118,7 @@
                                 		<ul>
                                 			<li><u>Цена:</u>
                                 				@if( Auth::check() )
-                                					{{ $order->price }} тенге, {{ $order->loadprice_id ? 'Цена с доставкой' : 'Цена с места' }}, {{ $order->auction ? 'Торг' : 'Без торга' }}
+                                					{{ $order->price }} тенге, {{ $order->loadprice_id ? 'Цена с доставкой' : 'Цена с места' }}, {{ $order->nds ? 'с НДС' : 'Без НДС' }}, {{ $order->auction ? 'Торг' : 'Без торга' }}
                                 				@else
                                 					<a href="/login">*******</a> тенге
                                 				@endif
@@ -176,7 +190,7 @@
 	                                			@if(  $order->user->phone )
 	                                				<li>&nbsp;&nbsp;&bull;Телефон: 
 	                                					@if( Auth::check() )
-	                                					{{ $order->user->phone }}
+	                                						<a href="tel:+{{Func::phoneOnlyNumber($order->user->phone)}}">{{ $order->user->phone }}</a>
 	                                					@else
 	                                						<a href="/login">*******</a>
 	                                					@endif
@@ -289,10 +303,11 @@ $(document).ready(function() {
 		$.ajax({
 		      cache: false,
 		      type: 'GET',
-		      url: '/api/closed_order/' + orderId,
+		      url: '/api/closed/' + orderId + '/orders',
 		      success: function(data)
 		      {
 				$('#row-order-'+orderId).addClass('closed');
+				$('a#'+orderId).replaceWith('<span style="color: #a94442;"><b>Заявка завершена</b></span>');
 		      }
 		  });	    
 	});

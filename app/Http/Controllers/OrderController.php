@@ -131,7 +131,7 @@ class OrderController extends Controller
 		$farmerPhones = $this->farmer->farmersPhonesByCorn($request->corn_id) ;
         
         $message = 'Портал www.zelenka.trade - Новая заявка:'.$corn_name;
-        $smsRes = file_get_contents('http://smsc.kz/sys/send.php?login=Zelenka.kz&psw=espresso18return&phones='.implode(",", $farmerPhones).'&mes='.$message.'&charset=utf-8&sender');
+        $smsRes = file_get_contents('http://smsc.kz/sys/send.php?login=Zelenka.kz&psw=U1vUd1H6GJ3pogawH0Cj&phones='.implode(",", $farmerPhones).'&mes='.$message.'&charset=utf-8&sender');
        
 		$farmerEmails = $this->farmer->farmersEmailsByCorn($request->corn_id) ;
 		$farmerEmails[] = env('MAIL_USERNAME'); // добавляем админа
@@ -272,7 +272,7 @@ class OrderController extends Controller
 	        	'price' => 'required|max:255',
 	        	'count' => 'required|max:255',
 	        	'phone' => 'required',
-	        	'email' => 'required|email',
+	        	'email' => 'email|nullable',
             ],            
             [
            

@@ -38,22 +38,6 @@
                                 </a>
                             </div>
                         </div>
-                        
-                        <div class="form-group">
-							<div class="col-xs-12">
-									<label class="lbl-sms-agree">
-										Вы зарегистрированы как Трейдер. Для изменения типа профиля на Производитель СХП нажмите кнопку ниже
-									</label>
-								</div>
-						</div>
-
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <a href="{{ route('farmer.create') }}" class="button button-effect-ujarak button-block button-primary">
-                                    Сменить тип профиля
-                                </a>
-                            </div>
-                        </div>
 
                     </form>
                 </div>

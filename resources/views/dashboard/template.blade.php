@@ -81,7 +81,14 @@
 		<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 		<script src="//cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 
-
+		
+		<script src="{{ asset('js/zepto.js') }}">
+        </script>
+        <script src="{{ asset('js/zepto-selector.js') }}">
+        </script>
+        <script src="{{ asset('js/jquery.chained.js') }}">
+        </script>
+		
         <script src="{{ asset('js/project.scripts.js') }}"></script>
         @stack('scripts')
 

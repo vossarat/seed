@@ -40,7 +40,7 @@ class MapElevatorController extends Controller
     	$filterByPriceMin = null; // фильтр по прайсу мин пока пустой
     	$filterByPriceMax = null; // фильтр по прайсу макс пока пустой
 		$fav = substr($request->path(), -3) == 'fav' ? 1 : 0;
-		
+	
 		if(Auth::check() == false & $fav){
 	       return view('layouts.sysmessage')->with('message', 'Для просмотра избранных элеваторов Вам необходимо <a href="/login">авторизоваться</a> или <a href="/register">зарегистрироваться</a>');
 	    }  	   	
@@ -53,13 +53,13 @@ class MapElevatorController extends Controller
 			$filterByState = $request->get('filterByState');
 			$filterByRegion = $request->get('filterByRegion');
 		}
-			
-       
+		
        	return view('elevator.index')->with([        
 			// viewdata выбор из модели по авторизироанному пользователю
-			'viewdata' => $elevators->favUserElevators(Auth::id(), $fav)->with(['town'])->orderBy('elevators.price','desc')->orderBy('towns.region_id','asc')->paginate(10),
+			'viewdata' => $elevators->favUserElevators(Auth::id(), $fav)->orderBy('elevators.price','desc')->orderBy('elevators.region_id','asc')->paginate(10),
 			'corns' => $this->corn->all(),	
 			'fav' => $fav,	
+			'fav_cnt' => $elevators->fav(Auth::id(), $fav)->count(),	
 			'filter' => $request->has('filter') ? 'filter' : '',	
 			'selected_corns' => $request->get('arrcorns'),	
 			'filterByCorn' => $filterByCorn,

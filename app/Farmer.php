@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
+use Auth;
 
 class Farmer extends Model
 {
@@ -14,6 +16,7 @@ class Farmer extends Model
 		'fio',
 		'volume',
 		'sms',
+		'state_id',
 		'region_id',
 	];
 	
@@ -31,6 +34,25 @@ class Farmer extends Model
     {
         return $this->belongsToMany('App\Reference\Region');
     }
+    
+    public static function profileTitle()
+	{
+		return 'Фермер';
+	}
+	
+	public static function id()
+	{		
+		$user = User::find( Auth::id() );
+		return $user->farmer->id;
+	}
+	
+	public static function otherProfiles()
+	{		
+		return array( 
+			array('tip' => 'trader', 'title'=> 'Трейдер'),		
+			array('tip' => 'forwarder', 'title'=> 'Экспедитор'),		
+		);
+	}
     
     public function ScopeFarmersPhonesByCorn($query, $corn_id)
 	{		

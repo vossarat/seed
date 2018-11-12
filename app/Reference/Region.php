@@ -14,9 +14,11 @@ class Region extends Model
 		'state_id',
 	];
 	
+	
+	
 	public function state()
 	{
-		return $this->hasMany(State::class);
+		return $this->belongsTo(State::class);
 	}
 	
 	public function farmers()
@@ -27,8 +29,7 @@ class Region extends Model
 	public function scopeCountElevator($query, $id)
     {
         return $query
-        	->rightJoin('towns', 'regions.id', '=', 'towns.region_id')        		
-        	->rightJoin('elevators', 'towns.id', '=', 'elevators.town_id')    
+        	->rightJoin('elevators', 'regions.id', '=', 'elevators.region_id')    
         		->where('regions.id', '=', $id)		
         	->count();
     }

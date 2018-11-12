@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
+use App\Trader;
+use App\Farmer;
 use App\Forwarder;
 use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Auth;
 
 class ForwarderController extends Controller
@@ -85,18 +87,9 @@ class ForwarderController extends Controller
     */
     public function update(Request $request, $id)
     {
+    	$this->validator( $request->all() );
 
-        $forwarder     = $this->forwarder->find($id);
-
-        $this->validate($request, [
-                'phone' => ['required', Rule::unique('users')->ignore($forwarder->user->id)],
-                'newPassword' => 'confirmed',
-            ],
-            [
-            	'newPassword.confirmed' => 'Неправильное подтверждение пароля',
-            	'phone.unique' => 'данный номер телефона зарегистрирован',
-            ]
-        );
+        $forwarder = $this->forwarder->find($id);
 
         $forwarder->update($request->all());
 
@@ -127,19 +120,18 @@ class ForwarderController extends Controller
 
     protected function validator(array $data)
     {
-
-        $phone = isset($data['phone']) ? $data['phone'] : '';
-
-
-
+    	
         return Validator::make($data,
             [
-                'phone' => 'required|unique:users,phone,' . $phone,
-
+                'phone' => ['required', Rule::unique('users')->ignore($data['user_id'])],
+                'newPassword' => 'confirmed',
+                'email' => 'email|nullable',
             ],
             [
                 'phone.required' => 'укажите номер телефона',
                 'phone.unique' => 'данный номер телефона зарегистрирован',
+                'newPassword.confirmed' => 'Неправильное подтверждение пароля',
+                'email.email' => 'e-mail некорректен',
             ]
         )->validate();
     }

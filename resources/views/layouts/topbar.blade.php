@@ -123,6 +123,13 @@
 												Регистрация
 											</a>
 										</p>
+										@if(env('APP_DEBUG'))
+										<p>
+											<a href="/setlocale/ru">RU</a>
+											<a href="/setlocale/kz">KZ</a>
+											<a href="/setlocale/en">EN</a>
+										</p>
+										@endif
 							        @endif
                                 </div>
                             </div>
@@ -137,7 +144,7 @@
         </div>
         </section>
         <section>
-        <div class="rd-navbar-inner rd-navbar-inner-bottom">
+        <div class="rd-navbar-inner rd-navbar-inner-bottom topmenu-navbar">
             <!-- RD Navbar Panel-->
             <div class="rd-navbar-panel">
                 <!-- RD Navbar Toggle-->
@@ -173,3 +180,18 @@
         @show
 	</ul>
 </nav>
+
+@push('scripts')
+<script type="text/javascript">
+	$(function() {
+		$('.usermenu').on('show.bs.dropdown', function () {
+			$( ".topmenu-navbar" ).addClass('topmenu-navbar-close');
+		});
+		
+		$('.usermenu').on('hide.bs.dropdown', function () {
+		  	$( ".topmenu-navbar" ).removeClass('topmenu-navbar-close');
+		})
+	});
+	
+</script>
+@endpush

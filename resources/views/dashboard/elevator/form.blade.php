@@ -70,12 +70,13 @@
 		<label for="state_id" class="col-md-4 control-label">Область</label>		
 		
 		<div class="col-md-6">
-		<select class="form-control" name="state_id">		
+		<select class="form-control kato_state" name="state_id">
+			<option data-kato_state="Не указано" value="Не указано">Не указано</option>		
 			@foreach($states as $item)
 				@if(isset($viewdata))
-					<option {{ $viewdata->state_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
+					<option data-kato_state="{{ $item->name }}" {{ $viewdata->state_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
 				@else
-					<option value="{{ $item->id }}">{{ $item->name }}</option>
+					<option data-kato_state="{{ $item->name }}" value="{{ $item->id }}">{{ $item->name }}</option>
 				@endif
 			@endforeach			
 		</select>
@@ -97,13 +98,13 @@
 		<label for="region_id" class="col-md-4 control-label">Район</label>		
 		
 		<div class="col-md-6">
-		<select class="form-control kato" name="region_id" id="region_id">
-			<option data-kato="Не указано" value="Не указано">Не указано</option>		
+		<select class="form-control kato kato_state" name="region_id" id="region_id">
+			<option data-kato="Не указано" data-kato_state="Не указано" value="Не указано">Не указано</option>		
 			@foreach($regions as $item)
 				@if(isset($viewdata))
-					<option data-kato="{{ $item->name }}" {{ $viewdata->region_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
+					<option data-kato="{{ $item->name }}" data-kato_state="{{ $item->state->name }}" {{ $viewdata->region_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
 				@else
-					<option data-kato="{{ $item->name }}" value="{{ $item->id }}">{{ $item->name }}</option>
+					<option data-kato="{{ $item->name }}" data-kato_state="{{ $item->state->name }}" value="{{ $item->id }}">{{ $item->name }}</option>
 				@endif
 			@endforeach			
 		</select>
@@ -118,6 +119,8 @@
 		</div>
 	</div>
 </div> 
+
+{{--
 
 <div class="form-group">
 	<div class="{{ $errors->has('town_id') ? ' has-error' : '' }}">
@@ -146,6 +149,7 @@
 		</div>
 	</div>
 </div>
+--}}
 
 <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
     <label for="username" class="col-md-4 control-label">

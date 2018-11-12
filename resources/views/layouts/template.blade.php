@@ -62,6 +62,9 @@
 
         <!-- MMENU Style -->
         <link rel="stylesheet" href="{{ asset('css/jquery.mmenu.all.css') }}" />
+        
+        <!-- datetimepicker Style -->
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" />
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
 
@@ -105,7 +108,7 @@
 
             </header>            
 			
-          	@if( $_SERVER['REQUEST_URI'] != '/order/create')
+          	@if( $_SERVER['REQUEST_URI'] != '/order/create' ||  $_SERVER['REQUEST_URI'] != '/wagon/create')
             <div class = "visible-xs">
                 @section('tableprice')
                 	@include('layouts.tableprice')
@@ -117,7 +120,7 @@
             <div class = "row content-field">
                 <div class = "col-sm-12 hidden-xs" style="padding-right: -15px">
 					
-					@if( $_SERVER['REQUEST_URI'] == '/order/create')
+					@if( $_SERVER['REQUEST_URI'] == '/order/create' || $_SERVER['REQUEST_URI'] == '/wagon/create')
 						{{--@include('order.show')--}}
 					@else					
 					<div class = "hidden-xs">
@@ -164,10 +167,16 @@
         </script>
 
         
+        <script src="{{ asset('js/zepto.js') }}">
+        </script>
+        <script src="{{ asset('js/zepto-selector.js') }}">
+        </script>
+        <script src="{{ asset('js/jquery.chained.js') }}">
+        </script>
         <script src="{{ asset('js/jquery.maskedinput.js') }}">
         </script>
         <script src="{{ asset('/js/bootstrap-multiselect.js') }}">
-        </script> 
+        </script>
         
         <!-- Yandex.Metrika counter -->
 		<script type="text/javascript" > 

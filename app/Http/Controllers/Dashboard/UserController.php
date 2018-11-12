@@ -9,6 +9,7 @@ use App\Trader;
 use App\Farmer;
 use App\Forwarder;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -56,11 +57,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
     	$this->validator( $request->all() );
-    	
-        $validatedData = $request->validate([
-	        'newPassword' => 'confirmed',
-	    ]);
-	    
+    
         $requestArray = $request->all();
         $requestArray['name'] = $request->phone;
         $requestAddPass = array_add($requestArray, 'password', bcrypt($request->newPassword));
@@ -121,15 +118,6 @@ class UserController extends Controller
     {
     	$this->validator( $request->all() );
     	
-        $validatedData = $request->validate(
-	        [
-		        'newPassword' => 'confirmed',
-		    ],
-		    [
-		        'newPassword.confirmed' => 'Неправильное подтверждение пароля',
-		    ]
-	    );
-	    
 		$user = $this->user->find($id);
 		
 		if( $request->profile == 'farmer' && $user->profile != 'farmer' ){
@@ -177,24 +165,26 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = $this->user->find($id);
+        /*$user = $this->user->find($id);
     	
 		$user->delete();
-		return back()->with('message',"Информация по $user->name удалена");
+		return back()->with('message',"Информация по $user->name удалена");*/
     }
     
     protected function validator(array $data)
     {
-    	$id =  isset($data['id']) ? $data['id'] : '';
-        return Validator::make($data, 
-        	[
-	        	'phone' => 'required|unique:users,phone,' . $id,
-	        	'profile' => 'required' ,
-            ],            
-            [           
-	            'phone.required' => 'укажите номер телефона',           
-	            'phone.unique' => 'данный номер телефона зарегистрирован',
-	            'profile.required' => 'укажите профиль пользователя',         
+    	
+        return Validator::make($data,
+            [
+                'phone' => ['required', Rule::unique('users')->ignore($data['id'])],
+                'newPassword' => 'confirmed',
+                'email' => 'email|nullable',
+            ],
+            [
+                'phone.required' => 'укажите номер телефона',
+                'phone.unique' => 'данный номер телефона зарегистрирован',
+                'newPassword.confirmed' => 'Неправильное подтверждение пароля',
+                'email.email' => 'e-mail некорректен',
             ]
         )->validate();
     }

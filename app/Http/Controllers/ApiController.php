@@ -6,15 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Reference\Rate;
+use App\Reference\Region;
+use App\Reference\Town;
 use App\Elevator;
 use App\User;
 
 class ApiController extends Controller
 {
-	public function __construct(Elevator $elevator, User $user)
+	public function __construct(Elevator $elevator, User $user, Town $town)
 	{
 		$this->elevator = $elevator;
 		$this->user = $user;
+		$this->town = $town;
 	}
 	
     public function favorite($action = 'remove', $user_id, $elevator_id)
@@ -45,16 +48,28 @@ class ApiController extends Controller
 		}
     }
     
-    public function addViewOrder($order_id)
+   /* public function addViewOrder($order_id)
     {
     	DB::table('orders')->where('id', $order_id)->increment('views');
     	$cnt = DB::table('orders')->select()->where('id', $order_id)->first();
 		return "&nbsp;".$cnt->views;
+    }*/
+    
+    public function addView($id, $type)
+    {
+    	DB::table($type)->where('id', $id)->increment('views');
+    	$cnt = DB::table($type)->select()->where('id', $id)->first();
+		return "&nbsp;".$cnt->views;
     }
     
-    public function closedOrder($order_id)
+    /*public function closedOrder($order_id)
     {
     	DB::table('orders')->where('id', $order_id)->update(['active' => 0]);
+    }*/
+    
+    public function closedOrder($id, $type)
+    {
+    	DB::table($type)->where('id', $id)->update(['active' => 0]);
     }
     
     // значение гостов по культуре
@@ -77,4 +92,25 @@ class ApiController extends Controller
     	$rates->save();    	
     }  
     
+    public function updateRegion()
+    {
+    	$elevators = Elevator::all();
+
+        foreach ($elevators as $elevator) {
+        	$town = Town::where('id', $elevator->town_id)->get()->first();
+            DB::table('elevators')->where('id', $elevator->id)->update(['region_id' => $town->region_id ]);
+        }
+    }
+    
+    public function updateState()
+    {
+    	$elevators = Elevator::all();
+
+        foreach ($elevators as $elevator) {
+        	$region = Region::where('id', $elevator->region_id)->get()->first();
+            DB::table('elevators')->where('id', $elevator->id)->update(['state_id' => $region->state_id ]);
+        }
+    }
+    
+	
 }

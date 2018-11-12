@@ -24,6 +24,7 @@ Route::get('welcome/{locale}', function ($locale) {
 Route::get('/','OrderController@index')->name('home');
 
 Route::resource('order','OrderController');
+Route::resource('wagon','WagonController');
 Route::resource('trader','TraderController');
 Route::resource('farmer','FarmerController');
 Route::resource('forwarder','ForwarderController');
@@ -79,3 +80,11 @@ Route::get('/news/{id}', 'ArticleController@show')->name('onepost');
 Route::get('/help', function () {
     return view('layouts.help');
 })->middleware('auth')->name('help');
+
+Route::get('/setlocale/{locale}', function ($locale) {
+    // Проверяем, что у пользователя выбран доступный язык 
+    //if (in_array($locale, \Config::get('app.locales'))) {   
+    	Session::put('locale', $locale); // И устанавливаем его в сессии под именем locale
+    //}
+    return redirect()->back();
+});

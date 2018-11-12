@@ -1,10 +1,10 @@
-<input type="hidden" name="user_id" value="{{ Auth::id() }}">{{-- how users = traders --}}
+<input type="hidden" name="user_id" value="{{ Auth::id() }}">
 
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} hidden">
 	<label for="name" class="col-md-4 control-label">Имя пользователя</label>
 
 	<div class="col-md-6">
-		<input id="name" type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required>
+		<input id="name" type="text" class="form-control" name="name" value="{{ Auth::user()->name }}">
 
 		@if ($errors->has('name'))
 		<span class="help-block">
@@ -77,6 +77,38 @@
 </div>
 
 <div class="form-group">
+	<div class="{{ $errors->has('state_id') ? ' has-error' : '' }}"> 
+		
+		<label for="state_id" class="col-md-4 control-label">Область</label>		
+		
+		<div class="col-md-6">
+		<select id="state_id" name="state_id">		
+			<option value="">--</option>
+			@foreach($states as $item)
+				@if(isset($viewdata))
+					<option {{ $viewdata->state_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
+				@else
+					<option value="{{ $item->id }}">{{ $item->name }}</option>
+				@endif
+				
+
+			@endforeach			
+		</select>
+
+		@if ($errors->has('state_id'))
+		<span class="help-block">
+			<strong>
+				{{ $errors->first('state_id') }}
+			</strong>
+		</span>
+		@endif
+		</div>
+	</div>
+</div> 
+
+{{--
+
+<div class="form-group">
 	<div class="{{ $errors->has('regions') ? ' has-error' : '' }}"> 
 		
 		<label for="regions" class="col-md-4 control-label">Район</label>		
@@ -85,9 +117,37 @@
 		<select id="select-regions" multiple class="form-control" name="regions[]" size="5">			
 			@foreach($regions as $item)
 				@if(isset($viewdata))
-					<option {{ in_array($item->id, $farmer_region )  ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
+					<option {{ in_array($item->id, $farmer_region )  ? 'selected' : '' }} attr-state-id="77" value="{{ $item->id }}">{{ $item->name }}</option>
 				@else
-					<option value="{{ $item->id }}">{{ $item->name }}</option>
+					<option attr-state-id="77" value="{{ $item->id }}">{{ $item->name }}</option>
+				@endif
+			@endforeach			
+		</select>
+		@if ($errors->has('regions'))
+		<span class="help-block">
+			<strong>
+				{{ $errors->first('regions') }}
+			</strong>
+		</span>
+		@endif
+		</div>
+	</div>
+</div>	
+--}}
+
+<div class="form-group">
+	<div class="{{ $errors->has('regions') ? ' has-error' : '' }}"> 
+		
+		<label for="regions" class="col-md-4 control-label">Район</label>		
+		
+		<div class="col-md-6">
+		<select id="region_id" name="regions[]" size="5">			
+			<option value="">--</option>
+			@foreach($regions as $item)
+				@if(isset($viewdata))
+					<option {{ in_array($item->id, $farmer_region )  ? 'selected' : '' }} data-chained="{{$item->state_id}}" value="{{ $item->id }}">{{ $item->name }}</option>
+				@else
+					<option data-chained="{{$item->state_id}}" value="{{ $item->id }}">{{ $item->name }}</option>
 				@endif
 			@endforeach			
 		</select>

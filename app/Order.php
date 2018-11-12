@@ -20,6 +20,7 @@ class Order extends Model
 		'description',
 		'count',
 		'price',
+		'nds',
 		'auction',
 		'pack_id',
 		'corn_id',

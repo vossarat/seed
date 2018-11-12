@@ -8,12 +8,14 @@ class State extends Model
 {
 	protected $table = 'states';
 	
+	protected $fillable = [
+		'name',
+	];
+	
     public function scopeCountElevator($query, $id)
     {
-        return $query
-        	->rightJoin('regions',   'states.id',  '=', 'regions.state_id')        		
-        	->rightJoin('towns',     'regions.id', '=', 'towns.region_id')        		
-        	->rightJoin('elevators', 'towns.id',   '=', 'elevators.town_id')    
+        return $query      		
+        	->rightJoin('elevators', 'states.id',   '=', 'elevators.state_id')    
         		->where('states.id', '=', $id)		
         	->count();
     } 

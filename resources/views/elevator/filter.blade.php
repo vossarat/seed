@@ -1,27 +1,10 @@
-<div class="row">		    	
-	<div class="col-xs-6">		    	
-	@if($filter)
-		<a href="{{ route('mapelevator') }}" class="button button-effect-ujarak button-block button-default-outline button-filter">
-        	Очистить Фильтр
-        </a>
-    @else			    	
-        <a class="button button-effect-ujarak button-block button-default-outline toogle-elevator-filter button-filter">
-        	Фильтр
-        </a>
-    @endif		
-	</div>
-
-	<div class="col-xs-6">
-		@if($fav)
-			<a class="button button-effect-ujarak button-block button-default-outline button-filter" href="/mapelevator">Все</a>
-		@else
-			<a class="button button-effect-ujarak button-block button-default-outline button-filter" href="/mapelevator/fav">Избранные</a>
-        @endif
-		
-	</div>
-</div>
-
 <div id="elevator-filter" class="cell-xs-12">	       
+
+@if($filter)
+	<a href="{{ route('mapelevator') }}" class="button button-effect-ujarak button-block button-default-outline button-filter">
+		Очистить Фильтр
+	</a>
+@endif
 
     <div class="table-custom-responsive">
         <table class="table-custom">
@@ -31,8 +14,7 @@
 
                         <td>                        	
                         	<a href=" {{ route('mapelevator').'?filterByState='.$regions->state_id.'&filter=filter&page=1'.$filterByCorn }} "><span class="fa fa-long-arrow-left"></span> 
-                        		{{-- $regions->name."  (" .$regions->countElevator($regions->id). ")" --}}
-                        		Акмолинская область 
+                        		{{ $regions->state->name }}
                         	</a>
                         </td>
                     </tr>
@@ -54,7 +36,19 @@
                      @endforeach
                 
                 @else
-                    @foreach($states as $state)	                            
+                	@if(Auth::check())
+                	<tr>
+                		<td>
+                			@if($fav === 1)
+                				<a href="/mapelevator">Все&nbsp;<span class="fa fa-long-arrow-right"></span> </a>
+                			@else
+                				<a href="/mapelevator/fav">Избранные ({{$fav_cnt}}) <span class="fa fa-long-arrow-right"></span> </a>
+                			@endif
+                        </td>                    
+                    </tr>
+                    @endif
+                    @foreach($states as $state)                          
+                    
                     <tr>
                         <td>
                         	
